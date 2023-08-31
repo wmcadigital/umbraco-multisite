@@ -87,5 +87,45 @@ namespace Wmca.Models.Content
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
 		[ImplementPropertyType("greyscaleTheme")]
 		public virtual bool GreyscaleTheme => this.Value<bool>(_publishedValueFallback, "greyscaleTheme");
+
+		///<summary>
+		/// Meta Configuration
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("metaConfiguration")]
+		public virtual string MetaConfiguration => this.Value<string>(_publishedValueFallback, "metaConfiguration");
+
+		///<summary>
+		/// Search Placeholder
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("searchPlaceholder")]
+		public virtual string SearchPlaceholder => this.Value<string>(_publishedValueFallback, "searchPlaceholder");
+
+		///<summary>
+		/// Site Description
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("siteDescription")]
+		public virtual string SiteDescription => this.Value<string>(_publishedValueFallback, "siteDescription");
+
+		///<summary>
+		/// Site Logo
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("siteLogo")]
+		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops SiteLogo => this.Value<global::Umbraco.Cms.Core.Models.MediaWithCrops>(_publishedValueFallback, "siteLogo");
+
+		///<summary>
+		/// Site Title
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("siteTitle")]
+		public virtual string SiteTitle => this.Value<string>(_publishedValueFallback, "siteTitle");
 	}
 }
