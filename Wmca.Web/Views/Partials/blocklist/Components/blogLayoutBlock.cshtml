@@ -1,0 +1,22 @@
+﻿@inherits UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>
+@using ContentModels = Wmca.Models.Content;
+
+@{
+    var content = (ContentModels.BlogLayoutBlock)Model.Content;
+    // var settings = (ContentModels.BlogLayoutBlock)Model.Settings;
+    // var contentItem = Umbraco.AssignedContentItem;
+    // var homePage = contentItem.Root(); // Get the homepage
+    // var siteProps = homePage.ChildrenOfType("siteProperties"); // Get site properties by docType will return null if not found
+    // var siteSet = siteProps.First().Children.Where(x => x.ContentType.Alias == "siteSettings").First(); //Get the site setings
+}
+
+<main id="wmcads-main-content" class="wmcads-container wmcads-container--main">
+    <div class="wmcads-grid wmcads-grid--justify-between wmcads-grid--spacing-2-lg wmcads-grid--spacing-md-2-lg">
+        <div class="wmcads-col-1 wmcads-col-md-2-3 main-content">
+            @Html.GetBlockListHtml(content.BlogContent)
+        </div>
+        <div class="wmcads-col-1 wmcads-col-md-1-3">
+            @Html.GetBlockListHtml(content.Sidebar)
+        </div>
+    </div>
+</main>

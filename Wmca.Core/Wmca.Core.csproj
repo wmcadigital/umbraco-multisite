@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.9" />
+    <PackageReference Include="Umbraco.Cms.Core" Version="12.0.1" />
+    <PackageReference Include="Umbraco.Cms.Web.Common" Version="12.0.1" />
+    <PackageReference Include="Umbraco.Cms.Web.Website" Version="12.0.1" />
+    <PackageReference Include="Limbo.Umbraco.BlockList" Version="3.0.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Controllers\" />
+    <None Remove="Controllers\ContentDeliveryApi\" />
+    <None Remove="BlockList\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+    <Folder Include="Controllers\ContentDeliveryApi\" />
+    <Folder Include="BlockList\" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,11 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+@{
+    var siteProps = Umbraco.ContentAtRoot().FirstOrDefault().Children().Where(x => x.ContentType.Alias == "siteProperties");
+    var siteProperties = siteProps.First();
+    var dsVersion = siteProperties.Value<string>("designSystemVersion");
+}
+
+<script src="https://cloudcdn.wmca.org.uk/wmcabeta/1.1.42/js/vendor.min.js"></script>
+<script src="https://cloudcdn.wmca.org.uk/wmcaassets/ds/@dsVersion/js/wmcads-website.min.js"></script>
+<script src="https://www.wmca.org.uk/scripts/wmcads-templates.js"></script>

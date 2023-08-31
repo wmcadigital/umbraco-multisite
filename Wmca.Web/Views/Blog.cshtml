@@ -1,0 +1,29 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Wmca.Models.Content.Blog>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+
+@{
+    Layout = "WestMidlandsCombinedAuthority.cshtml";
+    var siteProps = Umbraco.ContentAtRoot().FirstOrDefault().Children().Where(x => x.ContentType.Alias == "siteProperties");
+    var siteProperties = siteProps.First();
+    var dsSlug = siteProperties.Value<string>("designSystemSlug");
+}
+
+<main id="@dsSlug-main-content" class="@dsSlug-container @dsSlug-container--main @dsSlug-m-t-lg">
+    <div class="template-search">
+        <div class="@dsSlug-col-1 @dsSlug-col-md-2-3 @dsSlug-p-r-xl @dsSlug-m-b-lg">
+            <h2>@Model.Name</h2>
+            @{
+	            var selection = Umbraco.Content(Guid.Parse("c66668c7-dfd8-4362-8b7f-60d466b2846d")).Children().Where(x => x.IsVisible());
+            }
+            <ul>
+	        @foreach (var item in selection)
+	        {
+		        <li>
+			        <a href="@item.Url()">@item.Name()</a>
+		        </li>
+	        }
+            </ul>
+        </div>
+    </div>
+</main>

@@ -1,0 +1,82 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Wmca.Models.Content.BlogArticle>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "WestMidlandsCombinedAuthority.cshtml";
+}
+
+<div class="wmcads-container">
+    <main class="wmcads-container--main">
+        <div class="template-search">
+            <div class="wmcads-col-1 wmcads-col-md-2-3 wmcads-p-r-xl wmcads-m-b-lg">
+                <h2>@Model.Name</h2>
+
+                @*@{
+            IPublishedContent typedContentPicker = Model.Author;
+            if (typedContentPicker != null)
+            {
+                <p>@typedContentPicker.Name</p>
+            }
+        }*@
+
+                @Model.Date
+
+                @if (Model.Tags.Any())
+                {
+                    <ul class="wmcads-bare-list">
+                        @foreach (var tag in Model.Tags)
+                        {
+                            <li>@tag</li>
+                        }
+                    </ul>
+                }
+
+                <div class="wmcads-msg-summary wmcads-msg-summary--warning ">
+                    <div class="wmcads-msg-summary__header">
+                        <svg class="wmcads-msg-summary__icon">
+                            <use xlink:href="#wmcads-general-warning-circle" href="#wmcads-general-warning-circle"></use>
+                        </svg>
+                    </div>
+                    <div class="wmcads-msg-summary__info">
+                        This blog post is an opinion and may not reflect WMCA's views.
+                    </div>
+                </div>
+                <div class="wmcads-inset-text" aria-label="Introduction">
+                    @Model.Value("introduction")
+                </div>
+
+                <h3>Content here</h3>
+
+                @Html.GetBlockListHtml(Model, "Copy")
+
+                <hr aria-hidden="true">
+                Tags:
+                @if (Model.Tags.Any())
+                {
+
+                    <ul class="wmcads-bare-list">
+                        @foreach (var tag in Model.Tags)
+                        {
+                            <li>@tag</li>
+                        }
+                    </ul>
+                }
+
+
+                @*@{
+            IPublishedContent author = Model.Author;
+            if (author != null)
+            {
+            <div class="wmcads-inset-text"  aria-label="About the author" >
+            <b>About the author</b><br /><br />
+                @author.Name<br /><br />
+                @author.Value("jobTitle")
+
+                </div>
+            }
+        }*@
+
+            </div>
+        </div>
+    </main>
+</div>
