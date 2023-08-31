@@ -34,6 +34,8 @@
                 .AddWebsite()
                 .AddDeliveryApi()
                 .AddComposers()
+                .AddAzureBlobMediaFileSystem()
+                .AddAzureBlobImageSharpCache()
                 .Build();
         }
 
