@@ -6,13 +6,14 @@
     <CopyRefAssembliesToPublishDirectory>true</CopyRefAssembliesToPublishDirectory>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="umbraco\Logs\UmbracoTraceLog.WMCA-ZGVDY01IG3.20230831.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Compile Remove="umbraco\Logs\**" />
+    <Content Remove="umbraco\Logs\**" />
+    <EmbeddedResource Remove="umbraco\Logs\**" />
+    <None Remove="umbraco\Logs\**" />
   </ItemGroup>
   <ItemGroup>
     <None Include="umbraco\Data\Umbraco.sqlite.db">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
