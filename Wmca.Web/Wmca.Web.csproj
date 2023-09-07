@@ -5,6 +5,16 @@
     <Nullable>enable</Nullable>
     <CopyRefAssembliesToPublishDirectory>true</CopyRefAssembliesToPublishDirectory>
   </PropertyGroup>
+  <ItemGroup>
+    <Content Include="umbraco\Logs\UmbracoTraceLog.WMCA-ZGVDY01IG3.20230831.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="umbraco\Data\Umbraco.sqlite.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Umbraco.Cms" Version="12.0.1" />
