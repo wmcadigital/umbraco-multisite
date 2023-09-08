@@ -38,7 +38,7 @@ jobs:
     runs-on: windows-latest
     needs: build
     environment:
-      name: 'Production'
+      name: 'Development'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
@@ -52,6 +52,20 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'app-umbraco-multisite-dev'
-          slot-name: 'Production'
+          slot-name: 'Development'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3FF699B1B92C44AAB2174300144F0D48 }}
           package: .
+          
+      - name: Database Initialization
+        run: |
+          # Database initialization commands go here
+          # Example: Load data from an SQL dump file
+          # sqlcmd -S $SERVER -U $USERNAME -P $PASSWORD -d $DATABASE -i path/to/dump.sql
+          # For SQLite, you can set the connection string directly in your Umbraco application
+          echo "ConnectionStrings__umbracoDbDSN=Data Source=${{ env.DOTNET_ROOT }}/myapp/Wmca.Web\umbraco\Data\Umbraco.sqlite.db;Cache=Shared;Foreign Keys=True;Pooling=True" >> $GITHUB_ENV
+        env:
+          SERVER: ${{ secrets.DB_SERVER }}
+          USERNAME: ${{ secrets.DB_USERNAME }}
+          PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DATABASE: ${{ secrets.DB_DATABASE }}
+          
