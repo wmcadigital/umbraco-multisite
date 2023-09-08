@@ -38,7 +38,7 @@ jobs:
     runs-on: windows-latest
     needs: build
     environment:
-      name: 'Development'
+      name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
@@ -52,7 +52,7 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'app-umbraco-multisite-dev'
-          slot-name: 'Development'
+          slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3FF699B1B92C44AAB2174300144F0D48 }}
           package: .
           
