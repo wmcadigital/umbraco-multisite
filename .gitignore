@@ -403,3 +403,4 @@ ASALocalRun/
 
 # Local History for Visual Studio
 .localhistory/
+/Wmca.Web/umbraco/Data/Umbraco.sqlite.db
