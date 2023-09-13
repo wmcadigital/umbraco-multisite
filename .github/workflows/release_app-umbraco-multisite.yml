@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy ASP.Net Core app to Azure Web App - app-umbraco-multisite-dev
+name: Build and deploy ASP.Net Core app to Azure Web App - app-umbraco-multisite
 
 on:
   push:
@@ -51,9 +51,9 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'app-umbraco-multisite-dev'
+          app-name: 'app-umbraco-multisite'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3FF699B1B92C44AAB2174300144F0D48 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_5379EB2F05FE42729CBB41B42F120311 }}
           package: .
           
       - name: Database Initialization
@@ -68,4 +68,3 @@ jobs:
           USERNAME: ${{ secrets.DB_USERNAME }}
           PASSWORD: ${{ secrets.DB_PASSWORD }}
           DATABASE: ${{ secrets.DB_DATABASE }}
-          
