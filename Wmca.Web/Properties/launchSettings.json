@@ -24,6 +24,15 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true
+    },
+    "Umbraco.Web.UI.Production": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "applicationUrl": "https://app-umbraco-multisite.azurewebsites.net/",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Production"
+      }
     }
+
   }
 }
