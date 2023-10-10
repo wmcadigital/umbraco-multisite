@@ -51,7 +51,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'app-umbraco-multisite'
+          app-name: 'app-umbraco-multisite/staging'
           slot-name: 'Staging'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_5379EB2F05FE42729CBB41B42F120311 }}
           package: .
