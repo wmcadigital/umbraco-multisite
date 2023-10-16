@@ -1,0 +1,37 @@
+﻿@inherits UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>
+@using ContentModels = Wmca.Models.Content;
+@using Umbraco.Cms.Core.Models
+
+@{
+    var content = (ContentModels.NavigationItem)Model.Content;
+    var settings = (ContentModels.NavigationItem)Model.Settings;
+    var link = content.Value<Link>("link");
+    var contentItem = Umbraco.AssignedContentItem;
+    var homePage = contentItem.Root(); // Get the homepage
+    var siteSet = homePage.Children.Where(x => x.ContentType.Alias == "siteProperties").First(); //Get the site setings
+}
+
+<li class="ds-mega-menu__primary-menu-item">
+    @if (link != null)
+    {
+        <a target="@link.Target" href="@link.Url" class="ds-mega-menu__primary-menu-link">
+            @content.Value("title")
+        </a>
+    }
+    else
+    {
+        <button target="_self" class="ds-mega-menu__primary-menu-link">
+            @content.Value("title")
+        </button>
+    }
+    <!-- arrow icon for mobile nav -->
+    <button class="ds-mega-menu__link-arrow-icon-btn" data-label="Plan a journey" aria-label="toggle Plan a journey" aria-controls="ds-primary-menu-container-0">
+        <svg class="ds-mega-menu__link-arrow-icon">
+            <use xlink-href="#ds-general-chevron-right" href="#ds-general-chevron-right"></use>
+        </svg>
+    </button>
+
+    <!-- Start mega menu container -->
+    @Html.GetBlockListHtml(content.ChildLinks)
+
+</li>
