@@ -58,6 +58,14 @@ namespace Wmca.Models.Content
 		public virtual global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent> Author => this.Value<global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>>(_publishedValueFallback, "author");
 
 		///<summary>
+		/// Copy
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("copy")]
+		public virtual global::System.Collections.Generic.IReadOnlyList<global::Wmca.Core.BlockList.BlockItem> Copy => this.Value<global::System.Collections.Generic.IReadOnlyList<global::Wmca.Core.BlockList.BlockItem>>(_publishedValueFallback, "copy");
+
+		///<summary>
 		/// Date
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]

@@ -5,10 +5,10 @@
 	Layout = "WestMidlandsCombinedAuthority.cshtml";
 }
 
-<div class="ds-container">
-    <main class="ds-container--main">
+<div class="wmcads-container">
+    <main class="wmcads-container--main">
         <div class="template-search">
-            <div class="ds-col-1 ds-col-md-2-3 ds-p-r-xl ds-m-b-lg">
+            <div class="wmcads-col-1 wmcads-col-md-2-3 wmcads-p-r-xl wmcads-m-b-lg">
                 <h2>@Model.Name</h2>
 
                 @*@{
@@ -23,7 +23,7 @@
 
                 @if (Model.Tags.Any())
                 {
-                    <ul class="ds-bare-list">
+                    <ul class="wmcads-bare-list">
                         @foreach (var tag in Model.Tags)
                         {
                             <li>@tag</li>
@@ -31,17 +31,17 @@
                     </ul>
                 }
 
-                <div class="ds-msg-summary ds-msg-summary--warning ">
-                    <div class="ds-msg-summary__header">
-                        <svg class="ds-msg-summary__icon">
-                            <use xlink:href="#ds-general-warning-circle" href="#ds-general-warning-circle"></use>
+                <div class="wmcads-msg-summary wmcads-msg-summary--warning ">
+                    <div class="wmcads-msg-summary__header">
+                        <svg class="wmcads-msg-summary__icon">
+                            <use xlink:href="#wmcads-general-warning-circle" href="#wmcads-general-warning-circle"></use>
                         </svg>
                     </div>
-                    <div class="ds-msg-summary__info">
+                    <div class="wmcads-msg-summary__info">
                         This blog post is an opinion and may not reflect WMCA's views.
                     </div>
                 </div>
-                <div class="ds-inset-text" aria-label="Introduction">
+                <div class="wmcads-inset-text" aria-label="Introduction">
                     @Model.Value("introduction")
                 </div>
 
@@ -54,7 +54,7 @@
                 @if (Model.Tags.Any())
                 {
 
-                    <ul class="ds-bare-list">
+                    <ul class="wmcads-bare-list">
                         @foreach (var tag in Model.Tags)
                         {
                             <li>@tag</li>
@@ -67,7 +67,7 @@
             IPublishedContent author = Model.Author;
             if (author != null)
             {
-            <div class="ds-inset-text"  aria-label="About the author" >
+            <div class="wmcads-inset-text"  aria-label="About the author" >
             <b>About the author</b><br /><br />
                 @author.Name<br /><br />
                 @author.Value("jobTitle")

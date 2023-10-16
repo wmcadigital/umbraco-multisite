@@ -72,5 +72,4 @@
   </PropertyGroup>
   
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Umbraco.Web.UI' " />
-  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Umbraco.Web.UI.Production' " />
 </Project>

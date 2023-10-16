@@ -50,6 +50,14 @@ namespace Wmca.Models.Content
 		// properties
 
 		///<summary>
+		/// Copy
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("copy")]
+		public virtual global::System.Collections.Generic.IReadOnlyList<global::Wmca.Core.BlockList.BlockItem> Copy => this.Value<global::System.Collections.Generic.IReadOnlyList<global::Wmca.Core.BlockList.BlockItem>>(_publishedValueFallback, "copy");
+
+		///<summary>
 		/// Sidebar
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
