@@ -4,6 +4,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <CopyRefAssembliesToPublishDirectory>true</CopyRefAssembliesToPublishDirectory>
+    <UserSecretsId>5f35ed55-d59c-44fb-b117-2d29b201d88d</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="umbraco\Logs\**" />
