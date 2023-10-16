@@ -20,7 +20,7 @@ namespace Wmca.Models.Content
 {
 	/// <summary>Homepage</summary>
 	[PublishedModel("homepageMidlandsConnect")]
-	public partial class HomepageMidlandsConnect : PublishedContentModel
+	public partial class HomepageMidlandsConnect : PublishedContentModel, IHomepageBanner
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -48,5 +48,37 @@ namespace Wmca.Models.Content
 		}
 
 		// properties
+
+		///<summary>
+		/// Image
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("image")]
+		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops Image => global::Wmca.Models.Content.HomepageBanner.GetImage(this, _publishedValueFallback);
+
+		///<summary>
+		/// Image Position
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("imagePosition")]
+		public virtual string ImagePosition => global::Wmca.Models.Content.HomepageBanner.GetImagePosition(this, _publishedValueFallback);
+
+		///<summary>
+		/// Subtitle
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("subtitle")]
+		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString Subtitle => global::Wmca.Models.Content.HomepageBanner.GetSubtitle(this, _publishedValueFallback);
+
+		///<summary>
+		/// Tag Line
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("tagLine")]
+		public virtual string TagLine => global::Wmca.Models.Content.HomepageBanner.GetTagLine(this, _publishedValueFallback);
 	}
 }
