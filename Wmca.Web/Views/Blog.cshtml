@@ -9,9 +9,9 @@
     var dsSlug = siteProperties.Value<string>("designSystemSlug");
 }
 
-<main id="@dsSlug-main-content" class="@dsSlug-container @dsSlug-container--main @dsSlug-m-t-lg">
+<main id="ds-main-content" class="ds-container ds-container--main ds-m-t-lg">
     <div class="template-search">
-        <div class="@dsSlug-col-1 @dsSlug-col-md-2-3 @dsSlug-p-r-xl @dsSlug-m-b-lg">
+        <div class="ds-col-1 ds-col-md-2-3 ds-p-r-xl ds-m-b-lg">
             <h2>@Model.Name</h2>
             @{
 	            var selection = Umbraco.Content(Guid.Parse("c66668c7-dfd8-4362-8b7f-60d466b2846d")).Children().Where(x => x.IsVisible());

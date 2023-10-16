@@ -1,11 +1,13 @@
 ﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 
 @{
-    var siteProps = Umbraco.ContentAtRoot().FirstOrDefault().Children().Where(x => x.ContentType.Alias == "siteProperties");
-    var siteProperties = siteProps.First();
-    var dsVersion = siteProperties.Value<string>("designSystemVersion");
-    var siteTitle = siteProperties.Value<string>("siteTitle");
-    bool greyscaleTheme = siteProperties.Value<bool>("greyscaleTheme");
+    var homePage = Model.AncestorOrSelf(1); @* Get the homepage *@
+    var siteProps = homePage.ChildrenOfType("siteProperties"); @* Get site properties by docType will return null if not found *@
+    var siteSet = homePage.Children.Where(x => x.ContentType.Alias == "siteProperties").First(); @* Get the site setings *@
+    var dsSlug = siteSet.Value<string>("designSystemSlug");
+    var dsVersion = siteSet.Value<string>("designSystemVersion");
+    var siteTitle = siteSet.Value<string>("siteTitle");
+    bool greyscaleTheme = siteSet.Value<bool>("greyscaleTheme");
 }
         <!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -36,6 +38,23 @@
 
         <!-- CSS for WMCA Design System -->
         @{
+            if (dsSlug == "wmcads")
+            {
+                <link rel="stylesheet" href="/css/ds/wmcads.min.css" />
+            }
+            else if (dsSlug == "stds")
+            {
+                <link rel="stylesheet" href="/css/ds/stds.min.css" />
+            }
+            else if (dsSlug == "mcds")
+            {
+                <link rel="stylesheet" href="/css/ds/mcds.min.css" />
+            }
+        }
+        
+        
+        
+       @* @{
             if (greyscaleTheme)
             {
                 <link rel="stylesheet" href="https://www.wmca.org.uk/css/wmcads-dark.min.css" />
@@ -46,7 +65,7 @@
                 <link rel="stylesheet" href="https://www.wmca.org.uk/css/wmcads.min.css?v1.4" />
                 <link rel="stylesheet" href="https://www.wmca.org.uk/css/templates.min.css" />
             }
-        }
+        }*@
 
         <script src="https://kit.fontawesome.com/55e348b8be.js" crossorigin="anonymous"></script>
         <script crossorigin="anonymous" src="https://polyfill.io/v3/polyfill.min.js?features=document.querySelector%2C%7Ehtml5-elements%2C%7Eviewport%2Ces6"></script>
