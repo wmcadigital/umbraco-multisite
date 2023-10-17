@@ -27,46 +27,60 @@
         }
     }
 
-    // var links = header.Value<IEnumerable<Link>>("subSectionLinks");
+    var links = content.Value<IEnumerable<Link>>("childLinks");
 }
 
-<div id="ds--primary-menu-container-0" class="ds--mega-menu__container">
-    <div class="ds--container">
-        <!-- Start submenu (level 2) -->
-        <ul class="ds--mega-menu__sub-menu ds--mega-menu__sub-menu--has-child-menus">
-            <li class="ds--mega-menu__sub-menu-item">
-                <span class="ds--mega-menu__sub-menu-link">
-                    @if (content.SubsectionIcon != "")
-                    {
-                        <!-- Show submenu (level 2) item icon if specified -->
-                        <svg class="ds--mega-menu__sub-menu-link-icon">
-                            <use xlink:href="#ds--@content.SubsectionIcon" href="#ds--@content.SubsectionIcon"></use>
-                        </svg>
-                    }
-                    @content.SubsectionName
-                </span>
-                <!-- collapse button for mobile nav level 3 menu items -->
-                <button class="ds--mega-menu__collapse-toggle" aria-expanded="false" aria-label="Toggle Plan your journey menu" aria-controls="wmnetwork-primary-menu-submenu-child-menu-0-0">
-                    <svg class="ds--mega-menu__link-arrow-icon">
-                        <use xlink-href="#ds--general-chevron-right" href="#ds--general-chevron-right"></use>
-                    </svg>
-                </button>
-                <!-- Start submenu child (level 3) list -->
-                <ul id="wmnetwork-primary-menu-submenu-child-menu-0-0" class="ds--mega-menu__sub-menu-child-menu">
-                    @if (showSubLinks)
-                    {
-                        @*@foreach (var link in links)
+<div id="mega-menu-container-1" class="ds-mega-menu__container">
+        <div class="ds-container">
+            <!-- Start submenu (level 2) -->
+            <ul class="ds-mega-menu__sub-menu">
+                <li class="ds-mega-menu__sub-menu-item">
+                    @if (content.SubsectionName != "")
                         {
-                            <li class="ds--mega-menu__sub-menu-child-item">
-                                <a href="@link.Url" target="@link.Target" class="ds--mega-menu__sub-menu-child-link">
-                                    @link.Name
-                                </a>
-                            </li>
-                        }*@
-                    }
-                </ul>
-                <!-- End submenu child (level 3) list -->
-            </li>
-        </ul>
+                        <span class="ds-mega-menu__sub-menu-link">
+                            @if (content.SubsectionIcon != "")
+                            {
+                                <!-- Show submenu (level 2) item icon if specified -->
+                                <svg class="ds-mega-menu__sub-menu-link-icon">
+                                    <use xlink:href="#ds-@content.SubsectionIcon" href="#ds-@content.SubsectionIcon"></use>
+                                </svg>
+                            }
+
+                            @{
+                                var link = content.Value<Link>("subsectionLink");
+                                if (link != null)
+                                {
+                                    <a href="@link.Url" target="@link.Target">@content.SubsectionName</a>
+                                }
+                                else
+                                {
+                                    @content.SubsectionName
+                                }
+                            }
+                        </span>
+                        }
+                        <!-- collapse button for mobile nav level 3 menu items -->
+                        <button class="ds-mega-menu__collapse-toggle" aria-expanded="false" aria-label="Toggle Plan your journey menu" aria-controls="wmnetwork-primary-menu-submenu-child-menu-0-0">
+                            <svg class="ds-mega-menu__link-arrow-icon">
+                                <use xlink-href="#ds-general-chevron-right" href="#ds-general-chevron-right"></use>
+                            </svg>
+                        </button>
+                        <!-- Start submenu child (level 3) list -->
+                        <ul id="wmnetwork-primary-menu-submenu-child-menu-0-0" class="ds-mega-menu__sub-menu-child-menu">
+                            @if (links != null)
+                            {
+                                @foreach (var link in links)
+                                {
+                                <li class="ds-mega-menu__sub-menu-child-item">
+                                    <a href="@link.Url" target="@link.Target" class="ds-mega-menu__sub-menu-child-link">
+                                        @link.Name
+                                    </a>
+                                </li>
+                                }
+                            }
+                        </ul>
+                        <!-- End submenu child (level 3) list -->
+                    </li>
+            </ul>
+        </div>
     </div>
-</div>

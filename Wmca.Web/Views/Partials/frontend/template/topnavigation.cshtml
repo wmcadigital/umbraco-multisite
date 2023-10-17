@@ -42,24 +42,24 @@
         <div class="ds-header ds-header--mega-menu">
             <div class="ds-container ds-grid ds-grid--align-center ds-grid--justify-between">
                 <div class="ds-header__vertical-align ds-col-auto">
-                    <!-- Logo -->
+                    <!-- Logo --> 
                     <a class="ds-header__logo-link" href="/" title="Transport for West Midlands Design System">
                         <img class="ds-header__logo" alt="@siteSet.Value("siteTitle") logo" src="@logo">
                     </a>
                 </div>
                 <nav id="mega-menu-example" class="ds-mega-menu">
-                    <!-- Mobile toggle button -->
+                     <!-- Mobile toggle button --> 
                     <button class="ds-mega-menu__mobile-toggle ds-btn ds-btn--secondary ds-hide-desktop" aria-expanded="false" aria-controls="mega-menu-example-primary-menu">
                         Menu
                         <svg class="ds-mega-menu__close-icon"><use xlink:href="#ds-general-cross" href="#ds-general-cross"></use></svg>
                     </button>
-                    <!-- Container for mega menu - allows scrolling on mobile nav -->
+                     <!-- Container for mega menu - allows scrolling on mobile nav --> 
                     <div id="mega-menu-example-primary-menu" class="ds-mega-menu__scroll-controller">
-                        <!-- Start primary (level 1) navigation -->
+                         <!-- Start primary (level 1) navigation --> 
                         <ul class="ds-mega-menu__primary-menu">
                             @{
                                 //var siteProp = siteProps.ChildrenOfType("header");
-                                var header = siteSet.Children.Where(x => x.ContentType.Alias == "header").First(); @* Get all nav settings from header docType *@
+                                var header = siteSet.Children.Where(x => x.ContentType.Alias == "header").First();
 
                                 @Html.GetBlockListHtml(header, "navigation")
                             }
@@ -86,84 +86,99 @@
                                     </button>
                                 </form>
 
-                                @*<p class="ds-search-heading ds-h1">I want to...</p>
-                                    <div class="ds-grid">
-                                        <div class="ds-col-1-2">
-                                            <ul class="ds-search-list">
-                                                <li class="ds-search-list__item">
-                                                    <a href="#" class="ds-link ds-link--with-chevron">
-                                                        See live departures
-                                                        <svg class="ds-link__chevron ds-link__chevron--right">
-                                                            <use xlink:href="#ds-general-chevron-right" href="#ds-general-chevron-right"></use>
-                                                        </svg>
-                                                    </a>
-                                                </li>
-                                                <li class="ds-search-list__item">
-                                                    <a href="#" class="ds-link ds-link--with-chevron">
-                                                        Find a timetable
-                                                        <svg class="ds-link__chevron ds-link__chevron--right">
-                                                            <use xlink:href="#ds-general-chevron-right" href="#ds-general-chevron-right"></use>
-                                                        </svg>
-                                                    </a>
-                                                </li>
-                                                <li class="ds-search-list__item">
-                                                    <a href="#" class="ds-link ds-link--with-chevron">
-                                                        Check for disruptions
-                                                        <svg class="ds-link__chevron ds-link__chevron--right">
-                                                            <use xlink:href="#ds-general-chevron-right" href="#ds-general-chevron-right"></use>
-                                                        </svg>
-                                                    </a>
-                                                </li>
-                                                <li class="ds-search-list__item">
-                                                    <a href="#" class="ds-link ds-link--with-chevron">
-                                                        Manage my Swift card
-                                                        <svg class="ds-link__chevron ds-link__chevron--right">
-                                                            <use xlink:href="#ds-general-chevron-right" href="#ds-general-chevron-right"></use>
-                                                        </svg>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="ds-col-1-2">
-                                            <ul class="ds-search-list">
-                                                <li class="ds-search-list__item">
-                                                    <a href="#" class="ds-link ds-link--with-chevron">
-                                                        Find ticket prices
-                                                        <svg class="ds-link__chevron ds-link__chevron--right">
-                                                            <use xlink:href="#ds-general-chevron-right" href="#ds-general-chevron-right"></use>
-                                                        </svg>
-                                                    </a>
-                                                </li>
-                                                <li class="ds-search-list__item">
-                                                    <a href="#" class="ds-link ds-link--with-chevron">
-                                                        Get a refund
-                                                        <svg class="ds-link__chevron ds-link__chevron--right">
-                                                            <use xlink:href="#ds-general-chevron-right" href="#ds-general-chevron-right"></use>
-                                                        </svg>
-                                                    </a>
-                                                </li>
-                                                <li class="ds-search-list__item">
-                                                    <a href="#" class="ds-link ds-link--with-chevron">
-                                                        Update Direct Debit
-                                                        <svg class="ds-link__chevron ds-link__chevron--right">
-                                                            <use xlink:href="#ds-general-chevron-right" href="#ds-general-chevron-right"></use>
-                                                        </svg>
-                                                    </a>
-                                                </li>
-                                                <li class="ds-search-list__item">
-                                                    <a href="#" class="ds-link ds-link--with-chevron">
-                                                        Apply for a 16-18 photocard
-                                                        <svg class="ds-link__chevron ds-link__chevron--right">
-                                                            <use xlink:href="#ds-general-chevron-right" href="#ds-general-chevron-right"></use>
-                                                        </svg>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>*@
                             </div>
                         </div>
                     </div>
                 </nav>
     </header>
-}
+    
+    }
+    
+    
+    @*<header>
+    <div class="ds-header ds-header--mega-menu">
+    <div class="ds-container ds-grid ds-grid--align-center ds-grid--justify-between">
+      <div class="ds-header__vertical-align ds-col-auto">
+        <!-- Logo -->
+        <a class="ds-header__logo-link" href="/" title="Transport for West Midlands Design System">
+           <img class="ds-header__logo" alt="@siteSet.Value("siteTitle") logo" src="@logo">
+        </a>
+          
+      </div>
+      
+        <!-- Mega menu nav items-->
+        <nav id="mega-menu-example-full" class="ds-mega-menu">
+          <!-- Mobile toggle button -->
+          <button class="ds-mega-menu__mobile-toggle ds-btn ds-btn--secondary ds-hide-desktop" aria-expanded="false" aria-controls="mega-menu-example-full-primary-menu">Menu
+            <svg class="ds-mega-menu__close-icon"><use xlink:href="#ds-general-cross" href="#ds-general-cross"></use></svg>
+          </button>
+          <!-- Container for mega menu - allows scrolling on mobile nav -->
+          <div id="mega-menu-example-full-primary-menu" class="ds-mega-menu__scroll-controller">
+            <!-- Start primary (level 1) navigation -->
+            <ul class="ds-mega-menu__primary-menu">
+              
+                <li class="ds-mega-menu__primary-menu-item">
+                <!-- Show swift logo in nav if is swift & tickets link -->
+                
+                
+                  <!-- allow primary (level 1) item to link if specified -->
+                  
+                    <button target="_self" class="ds-mega-menu__primary-menu-link" >
+                      Styles
+                    </button>
+                  
+                  <div id="mega-menu-container-1" class="ds-mega-menu__container"><div class="ds-container"><ul class="ds-mega-menu__sub-menu"><li class="ds-mega-menu__sub-menu-item"><a href="/styles/a-to-z-content-style-guide/" class="ds-mega-menu__sub-menu-link">A to Z content style guide</a></li><li class="ds-mega-menu__sub-menu-item"><a href="/styles/colour-palettes/" class="ds-mega-menu__sub-menu-link">Colour palettes</a></li><li class="ds-mega-menu__sub-menu-item"><a href="/styles/icons/" class="ds-mega-menu__sub-menu-link">Icons</a></li><li class="ds-mega-menu__sub-menu-item"><a href="/styles/images/" class="ds-mega-menu__sub-menu-link">Images</a></li><li class="ds-mega-menu__sub-menu-item"><a href="/styles/layout/" class="ds-mega-menu__sub-menu-link">Layout</a></li><li class="ds-mega-menu__sub-menu-item"><a href="/styles/maps/" class="ds-mega-menu__sub-menu-link">Maps</a></li><li class="ds-mega-menu__sub-menu-item"><a href="/styles/typography/" class="ds-mega-menu__sub-menu-link">Typography</a></li><li class="ds-mega-menu__sub-menu-item"><a href="/styles/utility-classes/" class="ds-mega-menu__sub-menu-link">Utility classes</a></li></ul></div></div>
+                </li>
+              
+                <li class="ds-mega-menu__primary-menu-item">
+                <!-- Show swift logo in nav if is swift & tickets link -->
+                
+                
+                  <!-- allow primary (level 1) item to link if specified -->
+                  
+                    <button target="_self" class="ds-mega-menu__primary-menu-link" >
+                      Components
+                    </button>
+                  
+                  
+                </li>
+              
+                <li class="ds-mega-menu__primary-menu-item">
+                <!-- Show swift logo in nav if is swift & tickets link -->
+                
+                
+                  <!-- allow primary (level 1) item to link if specified -->
+                  
+                    <button target="_self" class="ds-mega-menu__primary-menu-link" >
+                      Patterns
+                    </button>
+                  
+                  
+                </li>
+              
+                <li class="ds-mega-menu__primary-menu-item">
+                <!-- Show swift logo in nav if is swift & tickets link -->
+                
+                
+                  <!-- allow primary (level 1) item to link if specified -->
+                  
+                    <button target="_self" class="ds-mega-menu__primary-menu-link" >
+                      User research
+                    </button>
+                  
+                  
+                </li>
+              
+            </ul>
+            <!-- End primary (level 1) navigation -->
+          </div>
+          <!-- End scrollable container -->
+          
+        </nav>
+        
+      </div>
+    </div>
+
+  
+</header>*@
+    

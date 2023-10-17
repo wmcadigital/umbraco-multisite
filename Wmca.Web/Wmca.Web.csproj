@@ -25,6 +25,7 @@
     <PackageReference Include="Umbraco.StorageProviders.AzureBlob" Version="12.0.0" />
     <PackageReference Include="Umbraco.StorageProviders.AzureBlob.ImageSharp" Version="12.0.0" />
     <PackageReference Include="uSync.Complete" Version="12.0.2" />
+    <PackageReference Include="Our.Umbraco.FullTextSearch" Version="3.1.0" />
   </ItemGroup>
 
   <ItemGroup>
