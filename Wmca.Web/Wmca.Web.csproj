@@ -11,6 +11,10 @@
     <Content Remove="umbraco\Logs\**" />
     <EmbeddedResource Remove="umbraco\Logs\**" />
     <None Remove="umbraco\Logs\**" />
+    <Content Remove="wwwroot\App_Plugins\" />
+    <Content Remove="wwwroot\App_Plugins\BlockGridEditor.DefaultCustomViews\" />
+    <Content Remove="wwwroot\App_Plugins\BlockGridEditor.DefaultCustomViews\safertravel\" />
+    <Content Remove="wwwroot\css\ds\components\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="umbraco\Data\Umbraco.sqlite.db">
@@ -26,6 +30,8 @@
     <PackageReference Include="Umbraco.StorageProviders.AzureBlob.ImageSharp" Version="12.0.0" />
     <PackageReference Include="uSync.Complete" Version="12.0.2" />
     <PackageReference Include="Our.Umbraco.FullTextSearch" Version="3.1.0" />
+    <PackageReference Include="Umbraco.Community.AccessibilityReporter" Version="3.1.0" />
+    <PackageReference Include="CMSImport" Version="12.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -53,6 +59,9 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <DependentUpon>appsettings-schema.json</DependentUpon>
     </Content>
+    <Content Update="appsettings-schema.AccessibilityReporter.json">
+      <DependentUpon>appsettings-schema.json</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Wmca.Models\Wmca.Models.csproj">
@@ -61,6 +70,12 @@
     <ProjectReference Include="..\Wmca.Core\Wmca.Core.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\App_Plugins\" />
+    <Folder Include="wwwroot\App_Plugins\BlockGridEditor.DefaultCustomViews\" />
+    <Folder Include="wwwroot\App_Plugins\BlockGridEditor.DefaultCustomViews\safertravel\" />
+    <Folder Include="wwwroot\css\ds\components\" />
   </ItemGroup>
   <PropertyGroup>
     <!-- Razor files are needed for the backoffice to work correctly -->

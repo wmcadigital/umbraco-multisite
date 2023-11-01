@@ -6,4 +6,13 @@
 	Layout = "SaferTravel.cshtml";
 }
 
-            
+<main id="ds-main-content" class="ds-container ds-container--main ds-p-t-lg">
+
+    <div class="ds-container">
+        <h1>@Model.Name</h1>
+
+        @* Render the block areas *@
+        @await Html.GetBlockGridHtmlAsync(Model, "grid")
+    </div>
+
+</main>
