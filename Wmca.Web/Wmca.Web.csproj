@@ -15,6 +15,7 @@
     <Content Remove="wwwroot\App_Plugins\BlockGridEditor.DefaultCustomViews\" />
     <Content Remove="wwwroot\App_Plugins\BlockGridEditor.DefaultCustomViews\safertravel\" />
     <Content Remove="wwwroot\css\ds\components\" />
+    <Content Remove="wwwroot\App_Plugins\BlockGridEditor.DefaultCustomViews\shared\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="umbraco\Data\Umbraco.sqlite.db">
@@ -76,6 +77,7 @@
     <Folder Include="wwwroot\App_Plugins\BlockGridEditor.DefaultCustomViews\" />
     <Folder Include="wwwroot\App_Plugins\BlockGridEditor.DefaultCustomViews\safertravel\" />
     <Folder Include="wwwroot\css\ds\components\" />
+    <Folder Include="wwwroot\App_Plugins\BlockGridEditor.DefaultCustomViews\shared\" />
   </ItemGroup>
   <PropertyGroup>
     <!-- Razor files are needed for the backoffice to work correctly -->

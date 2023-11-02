@@ -1,0 +1,10 @@
+.ds-bio h2, h2:first-child {
+    margin-top: 0;
+}
+
+@media (max-width:768px) {
+    body .ds-p-l-lg {
+        padding-left: 0!important;
+    }
+
+}

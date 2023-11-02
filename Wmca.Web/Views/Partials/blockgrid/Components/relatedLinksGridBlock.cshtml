@@ -1,0 +1,18 @@
+﻿@using Umbraco.Extensions
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using Umbraco.Cms.Core.Models
+
+<h2>Related links</h2>
+
+@{
+    var links = Model.Content.Value<IEnumerable<Link>>("links");
+    if (links.Any())
+    {
+        <ul>
+            @foreach (var link in links)
+            {
+                <li><a href="@link.Url" target="@link.Target">@link.Name</a></li>
+            }
+        </ul>
+    }
+}

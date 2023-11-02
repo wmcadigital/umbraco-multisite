@@ -2,10 +2,10 @@
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
 
 @{
-    var typedMediaPickerSingle = Model.Content.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("image");
-    if (typedMediaPickerSingle != null)
+    var image = Model.Content.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("image");
+    if (image != null)
     {
-        <img src="@typedMediaPickerSingle.MediaUrl()" />
+        <img src="@image.MediaUrl()" />
     } else {
         <p>Missing image</p>
     }
