@@ -56,5 +56,12 @@ namespace Wmca.Models.Content
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("links")]
 		public virtual global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.Link> Links => this.Value<global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.Link>>(_publishedValueFallback, "links");
+
+		///<summary>
+		/// Show child links: Display child pages (This will hide any links below)
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[ImplementPropertyType("showChildLinks")]
+		public virtual bool ShowChildLinks => this.Value<bool>(_publishedValueFallback, "showChildLinks");
 	}
 }

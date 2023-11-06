@@ -82,6 +82,22 @@ namespace Wmca.Models.Content
 		public virtual string DesignSystemVersion => this.Value<string>(_publishedValueFallback, "designSystemVersion");
 
 		///<summary>
+		/// Copy
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("emergencyBannerCopy")]
+		public virtual string EmergencyBannerCopy => this.Value<string>(_publishedValueFallback, "emergencyBannerCopy");
+
+		///<summary>
+		/// Link
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("emergencyBannerLink")]
+		public virtual global::Umbraco.Cms.Core.Models.Link EmergencyBannerLink => this.Value<global::Umbraco.Cms.Core.Models.Link>(_publishedValueFallback, "emergencyBannerLink");
+
+		///<summary>
 		/// Greyscale Theme: Only to be used during periods of national mourning. This switch activates the greyscale theme
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
@@ -103,6 +119,13 @@ namespace Wmca.Models.Content
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("searchPlaceholder")]
 		public virtual string SearchPlaceholder => this.Value<string>(_publishedValueFallback, "searchPlaceholder");
+
+		///<summary>
+		/// Show banner: This activates the emergency banner on every page of the website
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[ImplementPropertyType("showEmergencyBanner")]
+		public virtual bool ShowEmergencyBanner => this.Value<bool>(_publishedValueFallback, "showEmergencyBanner");
 
 		///<summary>
 		/// Site Description

@@ -1,5 +1,11 @@
-.ds-bio h2, h2:first-child {
+.ds-bio h2, .ds-bio h2:first-child {
     margin-top: 0;
+    margin-bottom: 0;
+}
+
+.ds-bio h3 {
+    color: #080607;
+    margin-top: 0.5rem!important;
 }
 
 @media (max-width:768px) {

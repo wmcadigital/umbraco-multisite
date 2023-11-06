@@ -2,13 +2,17 @@
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
 @using Umbraco.Cms.Core.Models
 
+@{
+    var childPages = Model.Content.Value("showChildLinks");
+    var links = Model.Content.Value<IEnumerable<Link>>("links");
+}
+
 <h2>Related links</h2>
 
 @{
-    var links = Model.Content.Value<IEnumerable<Link>>("links");
     if (links.Any())
     {
-        <ul>
+        <ul class="ds-bare-list ds-m-t-lg">
             @foreach (var link in links)
             {
                 <li><a href="@link.Url" target="@link.Target">@link.Name</a></li>

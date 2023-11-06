@@ -27,13 +27,10 @@
         }
     }
 
-    var links = content.Value<IEnumerable<Link>>("childLinks");
+    var links = content.Value<IEnumerable<Link>>("subsectionLinks");
 }
 
-<div id="mega-menu-container-1" class="ds-mega-menu__container">
-        <div class="ds-container">
             <!-- Start submenu (level 2) -->
-            <ul class="ds-mega-menu__sub-menu">
                 <li class="ds-mega-menu__sub-menu-item">
                     @if (content.SubsectionName != "")
                         {
@@ -81,6 +78,3 @@
                         </ul>
                         <!-- End submenu child (level 3) list -->
                     </li>
-            </ul>
-        </div>
-    </div>
