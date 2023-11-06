@@ -1,0 +1,21 @@
+﻿@using Umbraco.Extensions
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+    
+<div class="ds-grid ds-bio">
+    <div class="ds-col-1 ds-col-md-1-3">
+        @{
+            var bioImage = Model.Content.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("bioImage");
+            if (bioImage != null)
+            {
+                <img src="@bioImage.GetCropUrl("Content Card - Square")" />
+            } else {
+                <p>Missing image</p>
+            }
+        }
+    </div>
+    <div class="ds-col-1 ds-col-md-2-3 ds-p-l-lg">
+        <h2>@Model.Content.Value("bioName")</h2>
+        <h3>@Model.Content.Value("bioPosition")</h3>
+        <p>@Model.Content.Value("bio")</p>
+    </div>
+</div>

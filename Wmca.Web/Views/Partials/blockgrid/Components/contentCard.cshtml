@@ -1,0 +1,16 @@
+﻿@using Umbraco.Extensions
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using Umbraco.Cms.Core.Models
+
+@{
+    var typedMediaPickerSingle = Model.Content.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("image");
+    if (typedMediaPickerSingle != null)
+    {
+    <div>
+        <img src="@typedMediaPickerSingle.MediaUrl()" /> @*@typedMediaPickerSingle.GetCropUrl(height:300)*@
+        @Model.Content.Value("copy")
+    </div>
+    } else {
+         @Model.Content.Value("copy")
+    }
+}
