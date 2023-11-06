@@ -1,4 +1,4 @@
-﻿@inherits UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>
+@inherits UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>
 @using ContentModels = Wmca.Models.Content;
 @using Umbraco.Cms.Core.Models
 
@@ -30,8 +30,16 @@
             <use xlink-href="#ds-general-chevron-right" href="#ds-general-chevron-right"></use>
         </svg>
     </button>
-
+    
+    @* Show mega menu if there are child links *@
+    @if(content.ChildLinks.Count != 0){
     <!-- Start mega menu container -->
-    @Html.GetBlockListHtml(content.ChildLinks)
-
+    <div id="wmnetwork-primary-menu-container-0" class="ds-mega-menu__container">
+            <div class="ds-container">
+                <ul class="ds-mega-menu__sub-menu ds-mega-menu__sub-menu--has-child-menus">
+                    @Html.GetBlockListHtml(content.ChildLinks)
+                </ul>
+            </div>
+    </div>
+    }
 </li>

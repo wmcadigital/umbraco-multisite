@@ -20,7 +20,7 @@ namespace Wmca.Models.Content
 {
 	/// <summary>Homepage</summary>
 	[PublishedModel("homepageMidlandsConnect")]
-	public partial class HomepageMidlandsConnect : PublishedContentModel, IHomepageBanner
+	public partial class HomepageMidlandsConnect : PublishedContentModel, IEmergencyBanner, IHomepageBanner
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -48,6 +48,29 @@ namespace Wmca.Models.Content
 		}
 
 		// properties
+
+		///<summary>
+		/// Copy
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("bannerCopy")]
+		public virtual string BannerCopy => global::Wmca.Models.Content.EmergencyBanner.GetBannerCopy(this, _publishedValueFallback);
+
+		///<summary>
+		/// Link
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("bannerLink")]
+		public virtual global::Umbraco.Cms.Core.Models.Link BannerLink => global::Wmca.Models.Content.EmergencyBanner.GetBannerLink(this, _publishedValueFallback);
+
+		///<summary>
+		/// Show banner: This activates an emergency banner for this page only
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[ImplementPropertyType("showBanner")]
+		public virtual bool ShowBanner => global::Wmca.Models.Content.EmergencyBanner.GetShowBanner(this, _publishedValueFallback);
 
 		///<summary>
 		/// Image

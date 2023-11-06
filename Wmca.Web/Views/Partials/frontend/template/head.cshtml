@@ -1,4 +1,4 @@
-﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 
 @{
     var homePage = Model.AncestorOrSelf(1); @* Get the homepage *@
@@ -49,9 +49,11 @@
             else if (dsSlug == "mcds")
             {
                 <link rel="stylesheet" href="/css/ds/mcds.min.css" />
+                <link rel="stylesheet" href="/css/custom/mcds.custom.css" />
             }
         }
         
+        <link rel="stylesheet" href="@Url.Content("~/css/blockgridlayout.css")" />
         
         
        @* @{

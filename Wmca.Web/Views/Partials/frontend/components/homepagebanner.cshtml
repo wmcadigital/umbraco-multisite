@@ -1,4 +1,4 @@
-﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 @using ContentModels = Wmca.Models.Content;
 @using Umbraco.Cms.Core.Models
 
@@ -17,7 +17,7 @@
             <h1>@Model.Value("tagLine")</h1>
             @if (@Model.Value("subtitle") != null)
             {
-                <p>@Model.Value("subtitle")</p>
+                @Model.Value("subtitle")
             }
         </div>
     </div>

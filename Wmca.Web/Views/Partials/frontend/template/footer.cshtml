@@ -1,4 +1,4 @@
-﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 @using Umbraco.Cms.Core.Models
 
 @{
@@ -42,6 +42,13 @@
     @* Bottom menu *@
     var copyrightText = footer.Value<String>("copyrightText");
     var bottomLinks = footer.Value<IEnumerable<Link>>("bottomLinks");
+    
+    var colClass = "ds-col-lg-1-3";
+    
+    @if (String.IsNullOrEmpty(col1Title))
+    {
+        colClass = "ds-col-lg-1-2";
+    }
 
     <footer>
         <div class="ds-footer ds-footer--v2">
@@ -69,7 +76,7 @@
                 @* Column 2 (this section requires a title - it has validation) *@
                 @if (!String.IsNullOrEmpty(col2Title))
                 {
-                    <div class="ds-col-1 ds-col-lg-1-3">
+                    <div class="ds-col-1 @colClass">
                         <h3 class="ds-footer__heading ds-collapse-heading"
                             aria-controls="footer-menu-col2"
                             aria-expanded="true">
@@ -96,7 +103,7 @@
                 }
 
                 @* Column 3  *@
-                <div class="ds-col-1 ds-col-lg-1-3">
+                <div class="ds-col-1 @colClass">
                     @* (this section requires a title - it has validation) *@
                     @if (!String.IsNullOrEmpty(col3Title))
                     {

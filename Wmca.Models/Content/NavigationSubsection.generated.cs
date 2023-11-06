@@ -58,6 +58,22 @@ namespace Wmca.Models.Content
 		public virtual string SubsectionIcon => this.Value<string>(_publishedValueFallback, "subsectionIcon");
 
 		///<summary>
+		/// Subsection link
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("subsectionLink")]
+		public virtual global::Umbraco.Cms.Core.Models.Link SubsectionLink => this.Value<global::Umbraco.Cms.Core.Models.Link>(_publishedValueFallback, "subsectionLink");
+
+		///<summary>
+		/// Subsection links
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("subsectionLinks")]
+		public virtual global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.Link> SubsectionLinks => this.Value<global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.Link>>(_publishedValueFallback, "subsectionLinks");
+
+		///<summary>
 		/// Subsection name
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
