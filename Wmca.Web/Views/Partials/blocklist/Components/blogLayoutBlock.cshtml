@@ -13,7 +13,13 @@
 <main id="ds-main-content" class="ds-container ds-container--main">
     <div class="ds-grid ds-grid--justify-between ds-grid--spacing-2-lg ds-grid--spacing-md-2-lg">
         <div class="ds-col-1 ds-col-md-2-3 main-content">
-            @Html.GetBlockListHtml(content.BlogContent)
+            <h2>Blog article</h2>
+            @content.Content
+            @foreach (var blockItem in content.Content)
+            {
+                var blockItemContent = (ContentModels.BlogLayoutBlock)blockItem.Content;
+                <h2>@blockItemContent.Content</h2>
+            }
         </div>
         <div class="ds-col-1 ds-col-md-1-3">
             @Html.GetBlockListHtml(content.Sidebar)

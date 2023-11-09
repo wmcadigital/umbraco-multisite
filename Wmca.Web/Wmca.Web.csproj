@@ -17,6 +17,8 @@
     <Content Remove="wwwroot\css\ds\components\" />
     <Content Remove="wwwroot\App_Plugins\BlockGridEditor.DefaultCustomViews\shared\" />
     <Content Remove="wwwroot\App_Plugins\BlockGridEditor.DefaultCustomViews\midlandsconnect\" />
+    <Content Remove="wwwroot\App_Plugins\BlockListEditor.DefaultCustomViews\" />
+    <Content Remove="wwwroot\App_Plugins\BlockListEditor.DefaultCustomViews\shared\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="umbraco\Data\Umbraco.sqlite.db">
@@ -34,6 +36,7 @@
     <PackageReference Include="Our.Umbraco.FullTextSearch" Version="3.1.0" />
     <PackageReference Include="Umbraco.Community.AccessibilityReporter" Version="3.1.0" />
     <PackageReference Include="CMSImport" Version="12.0.0" />
+    <PackageReference Include="Umbraco.Community.BlockPreview" Version="1.7.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -80,6 +83,8 @@
     <Folder Include="wwwroot\css\ds\components\" />
     <Folder Include="wwwroot\App_Plugins\BlockGridEditor.DefaultCustomViews\shared\" />
     <Folder Include="wwwroot\App_Plugins\BlockGridEditor.DefaultCustomViews\midlandsconnect\" />
+    <Folder Include="wwwroot\App_Plugins\BlockListEditor.DefaultCustomViews\" />
+    <Folder Include="wwwroot\App_Plugins\BlockListEditor.DefaultCustomViews\shared\" />
   </ItemGroup>
   <PropertyGroup>
     <!-- Razor files are needed for the backoffice to work correctly -->

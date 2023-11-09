@@ -1,5 +1,6 @@
 ﻿@inherits UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>
 @using ContentModels = Wmca.Models.Content;
+@using Umbraco.Cms.Core.Models
 
 @{
     var content = (ContentModels.ContentCardBlock)Model.Content;
@@ -8,7 +9,20 @@
     // var homePage = contentItem.Root(); // Get the homepage
     // var siteProps = homePage.ChildrenOfType("siteProperties"); // Get site properties by docType will return null if not found
     // var siteSet = siteProps.First().Children.Where(x => x.ContentType.Alias == "siteSettings").First(); //Get the site setings
+    var img = content.Value<MediaWithCrops>("image");
 }
 
-@content.Image
-
+<div class="ds-content-card">
+    @if (img != null)
+     {
+        <img src="@img.MediaUrl()?anchor=center&amp;mode=crop&amp;width=896&amp;height=334&amp;rnd=132122595620000000" alt="@img.Value("alt")">
+     }
+     <div class="ds-p-sm">
+        @if(content.Title != null){
+        <h3>@content.Title</h3>
+        }
+        @if(content.Content != null){
+        <p>@content.Content</p>
+        }
+    </div>
+</div>

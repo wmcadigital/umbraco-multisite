@@ -1,0 +1,168 @@
+﻿<style>
+
+    :host {
+        min-height: 160px;
+    }
+
+    button > * {
+        vertical-align: middle;
+    }
+
+    button {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        color: black;
+        background-color: transparent;
+        text-align: left;
+        padding: 0;
+        user-select: none;
+        border: none;
+        transition: border-color 120ms, background-color 120ms;
+        max-height: 80vh;
+        overflow: hidden;
+    }
+
+        button:hover {
+            color: #2152A3;
+        }
+
+    img {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+        flex-grow: 0;
+    }
+
+    .icon {
+        font-size: 60px;
+        display: block;
+    }
+
+    .umb-icon {
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        flex-shrink: 0;
+    }
+
+        .umb-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: currentColor;
+            animation: inherit;
+        }
+
+    .file-name {
+        background-color: rgba(255, 255, 255, 0.8);
+        color: black;
+        padding: 3px 6px;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        opacity: var(--umb-block-grid--block-ui-opacity, 0);
+        transition: opacity 120ms;
+    }
+
+    .is-trashed {
+        background-color: #d42054 !important;
+        color: white !important;
+    }
+
+        .is-trashed .file-name {
+            opacity: 1;
+        }
+    .ds-grid {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        width: 100%;
+        text-rendering: optimizespeed;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-flow: row wrap;
+        flex-flow: row wrap;
+        -ms-flex-line-pack: start;
+        align-content: flex-start;
+    }
+
+        .ds-grid [class*=ds-col-], button, html, input, select, textarea {
+            font-family: "Noto Sans Display",sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .ds-grid [class*=ds-col-] {
+            display: inline-block;
+            zoom: 1;
+            word-spacing: normal;
+            text-rendering: auto;
+            vertical-align: top;
+        }
+
+    @media screen and (min-width: 48em) {
+        .ds-col-md-1-3, .ds-col-md-8-24 {
+            width: 33.3333%;
+        }
+    }
+
+    @media screen and (min-width: 48em) {
+        .ds-col-md-16-24, .ds-col-md-2-3 {
+            width: 66.6667%;
+        }
+    }
+
+    .ds-grid img {
+        width: 150px;
+    }
+</style>
+
+<section ng-click="block.edit()">
+    <div class="ds-grid">
+        <div class="ds-col-2-3">
+            <div ng-repeat="block in block.data.content.contentData">
+                <span data-ng-if="block.contentTypeKey == '48cee39d-6ba9-4599-b547-147a9bb31a82'">
+                    <div ng-bind-html="block.textbox"></div>
+                </span>
+                <span data-ng-if="block.contentTypeKey == '18cebe3f-a3c3-42fb-8e16-329b39389c2b'">
+                    <div class='ds-video-embed'>
+                        <iframe src='https://www.youtube.com/embed/{{block.youtube}}' frameborder='0' allowfullscreen></iframe>
+                    </div>
+                </span>
+                <span data-ng-if="block.contentTypeKey == 'f5cfb2c0-1ff7-4474-ad9d-1157d8c5b24b'">
+                    <div class="ds-accordion">
+                        <button aria-controls="accordion-01" class="ds-accordion__summary-wrapper" aria-expanded="false">
+                            <!-- accordion summary -->
+                            <div class="ds-accordion__summary">
+                                <h4 class="ds-m-b-none">{{block.accordionTitle}}</h4>
+                            </div>
+                            <!-- plus icon -->
+                            <svg class="ds-accordion__icon">
+                                <use xlink:href="#ds-general-expand" href="#ds-general-expand"></use>
+                            </svg>
+                            <!-- minus icon -->
+                            <svg class="ds-accordion__icon ds-accordion__icon--minimise">
+                                <use xlink:href="#ds-general-minimise" href="#ds-general-minimise"></use>
+                            </svg>
+                        </button>
+
+                        <!-- accordion content -->
+                        <div class="ds-accordion__content" id="accordion-01">
+                            {{block.accordionContent}}
+                        </div>
+                    </div>
+                </span>
+                <span data-ng-if="block.contentTypeKey == 'b7fb877c-b810-46b8-9743-ab6c228c03dd'">
+                    {{mediaItem = (block.image[0].mediaKey | mediaItemResolver); ""}}
+                    <img ng-if="mediaItem !== null && (mediaItem.mediaLink.indexOf('jpg') !== -1 || mediaItem.mediaLink.indexOf('png') !== -1 || mediaItem.mediaLink.indexOf('webp') !== -1 || mediaItem.mediaLink.indexOf('gif') !== -1) && !mediaItem.trashed" ng-src="{{mediaItem.mediaLink}}" alt="{{mediaItem.name}}" />
+                </span>
+            </div>
+        </div>
+        <div class="ds-col-1-3">
+            <p>Sidebar</p>
+        </div>
+    </div>
+</section>

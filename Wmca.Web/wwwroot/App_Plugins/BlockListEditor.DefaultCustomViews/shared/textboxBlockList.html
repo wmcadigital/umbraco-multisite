@@ -1,0 +1,58 @@
+﻿<style>
+    .ds-grid {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        width: 100%;
+        text-rendering: optimizespeed;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-flow: row wrap;
+        flex-flow: row wrap;
+        -ms-flex-line-pack: start;
+        align-content: flex-start;
+    }
+
+        .ds-grid [class*=ds-col-], button, html, input, select, textarea {
+            font-family: "Noto Sans Display",sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .ds-grid [class*=ds-col-] {
+            display: inline-block;
+            zoom: 1;
+            word-spacing: normal;
+            text-rendering: auto;
+            vertical-align: top;
+        }
+
+    @media screen and (min-width: 48em) {
+        .ds-col-md-1-3, .ds-col-md-8-24 {
+            width: 33.3333%;
+        }
+    }
+
+    @media screen and (min-width: 48em) {
+        .ds-col-md-16-24, .ds-col-md-2-3 {
+            width: 66.6667%;
+        }
+    }
+
+    .ds-grid img {
+        width: 150px;
+    }
+</style>
+
+{{block.data}}
+
+<section ng-click="block.edit()">
+    <div class="ds-grid">
+        <div class="ds-col-2-3">
+            <p>main copy</p>
+            {{block.data.main}}
+        </div>
+        <div class="ds-col-1-3">
+            <p>sidebar</p>
+        </div>
+    </div>
+</section>

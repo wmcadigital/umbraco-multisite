@@ -18,14 +18,14 @@ using Umbraco.Extensions;
 
 namespace Wmca.Models.Content
 {
-	/// <summary>Blog Layout</summary>
-	[PublishedModel("blogLayoutBlock")]
-	public partial class BlogLayoutBlock : PublishedElementModel
+	/// <summary>Video</summary>
+	[PublishedModel("videoBlock")]
+	public partial class VideoBlock : PublishedElementModel
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
-		public new const string ModelTypeAlias = "blogLayoutBlock";
+		public new const string ModelTypeAlias = "videoBlock";
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
 		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
@@ -34,14 +34,14 @@ namespace Wmca.Models.Content
 			=> PublishedModelUtility.GetModelContentType(publishedSnapshotAccessor, ModelItemType, ModelTypeAlias);
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<BlogLayoutBlock, TValue>> selector)
+		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<VideoBlock, TValue>> selector)
 			=> PublishedModelUtility.GetModelPropertyType(GetModelContentType(publishedSnapshotAccessor), selector);
 #pragma warning restore 0109
 
 		private IPublishedValueFallback _publishedValueFallback;
 
 		// ctor
-		public BlogLayoutBlock(IPublishedElement content, IPublishedValueFallback publishedValueFallback)
+		public VideoBlock(IPublishedElement content, IPublishedValueFallback publishedValueFallback)
 			: base(content, publishedValueFallback)
 		{
 			_publishedValueFallback = publishedValueFallback;
@@ -50,19 +50,11 @@ namespace Wmca.Models.Content
 		// properties
 
 		///<summary>
-		/// Content
+		/// Youtube: Youtube video ID
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("content")]
-		public virtual global::System.Collections.Generic.IReadOnlyList<global::Wmca.Core.BlockList.BlockItem> Content => this.Value<global::System.Collections.Generic.IReadOnlyList<global::Wmca.Core.BlockList.BlockItem>>(_publishedValueFallback, "content");
-
-		///<summary>
-		/// Sidebar
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("sidebar")]
-		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel Sidebar => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "sidebar");
+		[ImplementPropertyType("youtube")]
+		public virtual string Youtube => this.Value<string>(_publishedValueFallback, "youtube");
 	}
 }
