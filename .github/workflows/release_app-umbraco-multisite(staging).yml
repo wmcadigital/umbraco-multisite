@@ -55,6 +55,16 @@ jobs:
           slot-name: 'staging'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B1366671861145DF83D35E7611409422 }}
           package: .
+          app-settings-json: |
+          [
+            "Umbraco": {
+                "CMS": {
+                    "DeliveryApi": {
+                        "ApiKey": "${{ secrets.APIKEY }}"
+                    }
+                }
+            }
+          ]
 
       - name: Database Initialization
         run: |
@@ -68,4 +78,3 @@ jobs:
           USERNAME: ${{ secrets.DB_USERNAME }}
           PASSWORD: ${{ secrets.DB_PASSWORD }}
           DATABASE: ${{ secrets.DB_DATABASE }}
-          APIKEY: ${{ secrets.APIKEY }}
