@@ -47,6 +47,20 @@ jobs:
         with:
           name: .net-app
 
+      - name: Set Web App Settings
+        uses: Azure/appservice-settings@v1
+        with:
+            app-name: 'app-umbraco-multisite'  
+            slot-name: 'staging'
+            app-settings-json: |
+                [
+                    {
+                        "name": "Umbraco:CMS:DeliveryApi:ApiKey",
+                        "value": "${{ secrets.APIKEY }}",
+                        "slotSetting": true
+                    }
+                ]
+
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
@@ -55,7 +69,6 @@ jobs:
           slot-name: 'staging'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B1366671861145DF83D35E7611409422 }}
           package: .
-          app-settings-json: '["Umbraco": { "CMS": { "DeliveryApi": { "ApiKey": "${{ secrets.APIKEY }}" }}}]'
 
       - name: Database Initialization
         run: |
