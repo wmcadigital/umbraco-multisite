@@ -1,6 +1,11 @@
 ﻿@using Umbraco.Extensions
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using Dawoe.OEmbedPickerPropertyEditor.Core.Models
+@using Dawoe.OEmbedPickerPropertyEditor.Core.Extensions
 
-<div class='ds-video-embed'>
-  <iframe src='https://www.youtube.com/embed/@Model.Content.Value("videoLink")' frameborder='0' allowfullscreen></iframe>
-</div>
+@foreach (var item in Model.Content.Value<IEnumerable<OEmbedItem>>("video"))
+{
+    <div class='ds-video-embed'>
+        <iframe src='@item.GetEmbedSrc()' frameborder='0' allowfullscreen></iframe>
+    </div>
+}
