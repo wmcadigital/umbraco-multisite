@@ -55,3 +55,17 @@ jobs:
           slot-name: 'staging'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B1366671861145DF83D35E7611409422 }}
           package: .
+
+      - name: Database Initialization
+        run: |
+          # Database initialization commands go here
+          # Example: Load data from an SQL dump file
+          # sqlcmd -S $SERVER -U $USERNAME -P $PASSWORD -d $DATABASE -i path/to/dump.sql
+          # For SQLite, you can set the connection string directly in your Umbraco application
+          echo "ConnectionStrings__umbracoDbDSN=Data Source=${{ env.DOTNET_ROOT }}/myapp/Wmca.Web/umbraco/Data/Umbraco.sqlite.db;Cache=Shared;Foreign Keys=True;Pooling=True" >> $GITHUB_ENV
+        env:
+          SERVER: ${{ secrets.DB_SERVER }}
+          USERNAME: ${{ secrets.DB_USERNAME }}
+          PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DATABASE: ${{ secrets.DB_DATABASE }}
+          APIKEY: ${{ secrets.APIKEY }}

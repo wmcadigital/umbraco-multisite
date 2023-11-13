@@ -68,3 +68,4 @@ jobs:
           USERNAME: ${{ secrets.DB_USERNAME }}
           PASSWORD: ${{ secrets.DB_PASSWORD }}
           DATABASE: ${{ secrets.DB_DATABASE }}
+          APIKEY: ${{ secrets.APIKEY }}
