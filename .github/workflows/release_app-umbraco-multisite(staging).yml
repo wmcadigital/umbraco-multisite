@@ -24,7 +24,7 @@ jobs:
 
       - uses: azure/login@v1
         with:
-        creds: '${{ secrets.AZURE_CREDENTIALS }}'
+            creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Set Web App Settings
         uses: Azure/appservice-settings@v1
