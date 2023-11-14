@@ -22,6 +22,27 @@ jobs:
           dotnet-version: '7.x'
           include-prerelease: true
 
+      - uses: azure/login@v1
+        with:
+        creds: '${{ secrets.AZURE_CREDENTIALS }}'
+
+      - name: Set Web App Settings
+        uses: Azure/appservice-settings@v1
+        with:
+            app-name: 'app-umbraco-multisite'
+            slot-name: 'staging'
+            app-settings-json: |
+                [
+                    {
+                        "name": "Umbraco:CMS:DeliveryApi:ApiKey",
+                        "value": "${{ secrets.APIKEY }}",
+                        "slotSetting": true
+                    }
+                ]
+            id: settings
+      - run: |
+        az logout
+
       - name: Build with dotnet
         run: dotnet build --configuration Release
 
@@ -55,20 +76,6 @@ jobs:
           slot-name: 'staging'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B1366671861145DF83D35E7611409422 }}
           package: .
-
-      - name: Set Web App Settings
-        uses: Azure/appservice-settings@v1
-        with:
-            app-name: 'app-umbraco-multisite'
-            slot-name: 'staging'
-            app-settings-json: |
-                [
-                    {
-                        "name": "Umbraco:CMS:DeliveryApi:ApiKey",
-                        "value": "${{ secrets.APIKEY }}",
-                        "slotSetting": true
-                    }
-                ]
 
       - name: Database Initialization
         run: |
