@@ -50,8 +50,8 @@ jobs:
       - name: Set Web App Settings
         uses: Azure/appservice-settings@v1
         with:
-            app-name: 'app-umbraco-multisite/staging'
-            slot-name: 'staging'
+            app-name: 'app-umbraco-multisite'
+            slot-name: 'app-umbraco-multisite-staging'
             app-settings-json: |
                 [
                     {
