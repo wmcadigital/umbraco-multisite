@@ -4,6 +4,7 @@
     {
         private readonly IWebHostEnvironment _env;
         private readonly IConfiguration _config;
+        private readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Startup" /> class.
@@ -29,6 +30,15 @@
         /// </remarks>
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                    policy =>
+                    {
+                        policy.WithOrigins("https://dev-wmca.euwest01.umbraco.io/");
+                    });
+            });
+
             services.AddUmbraco(_env, _config)
                 .AddBackOffice()
                 .AddWebsite()
@@ -52,8 +62,22 @@
             }
 
             app.UseUmbraco()
-                .WithMiddleware(u =>
+                .WithCustomMiddleware(u =>
                 {
+                    u.RunPrePipeline();
+
+                    u.UseUmbracoCoreMiddleware();
+                    u.AppBuilder.UseUmbracoMediaFileProvider();
+                    u.AppBuilder.UseStaticFiles();
+                    u.AppBuilder.UseUmbracoPluginsStaticFiles();
+                    u.AppBuilder.UseRouting();
+                    u.AppBuilder.UseCors(MyAllowSpecificOrigins);
+                    u.AppBuilder.UseAuthentication();
+                    u.AppBuilder.UseAuthorization();
+                    u.AppBuilder.UseRequestLocalization();
+                    u.AppBuilder.UseSession();
+
+                    u.RunPostPipeline();
                     u.UseBackOffice();
                     u.UseWebsite();
                 })
