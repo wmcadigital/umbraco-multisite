@@ -1,0 +1,35 @@
+﻿@using Umbraco.Extensions
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using Umbraco.Cms.Core.Models
+
+
+
+@{
+    var file = Model.Content.Value<MediaWithCrops>("file");
+    if (file != null)
+    {
+        var bytes = Convert.ToInt64(file.Content.Value("umbracoBytes"));
+        var x = ((Math.Round(Convert.ToDecimal(@bytes) / 1048576, 1)).ToString() + " MB");
+        var y = ((Math.Round(Convert.ToDecimal(@bytes) / 1024, 1)).ToString() + " KB");
+        var extention = file.Content.Value("umbracoExtension");
+        var fileSize = (bytes >= 1048576) ? x : y;
+         
+        <div class="ds-file-download ds-m-b-md">
+            <svg class="ds-file-download__icon">
+                <use xlink:href="#ds-general-file" href="#ds-general-file"></use>
+            </svg>
+            <div class="ds-file-download__desc">
+                <a href="@file.MediaUrl()" target="_blank" class="ds-link">
+                    Download @file.Name (@extention), (@fileSize)
+                </a>
+                @if (Model.Content.Value<bool>("fileIsNotAccessible"))
+                {
+                <p class="ds-file-download__warning">
+                    This file may not be suitable for users of assistive technology. <br>
+                    <a href="#" class="ds-link">Request an accessible format.</a>
+                </p>
+                }
+            </div>
+        </div>
+    }
+}
