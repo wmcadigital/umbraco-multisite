@@ -35,7 +35,9 @@
                 options.AddPolicy(name: MyAllowSpecificOrigins,
                     policy =>
                     {
-                        policy.WithOrigins("https://dev-wmca.euwest01.umbraco.io", "https://www.wmca.org.uk");
+                        policy.WithOrigins("https://dev-wmca.euwest01.umbraco.io", "https://www.wmca.org.uk")
+                          .AllowAnyHeader()
+                          .AllowAnyMethod();
                     });
             });
 
