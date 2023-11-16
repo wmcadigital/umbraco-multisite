@@ -46,6 +46,7 @@
                 .AddWebsite()
                 .AddDeliveryApi()
                 .AddComposers()
+                .AddMicrosoftAccountAuthentication()
                 .AddAzureBlobMediaFileSystem()
                 .AddAzureBlobImageSharpCache()
                 .Build();
