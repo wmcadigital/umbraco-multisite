@@ -43,9 +43,29 @@ jobs:
                         "value": "${{ secrets.USYNC_APPID }}",
                         "slotSetting": true
                     },
-                     {
+                    {
                         "name": "uSync:Publisher:Settings:AppKey",
                         "value": "${{ secrets.USYNC_APPKEY }}",
+                        "slotSetting": true
+                    },
+                    {
+                        "name": "AzureSSO:Credentials:Domain",
+                        "value": "${{ secrets.AZURESSO_DOMAIN }}",
+                        "slotSetting": true
+                    },
+                    {
+                        "name": "AzureSSO:Credentials:TenantId",
+                        "value": "${{ secrets.AZURESSO_TENANTID }}",
+                        "slotSetting": true
+                    },
+                    {
+                        "name": "AzureSSO:Credentials:ClientId",
+                        "value": "${{ secrets.AZURESSO_CLIENTID }}",
+                        "slotSetting": true
+                    },
+                    {
+                        "name": "AzureSSO:Credentials:ClientSecret",
+                        "value": "${{ secrets.AZURESSO_CLIENTSECRET }}",
                         "slotSetting": true
                     }
                 ]
