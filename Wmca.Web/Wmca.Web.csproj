@@ -19,6 +19,9 @@
     <Content Remove="wwwroot\App_Plugins\BlockGridEditor.DefaultCustomViews\midlandsconnect\" />
     <Content Remove="wwwroot\App_Plugins\BlockListEditor.DefaultCustomViews\" />
     <Content Remove="wwwroot\App_Plugins\BlockListEditor.DefaultCustomViews\shared\" />
+    <Content Remove="wwwroot\App_Plugins\BlockListEditor.DefaultCustomViews\js\" />
+    <Content Remove="wwwroot\App_Plugins\BlockListEditor.DefaultCustomViews\css\" />
+    <Content Remove="wwwroot\App_Plugins\BlockListEditor.DefaultCustomViews\views\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="umbraco\Data\Umbraco.sqlite.db">
@@ -95,6 +98,9 @@
     <Folder Include="wwwroot\App_Plugins\BlockGridEditor.DefaultCustomViews\midlandsconnect\" />
     <Folder Include="wwwroot\App_Plugins\BlockListEditor.DefaultCustomViews\" />
     <Folder Include="wwwroot\App_Plugins\BlockListEditor.DefaultCustomViews\shared\" />
+    <Folder Include="wwwroot\App_Plugins\BlockListEditor.DefaultCustomViews\js\" />
+    <Folder Include="wwwroot\App_Plugins\BlockListEditor.DefaultCustomViews\css\" />
+    <Folder Include="wwwroot\App_Plugins\BlockListEditor.DefaultCustomViews\views\" />
   </ItemGroup>
   <PropertyGroup>
     <!-- Razor files are needed for the backoffice to work correctly -->

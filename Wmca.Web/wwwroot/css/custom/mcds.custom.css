@@ -3,6 +3,10 @@
     margin-bottom: 0;
 }
 
+.umb-block-grid__layout-container h2:first-child {
+    margin-top: 0;
+}
+
 .ds-bio h3 {
     color: #080607;
     margin-top: 0.5rem!important;

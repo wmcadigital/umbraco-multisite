@@ -50,11 +50,11 @@ namespace Wmca.Models.Content
 		// properties
 
 		///<summary>
-		/// Youtube: Youtube video ID
+		/// Video: Youtube video ID
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("youtube")]
-		public virtual string Youtube => this.Value<string>(_publishedValueFallback, "youtube");
+		[ImplementPropertyType("video")]
+		public virtual global::System.Collections.Generic.IEnumerable<global::Dawoe.OEmbedPickerPropertyEditor.Core.Models.OEmbedItem> Video => this.Value<global::System.Collections.Generic.IEnumerable<global::Dawoe.OEmbedPickerPropertyEditor.Core.Models.OEmbedItem>>(_publishedValueFallback, "video");
 	}
 }

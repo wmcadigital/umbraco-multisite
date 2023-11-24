@@ -4,25 +4,36 @@
 
 @{
     var content = (ContentModels.ContentCardBlock)Model.Content;
-    // var settings = (ContentModels.BlogLayoutBlock)Model.Settings;
-    // var contentItem = Umbraco.AssignedContentItem;
-    // var homePage = contentItem.Root(); // Get the homepage
-    // var siteProps = homePage.ChildrenOfType("siteProperties"); // Get site properties by docType will return null if not found
-    // var siteSet = siteProps.First().Children.Where(x => x.ContentType.Alias == "siteSettings").First(); //Get the site setings
-    var img = content.Value<MediaWithCrops>("image");
 }
 
 <div class="ds-content-card">
-    @if (img != null)
-     {
-        <img src="@img.MediaUrl()?anchor=center&amp;mode=crop&amp;width=896&amp;height=334&amp;rnd=132122595620000000" alt="@img.Value("alt")">
-     }
-     <div class="ds-p-sm">
-        @if(content.Title != null){
-        <h3>@content.Title</h3>
+@{
+    var link = content.Value<Link>("link");
+    var image = content.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("image");
+    
+    if (link != null)
+    {
+        <a href="@link.Url" target="@link.Target">
+        @if (image != null)
+        {
+            <img src="@image.MediaUrl()" /> @*@image.GetCropUrl(height:300)*@
         }
-        @if(content.Content != null){
-        <p>@content.Content</p>
+        @if(Model.Content.Value("title") != null){
+            <h3>content.Value("title")</h3>
         }
-    </div>
+        @content.Value("copy")
+        </a>
+    } else {
+        <div>
+        @if (image != null)
+        {
+            <img src="@image.MediaUrl()" />
+        }
+        @if(content.Value("title") != null){
+            <h3>@content.Value("title")</h3>
+        }
+        @content.Value("copy")
+        </div>
+    }
+}
 </div>

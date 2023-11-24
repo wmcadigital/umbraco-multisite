@@ -118,7 +118,21 @@
     .ds-grid img {
         width: 150px;
     }
+
+    .ds-video-embed {
+        position: relative;
+        max-width: 100%;
+        height: 0;
+        margin-bottom: 2rem;
+        padding-bottom: 56.25%;
+        overflow: hidden;
+        border: 2px dashed red;
+    }
 </style>
+
+{{block.data}}
+
+<hr />
 
 <section ng-click="block.edit()">
     <div class="ds-grid">
@@ -126,11 +140,6 @@
             <div ng-repeat="block in block.data.content.contentData">
                 <span data-ng-if="block.contentTypeKey == '48cee39d-6ba9-4599-b547-147a9bb31a82'">
                     <div ng-bind-html="block.textbox"></div>
-                </span>
-                <span data-ng-if="block.contentTypeKey == '18cebe3f-a3c3-42fb-8e16-329b39389c2b'">
-                    <div class='ds-video-embed'>
-                        <iframe src='https://www.youtube.com/embed/{{block.youtube}}' frameborder='0' allowfullscreen></iframe>
-                    </div>
                 </span>
                 <span data-ng-if="block.contentTypeKey == 'f5cfb2c0-1ff7-4474-ad9d-1157d8c5b24b'">
                     <div class="ds-accordion">
@@ -156,13 +165,20 @@
                     </div>
                 </span>
                 <span data-ng-if="block.contentTypeKey == 'b7fb877c-b810-46b8-9743-ab6c228c03dd'">
-                    {{mediaItem = (block.image[0].mediaKey | mediaItemResolver); ""}}
+                    Img here {{block.image[0].mediaKey}}
+                    {{mediaItem = (block.image[0].mediaKey); ""}}
                     <img ng-if="mediaItem !== null && (mediaItem.mediaLink.indexOf('jpg') !== -1 || mediaItem.mediaLink.indexOf('png') !== -1 || mediaItem.mediaLink.indexOf('webp') !== -1 || mediaItem.mediaLink.indexOf('gif') !== -1) && !mediaItem.trashed" ng-src="{{mediaItem.mediaLink}}" alt="{{mediaItem.name}}" />
+                </span>
+                <span data-ng-if="block.contentTypeKey == '18cebe3f-a3c3-42fb-8e16-329b39389c2b'">
+                    Video here - {{block.video[0].url}}
+                    <div class="ds-video-embed">
+                        <iframe ng-src={{block.video[0].url}} frameborder="0" allowfullscreen>Video here</iframe>
+                    </div>
                 </span>
             </div>
         </div>
         <div class="ds-col-1-3">
-            <p>Sidebar</p>
+   
         </div>
     </div>
 </section>
