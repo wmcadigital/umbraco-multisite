@@ -27,11 +27,14 @@
     <None Include="umbraco\Data\Umbraco.sqlite.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="umbraco\Data\Umbraco.sqlite.db-shm" />
+    <None Include="umbraco\Data\Umbraco.sqlite.db-wal" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Umbraco.Cms" Version="12.0.1" />
     <PackageReference Include="Limbo.Umbraco.BlockList" Version="3.0.4" />
+    <PackageReference Include="Umbraco.Forms" Version="12.1.2" />
     <PackageReference Include="uSync" Version="12.1.0" />
     <PackageReference Include="Umbraco.StorageProviders.AzureBlob" Version="12.0.0" />
     <PackageReference Include="Umbraco.StorageProviders.AzureBlob.ImageSharp" Version="12.0.0" />
@@ -111,6 +114,7 @@
     <!-- Remove RazorCompileOnBuild and RazorCompileOnPublish when not using ModelsMode InMemoryAuto -->
     <RazorCompileOnBuild>false</RazorCompileOnBuild>
     <RazorCompileOnPublish>false</RazorCompileOnPublish>
+    <UserSecretsId>cfb2a327-0d2a-4f36-84cb-07430a6afcb8</UserSecretsId>
   </PropertyGroup>
   
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Umbraco.Web.UI' " />
