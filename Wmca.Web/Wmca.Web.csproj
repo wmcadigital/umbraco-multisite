@@ -111,6 +111,7 @@
     <!-- Remove RazorCompileOnBuild and RazorCompileOnPublish when not using ModelsMode InMemoryAuto -->
     <RazorCompileOnBuild>false</RazorCompileOnBuild>
     <RazorCompileOnPublish>false</RazorCompileOnPublish>
+    <UserSecretsId>0f5ab4ee-19bc-42d3-a5d8-a8590e925713</UserSecretsId>
   </PropertyGroup>
   
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Umbraco.Web.UI' " />
