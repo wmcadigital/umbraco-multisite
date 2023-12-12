@@ -1,4 +1,4 @@
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels
 @using Umbraco.Cms.Core.Models
 @using Umbraco.Cms.Core.Models.Blocks
@@ -67,238 +67,32 @@
                         <!-- End primary (level 1) navigation -->
                     </div>
                     <!-- search -->
-                    <div class="ds-mega-menu__primary-menu-item ds-mega-menu__search">
-                        <button class="ds-mega-menu__primary-menu-link ds-mega-menu__search-btn">
-                            <svg class="ds-mega-menu__search-icon">
-                                <title>Search</title>
-                                <use xlink:href="#ds-general-search" href="#ds-general-search"></use>
-                            </svg>
-                            <svg class="ds-mega-menu__search-close-icon">
-                                <title>Close</title>
-                                <use xlink:href="#ds-general-cross" href="#ds-general-cross"></use>
-                            </svg>
-                        </button>
-                        <div class="ds-mega-menu__container ds-mega-menu__search-container">
-                            <div class="ds-search-container">
+                    <!--<div class="ds-mega-menu__primary-menu-item ds-mega-menu__search">-->
+                    <!--    <button class="ds-mega-menu__primary-menu-link ds-mega-menu__search-btn">-->
+                    <!--        <svg class="ds-mega-menu__search-icon">-->
+                    <!--            <title>Search</title>-->
+                    <!--            <use xlink:href="#ds-general-search" href="#ds-general-search"></use>-->
+                    <!--        </svg>-->
+                    <!--        <svg class="ds-mega-menu__search-close-icon">-->
+                    <!--            <title>Close</title>-->
+                    <!--            <use xlink:href="#ds-general-cross" href="#ds-general-cross"></use>-->
+                    <!--        </svg>-->
+                    <!--    </button>-->
+                    <!--    <div class="ds-mega-menu__container ds-mega-menu__search-container">-->
+                    <!--        <div class="ds-search-container">-->
 
-                                <form id="searchBar_form" class="ds-search-bar" action="/search">
-                                    <input id="searchBar_input" name="q" aria-label="Search" type="text" class="ds-search-bar__input ds-fe-input" placeholder="@siteSet.Value("searchPlaceholder")">
-                                    <button class="ds-search-bar__btn" type="submit">
-                                        <svg><title>Search</title><use xlink:href="#ds-general-search" href="#ds-general-search"></use></svg>
-                                    </button>
-                                </form>
+                    <!--            <form id="searchBar_form" class="ds-search-bar" action="/search">-->
+                    <!--                <input id="searchBar_input" name="q" aria-label="Search" type="text" class="ds-search-bar__input ds-fe-input" placeholder="@siteSet.Value("searchPlaceholder")">-->
+                    <!--                <button class="ds-search-bar__btn" type="submit">-->
+                    <!--                    <svg><title>Search</title><use xlink:href="#ds-general-search" href="#ds-general-search"></use></svg>-->
+                    <!--                </button>-->
+                    <!--            </form>-->
 
-                            </div>
-                        </div>
-                    </div>
+                    <!--        </div>-->
+                    <!--    </div>-->
+                    <!--</div>-->
                 </nav>
             </div>
         </div>
     </header>
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@*<header>
-   <div class="ds-header ds-header--mega-menu">
-      <div class="ds-container ds-grid ds-grid--align-center ds-grid--justify-between">
-         <div class="ds-header__vertical-align ds-col-auto">
-            <!-- Logo -->
-            <a class="ds-header__logo-link" href="/" title="Transport for West Midlands">
-            <img class="ds-header__logo" alt="Transport for West Midlands logo" src="https://unpkg.com/wmn-design-system@2.2.0/build/img/logo.svg">
-            </a>
-         </div>
-         <!-- Mega menu nav items-->
-         <nav id="wmnetwork-primary-menu" class="ds-mega-menu">
-            <!-- Mobile toggle button -->
-            <button class="ds-mega-menu__mobile-toggle ds-btn ds-btn--secondary ds-hide-desktop" aria-expanded="false" aria-controls="wmnetwork-primary-menu-primary-menu">
-               Menu
-               <svg class="ds-mega-menu__close-icon">
-                  <use xlink:href="#ds-general-cross" href="#ds-general-cross"></use>
-               </svg>
-            </button>
-            <!-- Container for mega menu - allows scrolling on mobile nav -->
-            <div id="wmnetwork-primary-menu" class="ds-mega-menu__scroll-controller">
-               <!-- Start primary (level 1) navigation -->
-               <ul class="ds-mega-menu__primary-menu">
-                  <!-- allow primary (level 1) item to link if specified -->
-                  <li class="ds-mega-menu__primary-menu-item">
-                     <button target="_self" class="ds-mega-menu__primary-menu-link">
-                     Plan a journey        </button>
-                     <!-- arrow icon for mobile nav -->
-                     <button class="ds-mega-menu__link-arrow-icon-btn" data-label="Plan a journey" aria-label="toggle Plan a journey" aria-controls="wmnetwork-primary-menu-container-0">
-                        <svg class="ds-mega-menu__link-arrow-icon">
-                           <use xlink-href="#ds-general-chevron-right" href="#ds-general-chevron-right"></use>
-                        </svg>
-                     </button>
-                     <!-- Start mega menu container -->
-                     <div id="wmnetwork-primary-menu-container" class="ds-mega-menu__container">
-                        <div class="ds-container">
-                           <!-- Start submenu (level 2) -->
-                           <ul class="ds-mega-menu__sub-menu ds-mega-menu__sub-menu--has-child-menus">
-                              <li class="ds-mega-menu__sub-menu-item">
-                                 <span class="ds-mega-menu__sub-menu-link">
-                                    <!-- Show submenu (level 2) item icon if specified -->
-                                    <svg class="ds-mega-menu__sub-menu-link-icon">
-                                       <use xlink:href="#ds-general-route" href="#ds-general-route"></use>
-                                    </svg>
-                                    Plan your journey
-                                 </span>
-                                 <!-- collapse button for mobile nav level 3 menu items -->
-                                 <button class="ds-mega-menu__collapse-toggle" aria-expanded="false" aria-label="Toggle Plan your journey menu" aria-controls="wmnetwork-primary-menu-submenu-child-menu-0-0">
-                                    <svg class="ds-mega-menu__link-arrow-icon">
-                                       <use xlink-href="#ds-general-chevron-right" href="#ds-general-chevron-right"></use>
-                                    </svg>
-                                 </button>
-                                 <!-- Start submenu child (level 3) list -->
-                                 <ul id="wmnetwork-primary-menu-submenu-child-menu-0-0" class="ds-mega-menu__sub-menu-child-menu">
-                                    <li class="ds-mega-menu__sub-menu-child-item">
-                                       <a href="https://journeyplanner.tfwm.org.uk" class="ds-mega-menu__sub-menu-child-link">
-                                       Journey planner
-                                       </a>
-                                    </li>
-                                 </ul>
-                                 <!-- End submenu child (level 3) list -->
-                              </li>
-                              <li class="ds-mega-menu__sub-menu-item">
-                                 <span class="ds-mega-menu__sub-menu-link">
-                                    <!-- Show submenu (level 2) item icon if specified -->
-                                    <svg class="ds-mega-menu__sub-menu-link-icon">
-                                       <use xlink:href="#ds-general-location-arrow" href="#ds-general-location-arrow"></use>
-                                    </svg>
-                                    Ways to travel
-                                 </span>
-                                 <!-- collapse button for mobile nav level 3 menu items -->
-                                 <button class="ds-mega-menu__collapse-toggle" aria-expanded="false" aria-label="Toggle Plan your journey menu" aria-controls="wmnetwork-primary-menu-submenu-child-menu-0-1">
-                                    <svg class="ds-mega-menu__link-arrow-icon">
-                                       <use xlink-href="#ds-general-chevron-right" href="#ds-general-chevron-right"></use>
-                                    </svg>
-                                 </button>
-                                 <!-- Start submenu child (level 3) list -->
-                                 <ul id="wmnetwork-primary-menu-submenu-child-menu-0-1" class="ds-mega-menu__sub-menu-child-menu">
-                                    <li class="ds-mega-menu__sub-menu-child-item">
-                                       <a href="/plan-your-journey/ways-to-travel/buses-in-the-west-midlands/" class="ds-mega-menu__sub-menu-child-link">
-                                       Buses
-                                       </a>
-                                    </li>
-                                 </ul>
-                                 <!-- End submenu child (level 3) list -->
-                              </li>
-                              <li class="ds-mega-menu__sub-menu-item">
-                                 <a href="/plan-your-journey/travel-information/" class="ds-mega-menu__sub-menu-link">
-                                    <!-- Show submenu (level 2) item icon if specified -->
-                                    <svg class="ds-mega-menu__sub-menu-link-icon">
-                                       <use xlink:href="#ds-general-info" href="#ds-general-info"></use>
-                                    </svg>
-                                    Travel information
-                                 </a>
-                                 <!-- collapse button for mobile nav level 3 menu items -->
-                                 <button class="ds-mega-menu__collapse-toggle" aria-expanded="false" aria-label="Toggle Plan your journey menu" aria-controls="wmnetwork-primary-menu-submenu-child-menu-0-2">
-                                    <svg class="ds-mega-menu__link-arrow-icon">
-                                       <use xlink-href="#ds-general-chevron-right" href="#ds-general-chevron-right"></use>
-                                    </svg>
-                                 </button>
-                                 <!-- Start submenu child (level 3) list -->
-                                 <ul id="wmnetwork-primary-menu-submenu-child-menu-0-2" class="ds-mega-menu__sub-menu-child-menu">
-                                    <li class="ds-mega-menu__sub-menu-child-item">
-                                       <a href="/campaigns/current-travel-advice-for-coronavirus/" class="ds-mega-menu__sub-menu-child-link">
-                                       COVID-19 travel advice
-                                       </a>
-                                    </li>
-                                 </ul>
-                                 <!-- End submenu child (level 3) list -->
-                              </li>
-                              <li class="ds-mega-menu__sub-menu-item">
-                                 <span class="ds-mega-menu__sub-menu-link">
-                                    <!-- Show submenu (level 2) item icon if specified -->
-                                    <svg class="ds-mega-menu__sub-menu-link-icon">
-                                       <use xlink:href="#ds-general-star" href="#ds-general-star"></use>
-                                    </svg>
-                                    Discover our region
-                                 </span>
-                                 <!-- collapse button for mobile nav level 3 menu items -->
-                                 <button class="ds-mega-menu__collapse-toggle" aria-expanded="false" aria-label="Toggle Plan your journey menu" aria-controls="wmnetwork-primary-menu-submenu-child-menu-0-3">
-                                    <svg class="ds-mega-menu__link-arrow-icon">
-                                       <use xlink-href="#ds-general-chevron-right" href="#ds-general-chevron-right"></use>
-                                    </svg>
-                                 </button>
-                                 <!-- Start submenu child (level 3) list -->
-                                 <ul id="wmnetwork-primary-menu-submenu-child-menu-0-3" class="ds-mega-menu__sub-menu-child-menu">
-                                    <li class="ds-mega-menu__sub-menu-child-item">
-                                       <a href="/plan-your-journey/discover-the-west-midlands/local-area-maps/" class="ds-mega-menu__sub-menu-child-link">
-                                       Local area maps
-                                       </a>
-                                    </li>
-                                 </ul>
-                                 <!-- End submenu child (level 3) list -->
-                              </li>
-                           </ul>
-                           <!-- End submenu (level 2) -->
-                        </div>
-                     </div>
-                     <!-- End mega menu container -->
-                  </li>
-                  <!-- allow primary (level 1) item to link if specified -->
-                  <li class="ds-mega-menu__primary-menu-item">
-                     <button target="_self" class="ds-mega-menu__primary-menu-link">
-                     tickets        </button>
-                  </li>
-                  <!-- allow primary (level 1) item to link if specified -->
-                  <li class="ds-mega-menu__primary-menu-item">
-                     <button target="_self" class="ds-mega-menu__primary-menu-link">
-                     Get help        </button>
-                  </li>
-               </ul>
-               <!-- End primary (level 1) navigation -->
-            </div>
-            <!-- End scrollable container -->
-            <div class="ds-mega-menu__primary-menu-item ds-mega-menu__search">
-               <button class="ds-mega-menu__primary-menu-link ds-mega-menu__search-btn">
-                  <svg class="ds-mega-menu__search-icon">
-                     <title>Search</title>
-                     <use xlink:href="#ds-general-search" href="#ds-general-search"></use>
-                  </svg>
-                  <svg class="ds-mega-menu__search-close-icon">
-                     <title>Close</title>
-                     <use xlink:href="#ds-general-cross" href="#ds-general-cross"></use>
-                  </svg>
-               </button>
-               <div class="ds-mega-menu__container ds-mega-menu__search-container">
-                  <div class="ds-search-container">
-                     <form class="ds-search-bar" action="/search" method="get">
-                        <input name="q" aria-label="Search" type="text" class="ds-search-bar__input ds-fe-input" placeholder="Search for tickets, timetables, travel advice...">
-                        <button class="ds-search-bar__btn" type="submit">
-                           <svg>
-                              <title>Search</title>
-                              <use xlink:href="#ds-general-search" href="#ds-general-search"></use>
-                           </svg>
-                        </button>
-                     </form>
-                  </div>
-               </div>
-            </div>
-         </nav>
-      </div>
-   </div>
-</header>*@
