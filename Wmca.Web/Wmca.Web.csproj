@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Umbraco.Cms" Version="12.0.1" />
+    <PackageReference Include="Umbraco.Cms" Version="12.3.0" />
     <PackageReference Include="Limbo.Umbraco.BlockList" Version="3.0.4" />
     <PackageReference Include="uSync" Version="12.1.0" />
     <PackageReference Include="Umbraco.StorageProviders.AzureBlob" Version="12.0.0" />
