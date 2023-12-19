@@ -1,4 +1,4 @@
-@using Umbraco.Cms.Web.Common.PublishedModels;
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Wmca.Models.Content.HomepageMidlandsConnect>
     
 @{
@@ -25,4 +25,10 @@
     <div class='ds-video-embed'>
         <iframe src='https://player.vimeo.com/video/510329103?autoplay=1&amp;muted=1' frameborder='0' allowfullscreen></iframe>
     </div>
+        <h2>Our projects</h2>
+
+    @* Render the block areas *@
+    @await Html.GetBlockGridHtmlAsync(Model, "homepageContent")
+    <br />
+    <a href="/projects/" title="Projects"><p>See all projects</p></a>
 </main>
