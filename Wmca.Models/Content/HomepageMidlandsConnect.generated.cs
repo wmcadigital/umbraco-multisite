@@ -50,12 +50,12 @@ namespace Wmca.Models.Content
 		// properties
 
 		///<summary>
-		/// Homepage Content
+		/// Homepage Content Cards
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("homepageContent")]
-		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockGridModel HomepageContent => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockGridModel>(_publishedValueFallback, "homepageContent");
+		[ImplementPropertyType("homepageContentCards")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockGridModel HomepageContentCards => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockGridModel>(_publishedValueFallback, "homepageContentCards");
 
 		///<summary>
 		/// Copy
