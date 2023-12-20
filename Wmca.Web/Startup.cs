@@ -1,4 +1,6 @@
-﻿namespace Wmca
+﻿using Wmca.Core.Services;
+
+namespace Wmca
 {
     public class Startup
     {
@@ -40,6 +42,8 @@
                           .AllowAnyMethod();
                     });
             });
+
+            services.AddTransient<ISearchService, SearchService>();
 
             services.AddUmbraco(_env, _config)
                 .AddBackOffice()

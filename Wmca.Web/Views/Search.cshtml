@@ -1,8 +1,29 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.SearchMidlandsConnect>
-@using ContentModels = Wmca.Models.Content;
+@*@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.SearchMidlandsConnect>*@
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Wmca.Core.Models.SearchMidlandsConnectControllerModel>
+@*@using ContentModels = Wmca.Models.Content;*@
 @{
-	Layout = "MidlandsConnect.cshtml";
+    Layout = "MidlandsConnect.cshtml";
 }
 
-<h1>Test</h1>
+<div class="ds-container">
+    <h1>Search</h1>
+
+    <p>@Model.SearchResults.Count() results</p>
+
+    @if (Model.SearchResults.Any())
+    {
+        <ul>
+            @foreach (var content in Model.SearchResults)
+            {
+                <li>
+                    <a href="@content.Url()">@content.Name</a>
+                </li>
+            }
+        </ul>
+    }
+    else if (Model.HasSearched)
+    {
+        <p>No results found</p>
+    }
+</div>

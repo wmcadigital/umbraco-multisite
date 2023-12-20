@@ -18,10 +18,14 @@
     <None Remove="Controllers\" />
     <None Remove="Controllers\ContentDeliveryApi\" />
     <None Remove="BlockList\" />
+    <None Remove="Services\" />
+    <None Remove="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
     <Folder Include="Controllers\ContentDeliveryApi\" />
     <Folder Include="BlockList\" />
+    <Folder Include="Services\" />
+    <Folder Include="Models\" />
   </ItemGroup>
 </Project>
