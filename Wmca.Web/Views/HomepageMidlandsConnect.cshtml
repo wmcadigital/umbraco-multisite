@@ -28,7 +28,9 @@
         <h2>Our projects</h2>
 
     @* Render the block areas *@
-    @await Html.GetBlockGridHtmlAsync(Model, "homepageContent")
-    <br />
+    @await Html.GetBlockGridHtmlAsync(Model, "ourProjects")
     <a href="/projects/" title="Projects"><p>See all projects</p></a>
+    <a href="/news/" title="News"><p>See all news</p></a>
+    
+    @await Html.GetBlockGridHtmlAsync(Model, "featuredLinks")
 </main>
