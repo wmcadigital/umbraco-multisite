@@ -50,12 +50,20 @@ namespace Wmca.Models.Content
 		// properties
 
 		///<summary>
-		/// Homepage Content
+		/// Featured Links
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("homepageContent")]
-		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockGridModel HomepageContent => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockGridModel>(_publishedValueFallback, "homepageContent");
+		[ImplementPropertyType("featuredLinks")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockGridModel FeaturedLinks => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockGridModel>(_publishedValueFallback, "featuredLinks");
+
+		///<summary>
+		/// Our projects: Three content cards showcasing featured projects
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("ourProjects")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockGridModel OurProjects => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockGridModel>(_publishedValueFallback, "ourProjects");
 
 		///<summary>
 		/// Copy
