@@ -1,4 +1,4 @@
-﻿using Wmca.Core.Services;
+﻿using Infocaster.Umbraco.ETag;
 
 namespace Wmca
 {
@@ -43,8 +43,6 @@ namespace Wmca
                     });
             });
 
-            services.AddTransient<ISearchService, SearchService>();
-
             services.AddUmbraco(_env, _config)
                 .AddBackOffice()
                 .AddWebsite()
@@ -87,6 +85,7 @@ namespace Wmca
                     u.RunPostPipeline();
                     u.UseBackOffice();
                     u.UseWebsite();
+                    u.UseETag();
                 })
                 .WithEndpoints(u =>
                 {
