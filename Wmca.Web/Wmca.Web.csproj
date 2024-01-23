@@ -22,6 +22,7 @@
     <Content Remove="wwwroot\App_Plugins\BlockListEditor.DefaultCustomViews\js\" />
     <Content Remove="wwwroot\App_Plugins\BlockListEditor.DefaultCustomViews\css\" />
     <Content Remove="wwwroot\App_Plugins\BlockListEditor.DefaultCustomViews\views\" />
+    <Content Remove="wwwroot\assets\apps\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="umbraco\Data\Umbraco.sqlite.db">
@@ -45,6 +46,8 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="7.0.0" />
     <PackageReference Include="Umbraco.Community.AzureSSO" Version="1.3.0" />
     <PackageReference Include="Umbraco.Forms" Version="12.2.0" />
+    <PackageReference Include="HotChilli.Umbraco.PageNotFound" Version="2.2.0" />
+    <PackageReference Include="Infocaster.Umbraco.ETag" Version="11.1.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -102,6 +105,7 @@
     <Folder Include="wwwroot\App_Plugins\BlockListEditor.DefaultCustomViews\js\" />
     <Folder Include="wwwroot\App_Plugins\BlockListEditor.DefaultCustomViews\css\" />
     <Folder Include="wwwroot\App_Plugins\BlockListEditor.DefaultCustomViews\views\" />
+    <Folder Include="wwwroot\assets\apps\" />
   </ItemGroup>
   <PropertyGroup>
     <!-- Razor files are needed for the backoffice to work correctly -->

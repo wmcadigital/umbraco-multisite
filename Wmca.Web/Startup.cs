@@ -1,4 +1,6 @@
-﻿namespace Wmca
+﻿using Infocaster.Umbraco.ETag;
+
+namespace Wmca
 {
     public class Startup
     {
@@ -83,6 +85,7 @@
                     u.RunPostPipeline();
                     u.UseBackOffice();
                     u.UseWebsite();
+                    u.UseETag();
                 })
                 .WithEndpoints(u =>
                 {
