@@ -1,0 +1,16 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.NewsArticleMidlandsConnect>
+@using ContentModels = Wmca.Models.Content;
+@{
+	Layout = "MidlandsConnect.cshtml";
+}
+
+@await Html.PartialAsync("frontend/components/shared/breadcrumb")
+
+<main id="ds-main-content" class="ds-container">
+    <h1>@Model.Name</h1>
+    <p>Published: @Model.Date.ToString("dddd dd MMMM yyyy")</p>
+
+    @* Render the block areas *@
+    @await Html.GetBlockGridHtmlAsync(Model, "grid")
+</main>

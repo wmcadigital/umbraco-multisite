@@ -25,11 +25,39 @@
     <div class='ds-video-embed'>
         <iframe src='https://player.vimeo.com/video/510329103?autoplay=1&amp;muted=1' frameborder='0' allowfullscreen></iframe>
     </div>
-        <h2>Our projects</h2>
-
+    <h2>Our projects</h2>
     @* Render the block areas *@
     @await Html.GetBlockGridHtmlAsync(Model, "ourProjects")
     <a href="/projects/" title="Projects"><p>See all projects</p></a>
+    
+    <h2>Latest News</h2>
+    @{
+        var newslist = Umbraco.Content(Guid.Parse("9bfdc8dc-d7a8-4e14-86f2-37dfdc2d3a5f"))
+        .Children()
+        .Where(x => x.IsVisible())
+        .OrderByDescending(x => x.Value<DateTime>("date"));
+    }
+    <div class="ds-css-grid-3-col ds-m-b-lg">
+    @foreach (var item in newslist.Take(3))
+    {
+        var articleDate = item.Value<DateTime>("date");
+        var date = articleDate.ToString("dd MMMM yyyy");
+        <div class="ds-content-card ds-content-card--news">
+           @if (@item.Value("image") != null)
+            {
+                var imgSrc = "/media/" + @item.Value("image");
+                <img src="@imgSrc?anchor=center&mode=crop&width=480&height=357&rnd=132122595620000000" alt="@item.Value("imageAlternativeText")">
+            }
+            else if (@item.Value("thumbnail") != null)
+            {
+                var image = item.Value<IPublishedContent>("thumbnail");
+                <img src="@image.Url()?anchor=center&mode=crop&width=480&height=357&rnd=132122595620000000" alt="@image.Value("altText", fallback: Fallback.ToDefaultValue, defaultValue: @image.Name)" />
+            }
+            <p>@date</p>
+            <h3><a href="@item.Url()">@item.Name</a></h3>
+        </div>
+    }
+    </div>
     <a href="/news/" title="News"><p>See all news</p></a>
     
     @await Html.GetBlockGridHtmlAsync(Model, "featuredLinks")
