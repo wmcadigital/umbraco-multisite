@@ -63,5 +63,13 @@ namespace Wmca.Models.Content
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
 		[ImplementPropertyType("date")]
 		public virtual global::System.DateTime Date => this.Value<global::System.DateTime>(_publishedValueFallback, "date");
+
+		///<summary>
+		/// Introduction
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("introduction")]
+		public virtual string Introduction => this.Value<string>(_publishedValueFallback, "introduction");
 	}
 }
