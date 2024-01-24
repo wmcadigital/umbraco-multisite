@@ -22,7 +22,7 @@
         <div class="ds-content-card ds-content-card--news">
            @if (@item.Value("image") != null)
             {
-                var imgSrc = "/media/" + @item.Value("image");
+                var imgSrc = "/media" + @item.Value("image");
                 <img src="@imgSrc?anchor=center&mode=crop&width=480&height=357&rnd=132122595620000000" alt="@item.Value("imageAlternativeText")">
             }
             else if (@item.Value("thumbnail") != null)
