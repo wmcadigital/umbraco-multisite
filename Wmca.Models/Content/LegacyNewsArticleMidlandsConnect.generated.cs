@@ -73,6 +73,14 @@ namespace Wmca.Models.Content
 		public virtual string Image => this.Value<string>(_publishedValueFallback, "image");
 
 		///<summary>
+		/// Image Alternative Text
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("imageAlternativeText")]
+		public virtual string ImageAlternativeText => this.Value<string>(_publishedValueFallback, "imageAlternativeText");
+
+		///<summary>
 		/// Introduction
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]

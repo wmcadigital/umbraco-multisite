@@ -1,6 +1,40 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.LegacyNewsArticleMidlandsConnect>
 @using ContentModels = Wmca.Models.Content;
+@inject IPublishedValueFallback PublishedValueFallback
+
 @{
-	Layout = null;
+    Layout = "MidlandsConnect.cshtml";
 }
+
+<main id="ds-main-content" class="ds-container ds-m-t-md">
+
+    <h1>@Model.Name</h1>
+
+    <div class="ds-grid">
+        <div class="ds-col-1 ds-col-md-2-3">
+            @if (Model.HasValue("date"))
+            {
+                <p>Published: @(Model.Value<DateTime>("date").ToString("dddd MM MMMM yyyy"))</p>
+            }
+            @if (Model.HasValue("introduction"))
+            {
+                <div class="ds-col-1">
+                    @Model.Value("introduction")
+                </div>
+            }
+            @if (Model.HasValue("image"))
+            {
+                var imgSrc = "/media" + @Model.Value("image");
+                <img class="ds-m-t-sm ds-m-b-sm" src="@imgSrc" alt="@(Model.Value<string>(PublishedValueFallback, "imageAlternativeText", fallback: Fallback.ToDefaultValue, defaultValue: Model.Name))" />
+            }
+            @if (Model.HasValue("copy"))
+            {
+                @Model.Value("copy")
+            }
+        </div>
+        <div class="ds-col-1 ds-col-md-1-3">
+
+        </div>
+    </div>
+</main>
