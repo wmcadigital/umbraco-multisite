@@ -34,6 +34,21 @@ jobs:
             app-settings-json: |
                 [
                     {
+                      "name": "Umbraco:CMS:Global:Smtp:Host",
+                      "value": "${{ secrets.SMTP_HOST }}",
+                      "slotSetting": true
+                    },
+                    {
+                      "name": "Umbraco:CMS:Global:Smtp:Username",
+                      "value": "${{ secrets.SMTP_USERNAME }}",
+                      "slotSetting": true
+                    },
+                    {
+                      "name": "Umbraco:CMS:Global:Smtp:Password",
+                      "value": "${{ secrets.SMTP_PASSWORD }}",
+                      "slotSetting": true
+                    },
+                    {
                         "name": "Umbraco:CMS:DeliveryApi:ApiKey",
                         "value": "${{ secrets.APIKEY }}",
                         "slotSetting": true
