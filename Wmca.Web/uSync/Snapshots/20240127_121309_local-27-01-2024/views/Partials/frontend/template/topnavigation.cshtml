@@ -1,0 +1,98 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels
+@using Umbraco.Cms.Core.Models
+@using Umbraco.Cms.Core.Models.Blocks
+
+@{
+    var homePage = Model.AncestorOrSelf(1); @* Get the homepage *@
+    var siteProps = homePage.ChildrenOfType("siteProperties"); @* Get site properties by docType will return null if not found *@
+    var siteSet = homePage.Children.Where(x => x.ContentType.Alias == "siteProperties").First(); @* Get the site setings *@
+    int i = 0; @* Set the index of each sub menu *@
+    var rootnode = Model.Root();
+    var dsSlug = siteSet.Value<string>("designSystemSlug");
+    var logo = "/assets/img/logo/wmca-logo.svg";
+
+    if (dsSlug == "wmcads")
+    {
+        logo = "/assets/img/logo/wmca-logo.svg";
+    }
+    else if (dsSlug == "stds")
+    {
+        logo = "/assets/img/logo/st-logo.svg";
+    }
+    else if (dsSlug == "mcds")
+    {
+        logo = "/assets/img/logo/mc-logo.svg";
+    }
+    else if (dsSlug == "tfwm")
+    {
+        logo = "/assets/img/logo/tfwm-logo.svg";
+    }
+}
+
+@* Skip to content link *@
+<a href="#ds-main-content" title="Skip to main content" target="_self" class="ds-link ds-header__skip-link">
+    Skip to main content
+</a>
+
+@* show navigation if it exists *@
+@if (siteProps.Any())
+{
+    <header>
+        <div class="ds-header ds-header--mega-menu">
+            <div class="ds-container ds-grid ds-grid--align-center ds-grid--justify-between">
+                <div class="ds-header__vertical-align ds-col-auto">
+                    <!-- Logo -->
+                    <a class="ds-header__logo-link" href="/" title="Transport for West Midlands Design System">
+                        <img class="ds-header__logo" alt="@siteSet.Value("siteTitle") logo" src="@logo">
+                    </a>
+                </div>
+                <nav id="mega-menu-example" class="ds-mega-menu">
+                    <!-- Mobile toggle button -->
+                    <button class="ds-mega-menu__mobile-toggle ds-btn ds-btn--secondary ds-hide-desktop" aria-expanded="false" aria-controls="mega-menu-example-primary-menu">
+                        Menu
+                        <svg class="ds-mega-menu__close-icon"><use xlink:href="#ds-general-cross" href="#ds-general-cross"></use></svg>
+                    </button>
+                    <!-- Container for mega menu - allows scrolling on mobile nav -->
+                    <div id="mega-menu-example-primary-menu" class="ds-mega-menu__scroll-controller">
+                        <!-- Start primary (level 1) navigation -->
+                        <ul class="ds-mega-menu__primary-menu">
+                            @{
+                                //var siteProp = siteProps.ChildrenOfType("header");
+                                var header = siteSet.Children.Where(x => x.ContentType.Alias == "header").First();
+
+                                @Html.GetBlockListHtml(header, "navigation")
+                            }
+                        </ul>
+                        <!-- End primary (level 1) navigation -->
+                    </div>
+                    <!-- search -->
+                    <!--<div class="ds-mega-menu__primary-menu-item ds-mega-menu__search">-->
+                    <!--    <button class="ds-mega-menu__primary-menu-link ds-mega-menu__search-btn">-->
+                    <!--        <svg class="ds-mega-menu__search-icon">-->
+                    <!--            <title>Search</title>-->
+                    <!--            <use xlink:href="#ds-general-search" href="#ds-general-search"></use>-->
+                    <!--        </svg>-->
+                    <!--        <svg class="ds-mega-menu__search-close-icon">-->
+                    <!--            <title>Close</title>-->
+                    <!--            <use xlink:href="#ds-general-cross" href="#ds-general-cross"></use>-->
+                    <!--        </svg>-->
+                    <!--    </button>-->
+                    <!--    <div class="ds-mega-menu__container ds-mega-menu__search-container">-->
+                    <!--        <div class="ds-search-container">-->
+
+                    <!--            <form id="searchBar_form" class="ds-search-bar" action="/search">-->
+                    <!--                <input id="searchBar_input" name="q" aria-label="Search" type="text" class="ds-search-bar__input ds-fe-input" placeholder="@siteSet.Value("searchPlaceholder")">-->
+                    <!--                <button class="ds-search-bar__btn" type="submit">-->
+                    <!--                    <svg><title>Search</title><use xlink:href="#ds-general-search" href="#ds-general-search"></use></svg>-->
+                    <!--                </button>-->
+                    <!--            </form>-->
+
+                    <!--        </div>-->
+                    <!--    </div>-->
+                    <!--</div>-->
+                </nav>
+            </div>
+        </div>
+    </header>
+}

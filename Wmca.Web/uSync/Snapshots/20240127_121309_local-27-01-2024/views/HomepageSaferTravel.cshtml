@@ -1,0 +1,51 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Wmca.Models.Content.HomepageSaferTravel>
+    
+@{
+	Layout = "SaferTravel.cshtml";
+}
+
+@await Html.PartialAsync("frontend/components/homepagebanner")
+<main id="ds-main-content" class="ds-container ds-m-t-lg homepage">
+    <h2>Latest News</h2>
+    @{
+        var newslist = Umbraco.Content(Guid.Parse("db564fde-aaca-4039-8fdf-9f58a7543cff"))
+        .Children()
+        .Where(x => x.IsVisible())
+        .OrderByDescending(x => x.Value<DateTime>("date"));
+    }
+    <div class="ds-css-grid-3-col ds-m-b-lg">
+    @foreach (var item in newslist.Take(3))
+    {
+        var articleDate = item.Value<DateTime>("date");
+        var date = articleDate.ToString("dd MMMM yyyy");
+        <div class="ds-content-card ds-content-card--news">
+           @if (@item.Value("image") != null)
+            {
+                var imgSrc = "/media" + @item.Value("image");
+                <img src="@imgSrc?anchor=center&mode=crop&width=480&height=357&rnd=132122595620000000" alt="@item.Value("imageAlternativeText")">
+            }
+            else if (@item.Value("thumbnail") != null)
+            {
+                var image = item.Value<IPublishedContent>("thumbnail");
+                <img src="@image.Url()?anchor=center&mode=crop&width=480&height=357&rnd=132122595620000000" alt="@image.Value("altText", fallback: Fallback.ToDefaultValue, defaultValue: @image.Name)" />
+            }
+            <p>@date</p>
+            <h3><a href="@item.Url()">@item.Name</a></h3>
+        </div>
+    }
+    </div>
+    <a href="/news/" title="News"><p>See all news</p></a>
+    <h2>Partners</h2>
+    <div class="ds-css-grid-3-col ds-m-b-lg">
+        <div class="ds-content-card">
+            <img class="ds-content-card__image" src="/media/d2vbaoj4/og-logo-1.png" alt="West Midlands Police logo" />
+        </div>
+        <div class="ds-content-card">
+            <img class="ds-content-card__image" src="/media/zhklj4t3/btp-logo-1.png" alt="British Transport Police logo" />
+        </div>
+        <div class="ds-content-card">
+            <img class="ds-content-card__image" src="/media/hkzcfc14/tfwm-2021-landscape-1.png" alt="Transport for West Midlands logo" />
+        </div>
+    </div>
+</main>

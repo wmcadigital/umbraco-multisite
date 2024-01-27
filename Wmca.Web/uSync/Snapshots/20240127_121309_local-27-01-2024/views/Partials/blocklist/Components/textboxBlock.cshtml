@@ -1,0 +1,13 @@
+﻿@inherits UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>
+@using ContentModels = Wmca.Models.Content;
+
+@{
+    var content = (ContentModels.TextboxBlock)Model.Content;
+    // var settings = (ContentModels.BlogLayoutBlock)Model.Settings;
+    // var contentItem = Umbraco.AssignedContentItem;
+    // var homePage = contentItem.Root(); // Get the homepage
+    // var siteProps = homePage.ChildrenOfType("siteProperties"); // Get site properties by docType will return null if not found
+    // var siteSet = siteProps.First().Children.Where(x => x.ContentType.Alias == "siteSettings").First(); //Get the site setings
+}
+
+@content.Textbox

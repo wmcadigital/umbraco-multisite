@@ -1,0 +1,40 @@
+﻿@using Umbraco.Extensions
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using Umbraco.Cms.Core.Models
+
+@{
+    var link = Model.Content.Value<Link>("link");
+    var image = Model.Content.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("image");
+    
+    if (link != null)
+    {
+    <a href="@link.Url" target="@link.Target" class="ds-content-card">
+    @if (image != null)
+    {
+        <img src="@image.GetCropUrl("Content Card - Rectangle")" />
+    }
+        <div class="ds-p-sm">
+            @if (Model.Content.Value("title") != null)
+            {
+                <h3>@Model.Content.Value("title")</h3>
+            }
+            @Model.Content.Value("copy")
+        </div>
+    </a>
+    } else {
+    <div class="ds-content-card">
+    @if (image != null)
+    {
+        <img src="@image.GetCropUrl("Content Card - Rectangle")" />
+    }
+        <div class="ds-p-sm">
+        @if (Model.Content.Value("title") != null)
+        {
+            <h3>@Model.Content.Value("title")</h3>
+        }
+        @Model.Content.Value("copy")
+        </div>
+    </div>
+    }
+
+    }

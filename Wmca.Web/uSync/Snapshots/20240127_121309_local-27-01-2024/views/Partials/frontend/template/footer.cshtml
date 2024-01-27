@@ -1,0 +1,209 @@
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Umbraco.Cms.Core.Models
+
+@{
+    var homePage = Model.AncestorOrSelf(1); @* Get the homepage *@
+    var siteProps = homePage.ChildrenOfType("siteProperties"); @* Get site properties by docType will return null if not found *@
+    var siteSet = homePage.Children.Where(x => x.ContentType.Alias == "siteProperties").First(); @* Get the site setings *@
+    var showFooter = false; @* Placeholder var to detrmine if to show footer based on if we can access its contents *@
+
+    @* Check siteProps to see if it returns anything... *@
+    if (siteProps.Any())
+    {
+        var footer = siteProps.First().Children.Where(x => x.ContentType.Alias == "footer"); @* As siteProps exists, get any docType with the alias footer. If not found, will return a null *@
+
+        @* Check footer to see if it returns anything *@
+        if (footer.Any())
+        {
+            showFooter = true; @* If so, we can show our footer and it's props *@
+        }
+    }
+}
+
+@if (showFooter)
+{
+    var footer = siteProps.First().Children.Where(x => x.ContentType.Alias == "footer").First();@* Get all nav settings from footer docType *@
+
+    @* Column 1 *@
+    var col1Title = footer.Value<String>("column1Title");
+    var content = footer.Value<String>("content");
+    var ctaLink = footer.Value<Link>("cTAButton");
+    @* Column 2 *@
+    var col2Title = footer.Value<String>("column2Title");
+    var col2Links = footer.Value<IEnumerable<Link>>("column2Links");
+    @* Column 3 *@
+    var col3Title = footer.Value<String>("column3Title");
+    var col3Links = footer.Value<IEnumerable<Link>>("column3Links");
+    @* Socials *@
+    var facebookLink = footer.Value<Link>("facebookLink");
+    var twitterLink = footer.Value<Link>("xTwitterLink");
+    var instagramLink = footer.Value<Link>("instagramLink");
+    var linkedinLink = footer.Value<Link>("linkedIn");
+    @* Bottom menu *@
+    var copyrightText = footer.Value<String>("copyrightText");
+    var bottomLinks = footer.Value<IEnumerable<Link>>("bottomLinks");
+    
+    var colClass = "ds-col-lg-1-3";
+    
+    @if (String.IsNullOrEmpty(col1Title))
+    {
+        colClass = "ds-col-lg-1-2";
+    }
+
+    <footer>
+        <div class="ds-footer ds-footer--v2">
+            <div class="ds-container ds-grid">
+                @* Column 1 (this section requires a title - it has validation) *@
+                @if (!String.IsNullOrEmpty(col1Title))
+                {
+                    <div class="ds-col-1 ds-col-lg-1-3 ds-footer__updates-col">
+                        <h3 class="ds-footer__heading">@col1Title</h3>
+
+                        @if (!String.IsNullOrEmpty(content))
+                        {
+                            <p>@content</p>
+                        }
+
+                        @if (ctaLink != null)
+                        {
+                            <a href="@ctaLink.Url" class="ds-btn ds-footer__btn ds-footer__btn--block" target="@ctaLink.Target">
+                                @ctaLink.Name
+                            </a>
+                        }
+                    </div>
+                }
+
+                @* Column 2 (this section requires a title - it has validation) *@
+                @if (!String.IsNullOrEmpty(col2Title))
+                {
+                    <div class="ds-col-1 @colClass">
+                        <h3 class="ds-footer__heading ds-collapse-heading"
+                            aria-controls="footer-menu-col2"
+                            aria-expanded="true">
+                            @col2Title
+                            <svg class="ds-collapse-heading__indicator">
+                                <use xlink:href="#ds-general-chevron-right" href="#ds-general-chevron-right"></use>
+                            </svg>
+                        </h3>
+
+                        @if (col2Links.Any())
+                        {
+                            <ul class="ds-footer__menu ds-collapse-panel" id="footer-menu-col2">
+                                @foreach (var col2Link in col2Links)
+                                {
+                                    <li>
+                                        <a href="@col2Link.Url" class="ds-footer__link">
+                                            @col2Link.Name
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                        }
+                    </div>
+                }
+
+                @* Column 3  *@
+                <div class="ds-col-1 @colClass">
+                    @* (this section requires a title - it has validation) *@
+                    @if (!String.IsNullOrEmpty(col3Title))
+                    {
+                        <h3 class="ds-footer__heading ds-collapse-heading"
+                            aria-controls="footer-menu-col3"
+                            aria-expanded="true">
+                            @col3Title
+                            <svg class="ds-collapse-heading__indicator">
+                                <use xlink:href="#ds-general-chevron-right" href="#ds-general-chevron-right"></use>
+                            </svg>
+                        </h3>
+
+                        if (col3Links.Any())
+                        {
+                            <ul class="ds-footer__menu ds-collapse-panel" id="footer-menu-col3">
+                                @foreach (var col3Link in col3Links)
+                                {
+                                    <li>
+                                        <a href="@col3Link.Url" class="ds-footer__link">
+                                            @col3Link.Name
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                        }
+                    }
+
+                    @* Social (this section requires at least one social link to render) *@
+                    @if (facebookLink != null || twitterLink != null || instagramLink != null)
+                    {
+                        <h3 class="ds-footer__heading">Social media</h3>
+                        <ul class="ds-footer__social-media">
+                            @if (facebookLink != null)
+                            {
+                                <li>
+                                    <a href="@facebookLink.Url" title="@facebookLink.Name" target="@facebookLink.Target">
+                                        <svg>
+                                            <use xlink:href="#ds-social-facebook" href="#ds-social-facebook"></use>
+                                        </svg>
+                                    </a>
+                                </li>
+                            }
+                            @if (twitterLink != null)
+                            {
+                                <li>
+                                    <a href="@twitterLink.Url" title="@twitterLink.Name" target="@twitterLink.Target">
+                                        <svg>
+                                            <use xlink:href="#ds-social-twitter" href="#ds-social-twitter"></use>
+                                        </svg>
+                                    </a>
+                                </li>
+                            }
+                            @if (instagramLink != null)
+                            {
+                                <li>
+                                    <a href="@instagramLink.Url" title="@instagramLink.Name" target="@instagramLink.Target">
+                                        <svg>
+                                            <use xlink:href="#ds-social-instagram" href="#ds-social-instagram"></use>
+                                        </svg>
+                                    </a>
+                                </li>
+                            }
+                            @if (linkedinLink != null)
+                            {
+                                <li>
+                                    <a href="@linkedinLink.Url" title="@linkedinLink.Name" target="@linkedinLink.Target">
+                                        <svg>
+                                            <use xlink:href="#ds-social-instagram" href="#ds-social-instagram"></use>
+                                        </svg>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    }
+                </div>
+            </div>
+            <div class="ds-container">
+                <div class="ds-footer__bottom ds-grid">
+                    @* Copyright *@
+                    <div class="ds-col-1 ds-col-md-1-2">
+                        <p class="ds-footer__copyright">&copy; @copyrightText @DateTime.Now.Year</p>
+                    </div>
+                    @* Bottom links *@
+                    @if (bottomLinks.Any())
+                    {
+                        <div class="ds-col-1 ds-col-md-1-2">
+                            <ul class="ds-footer__bottom-menu">
+                                @foreach (var bottomLink in bottomLinks)
+                                {
+                                    <li>
+                                        <a href="@bottomLink.Url" class="ds-footer__link">
+                                            @bottomLink.Name
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </footer>
+}

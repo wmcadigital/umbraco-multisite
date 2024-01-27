@@ -1,0 +1,39 @@
+﻿@inherits UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>
+@using ContentModels = Wmca.Models.Content;
+@using Umbraco.Cms.Core.Models
+
+@{
+    var content = (ContentModels.ContentCardBlock)Model.Content;
+}
+
+<div class="ds-content-card">
+@{
+    var link = content.Value<Link>("link");
+    var image = content.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("image");
+    
+    if (link != null)
+    {
+        <a href="@link.Url" target="@link.Target">
+        @if (image != null)
+        {
+            <img src="@image.MediaUrl()" /> @*@image.GetCropUrl(height:300)*@
+        }
+        @if(Model.Content.Value("title") != null){
+            <h3>content.Value("title")</h3>
+        }
+        @content.Value("copy")
+        </a>
+    } else {
+        <div>
+        @if (image != null)
+        {
+            <img src="@image.MediaUrl()" />
+        }
+        @if(content.Value("title") != null){
+            <h3>@content.Value("title")</h3>
+        }
+        @content.Value("copy")
+        </div>
+    }
+}
+</div>

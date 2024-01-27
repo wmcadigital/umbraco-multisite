@@ -1,0 +1,90 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+  @* Get meta information from SEOChecker plugin *@
+  var meta =  Model.Value("seoChecker") as SEOChecker.MVC.MetaData;
+  @* Fallback image to share if no SEOChecker val found *@
+  var imgToShare = "https://cloudcdn.wmca.org.uk/wmcaassets/img/wmca-default.png";
+  if(Model.HasValue("image")){
+      imgToShare = Model.Value<IPublishedContent>("image").Url;
+  } else if (Model.HasValue("bannerImage")){
+      imgToShare = Model.Value<IPublishedContent>("bannerImage").Url;
+  }
+  var urlToShare = Request.Url.AbsoluteUri; @* Fallback URL to share if no SEOChecker val found *@
+  @* Set all vars to null incase we don't have access to SEOChecker, and our fallbacks can initiate *@
+  string metaTitle = null;
+  string metaKeywords = null;
+  string metaDescription = null;
+  string metaRobots = null;
+  string metaCanonicalUrl = null;
+  @* [Social] Facebook *@
+  string metaSocialOGTitle = null;
+  string metaSocialOGDescription = null;
+  string metaSocialFacebookImage = null;
+  string metaSocialFacebookUrl = null;
+  @* [Social] Twitter *@
+  string metaSocialTwitterSite = null;
+  string metaSocialTwitterCardType = null;
+  string metaSocialTwitterTitle = null;
+  string metaSocialTwitterDescription = null;
+  string metaSocialTwitterImage = null;
+  @* If meta is not null then SEOChecker is available, so map vars to SEOChecker vars *@
+  if (meta != null) {
+    @* General *@
+    metaTitle = meta.Title.ToString();
+    metaKeywords = meta.Keywords.ToString() ;
+    metaDescription = meta.Description.ToString() ;
+    metaRobots = meta.Robots.ToString() ;
+    metaCanonicalUrl = meta.CanonicalUrl.ToString() ;
+    @* [Social] Facebook *@
+    metaSocialOGTitle = meta.Social.OGTitle.ToString() ;
+    metaSocialOGDescription = meta.Social.OGDescription.ToString() ;
+    metaSocialFacebookImage = meta.Social.FacebookImage.ToString() ;
+    metaSocialFacebookUrl = meta.Social.FacebookUrl.ToString() ;
+    @* [Social] Twitter *@
+    metaSocialTwitterSite = meta.Social.TwitterSite.ToString() ;
+    metaSocialTwitterCardType = meta.Social.TwitterCardType.ToString() ;
+    metaSocialTwitterTitle = meta.Social.TwitterTitle.ToString() ;
+    metaSocialTwitterDescription = meta.Social.TwitterDescription.ToString() ;
+    metaSocialTwitterImage = meta.Social.TwitterImage.ToString() ;
+  }
+  @* Check each SEOChecker var (set above) and use them if available, else use the fallback value *@
+  @* General *@
+  var title = !String.IsNullOrEmpty(metaTitle) ? metaTitle : Model.Name;
+  var keywords = !String.IsNullOrEmpty(metaKeywords) ? metaKeywords : "west midlands, combined authority, local authorities, culture, economy, innovation, environment, energy, housing, land, communities, skills, wellbeing, transport";
+  var description = !String.IsNullOrEmpty(metaDescription) ? metaDescription : "West Midlands Combined Authority (WMCA) was set up in 2016. We want to make the West Midlands a happy, healthy, place to live.";
+  var robots = !String.IsNullOrEmpty(metaRobots) ? metaRobots : "noindex, follow";
+  var canonicalUrl = !String.IsNullOrEmpty(metaCanonicalUrl) ? metaCanonicalUrl : urlToShare;
+  @* [Social] Facebook *@
+  var facebookUrl = !String.IsNullOrEmpty(metaSocialFacebookUrl) ? metaSocialFacebookUrl : urlToShare;
+  var OGTitle = !String.IsNullOrEmpty(metaSocialOGTitle) ? metaSocialOGTitle : title;
+  var OGDescription = !String.IsNullOrEmpty(metaSocialOGDescription) ? metaSocialOGDescription : title;
+  var facebookImage = !String.IsNullOrEmpty(metaSocialFacebookImage) ? metaSocialFacebookImage : imgToShare;
+  @* [Social] Twitter *@
+  var twitterSite = !String.IsNullOrEmpty(metaSocialTwitterSite) ? metaSocialTwitterSite : "@wmnetwork";
+  var twitterCardType = !String.IsNullOrEmpty(metaSocialTwitterCardType) ? metaSocialTwitterCardType : "summary_large_image";
+  var twitterTitle = !String.IsNullOrEmpty(metaSocialTwitterTitle) ? metaSocialTwitterTitle : title;
+  var twitterDescription = !String.IsNullOrEmpty(metaSocialTwitterDescription) ? metaSocialTwitterDescription : description;
+  var twitterImage = !String.IsNullOrEmpty(metaSocialTwitterImage) ? metaSocialTwitterImage : imgToShare;
+}
+@* Use our set meta vars in the actual meta tags *@
+        <!-- General -->
+        <title>@title</title>
+        <meta name="keywords" content="@keywords">
+        <meta name="description" content="@description">
+        <meta name="robots" content="@robots" />
+        <link rel="canonical" href="@canonicalUrl">
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="@facebookUrl">
+        <meta property="og:title" content="@OGTitle">
+        <meta property="og:description" content="@OGDescription">
+        <meta property="og:image" content="@facebookImage">
+
+        <!-- Twitter -->
+        <meta name="twitter:card" content="@twitterCardType">
+        <meta name="twitter:url" content="@facebookUrl">
+        <meta name="twitter:title" content="@twitterTitle">
+        <meta name="twitter:description" content="@twitterDescription">
+        <meta name="twitter:image" content="@twitterImage">
+        <meta name="twitter:site" content="@twitterSite" />

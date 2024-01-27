@@ -1,0 +1,73 @@
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+@{
+    var homePage = Model.AncestorOrSelf(1); @* Get the homepage *@
+    var siteProps = homePage.ChildrenOfType("siteProperties"); @* Get site properties by docType will return null if not found *@
+    var siteSet = homePage.Children.Where(x => x.ContentType.Alias == "siteProperties").First(); @* Get the site setings *@
+    var dsSlug = siteSet.Value<string>("designSystemSlug");
+    var dsVersion = siteSet.Value<string>("designSystemVersion");
+    var siteTitle = siteSet.Value<string>("siteTitle");
+    bool greyscaleTheme = siteSet.Value<bool>("greyscaleTheme");
+}
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-5HPFPWN');</script>
+        <!-- End Google Tag Manager -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+        <title>@siteTitle - @Model.Name</title>
+
+        @* SEO meta information *@
+        @*@await Html.PartialAsync("frontend/template/seometatags")*@
+        <link rel="apple-touch-icon" sizes="180x180" href="https://cloudcdn.wmca.org.uk/wmcabeta/config/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="https://cloudcdn.wmca.org.uk/wmcabeta/config/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="194x194" href="https://cloudcdn.wmca.org.uk/wmcabeta/config/favicon-194x194.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="https://cloudcdn.wmca.org.uk/wmcabeta/config/android-chrome-192x192.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="https://cloudcdn.wmca.org.uk/wmcabeta/config/favicon-16x16.png">
+        <link rel="manifest" href="https://cloudcdn.wmca.org.uk/wmcabeta/config/webmanifest.json">
+        <link rel="mask-icon" href="https://cloudcdn.wmca.org.uk/wmcabeta/config/safari-pinned-tab.svg" color="#f58025">
+        <meta name="apple-mobile-web-app-title" content="WMCA">
+        <meta name="application-name" content="WMCA">
+        <meta name="msapplication-TileColor" content="#000000">
+        <meta name="msapplication-TileImage" content="https://cloudcdn.wmca.org.uk/wmcabeta/config/mstile-144x144.png">
+        <meta name="theme-color" content="#f58025">
+
+        <!-- CSS for WMCA Design System -->
+        @{
+            if (dsSlug == "wmcads")
+            {
+                <link rel="stylesheet" href="/css/ds/wmcads.min.css" />
+            }
+            else if (dsSlug == "stds")
+            {
+                <link rel="stylesheet" href="/css/ds/stds.min.css" />
+            }
+            else if (dsSlug == "mcds")
+            {
+                <link rel="stylesheet" href="/css/ds/mcds.min.css" />
+                <link rel="stylesheet" href="/css/custom/mcds.custom.css" />
+            }
+        }
+        
+        <link rel="stylesheet" href="@Url.Content("~/css/blockgridlayout.css")" />
+        
+        
+       @* @{
+            if (greyscaleTheme)
+            {
+                <link rel="stylesheet" href="https://www.wmca.org.uk/css/wmcads-dark.min.css" />
+                <link rel="stylesheet" href="https://www.wmca.org.uk/css/templates-dark.min.css" />
+            }
+            else
+            {
+                <link rel="stylesheet" href="https://www.wmca.org.uk/css/wmcads.min.css?v1.4" />
+                <link rel="stylesheet" href="https://www.wmca.org.uk/css/templates.min.css" />
+            }
+        }*@
+
+        <script src="https://kit.fontawesome.com/55e348b8be.js" crossorigin="anonymous"></script>
+        <script crossorigin="anonymous" src="https://polyfill.io/v3/polyfill.min.js?features=document.querySelector%2C%7Ehtml5-elements%2C%7Eviewport%2Ces6"></script>
