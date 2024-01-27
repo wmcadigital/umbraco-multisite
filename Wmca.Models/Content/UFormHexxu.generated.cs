@@ -118,7 +118,7 @@ namespace Wmca.Models.Content
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("form")]
-		public virtual string Form => this.Value<string>(_publishedValueFallback, "form");
+		public virtual object Form => this.Value(_publishedValueFallback, "form");
 
 		///<summary>
 		/// From
