@@ -62,6 +62,6 @@ namespace Wmca.Models.Content
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("document")]
-		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops Document => this.Value<global::Umbraco.Cms.Core.Models.MediaWithCrops>(_publishedValueFallback, "document");
+		public virtual global::Umbraco.Cms.Core.Models.Link Document => this.Value<global::Umbraco.Cms.Core.Models.Link>(_publishedValueFallback, "document");
 	}
 }
