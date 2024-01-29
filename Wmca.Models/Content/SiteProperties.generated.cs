@@ -150,5 +150,13 @@ namespace Wmca.Models.Content
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("siteTitle")]
 		public virtual string SiteTitle => this.Value<string>(_publishedValueFallback, "siteTitle");
+
+		///<summary>
+		/// Tag ID: Google tag manager ID
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("tagID")]
+		public virtual string TagID => this.Value<string>(_publishedValueFallback, "tagID");
 	}
 }
