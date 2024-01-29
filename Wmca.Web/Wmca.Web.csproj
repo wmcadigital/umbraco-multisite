@@ -14,7 +14,6 @@
     <Content Remove="wwwroot\App_Plugins\" />
     <Content Remove="wwwroot\App_Plugins\BlockGridEditor.DefaultCustomViews\" />
     <Content Remove="wwwroot\App_Plugins\BlockGridEditor.DefaultCustomViews\safertravel\" />
-    <Content Remove="wwwroot\css\ds\components\" />
     <Content Remove="wwwroot\App_Plugins\BlockGridEditor.DefaultCustomViews\shared\" />
     <Content Remove="wwwroot\App_Plugins\BlockGridEditor.DefaultCustomViews\midlandsconnect\" />
     <Content Remove="wwwroot\App_Plugins\BlockListEditor.DefaultCustomViews\" />
@@ -97,7 +96,6 @@
     <Folder Include="wwwroot\App_Plugins\" />
     <Folder Include="wwwroot\App_Plugins\BlockGridEditor.DefaultCustomViews\" />
     <Folder Include="wwwroot\App_Plugins\BlockGridEditor.DefaultCustomViews\safertravel\" />
-    <Folder Include="wwwroot\css\ds\components\" />
     <Folder Include="wwwroot\App_Plugins\BlockGridEditor.DefaultCustomViews\shared\" />
     <Folder Include="wwwroot\App_Plugins\BlockGridEditor.DefaultCustomViews\midlandsconnect\" />
     <Folder Include="wwwroot\App_Plugins\BlockListEditor.DefaultCustomViews\" />

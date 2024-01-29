@@ -2,13 +2,16 @@
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.NewsMidlandsConnect>
 @using ContentModels = Wmca.Models.Content;
 @{
-	Layout = "MidlandsConnect.cshtml";
+    Layout = "MidlandsConnect.cshtml";
 }
 
- <script defer="defer" src="~/assets/apps/mc-newsroom/static/js/main.6ac962a1.js"></script>
- <link href="~/assets/apps/mc-newsroom/static/css/main.51a6e80e.css" rel="stylesheet" />
+@await Html.PartialAsync("frontend/components/shared/breadcrumb")
 
- <noscript>You need to enable JavaScript to run this app.</noscript>
- <main id="ds-main-content" class="ds-container">
-     <div id="root"></div>
- </main>
+
+<script defer="defer" src="~/assets/apps/mc-newsroom/static/js/main.9a069b82.js"></script>
+<link href="~/assets/apps/mc-newsroom/static/css/main.51a6e80e.css" rel="stylesheet" />
+
+<noscript>You need to enable JavaScript to run this app.</noscript>
+<main id="ds-main-content" class="ds-container">
+    <div id="root"></div>
+</main>
