@@ -8,9 +8,16 @@
     var siteSet = homePage.Children.Where(x => x.ContentType.Alias == "siteProperties").First(); @* Get the site setings *@
     var bannerImage = Model.Value<IPublishedContent>("image");
     string mainImageUrl = bannerImage != null ? @bannerImage.GetCropUrl("Banner") : "/media/buxh4qmn/viewofbirmingham.jpg";
+    var pos = Model.Value("imagePosition");
+    string position = "center";
+
+    if (pos != null)
+    {
+        position = pos.ToString().ToFirstLower();
+    }
 }
 
-<div class="ds-page-header  ds-page-header__home" style="background-image: url(@mainImageUrl);">
+<div class="ds-page-header  ds-page-header__home" style="background-image: url( @mainImageUrl?anchor=center&mode=crop&width=2500&height=800&rnd=132122595620000000);background-position: @position">
 
     <div class="ds-container ds-page-header-container">
         <div class="ds-page-header-box">

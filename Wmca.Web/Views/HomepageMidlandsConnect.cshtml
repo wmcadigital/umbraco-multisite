@@ -1,30 +1,12 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Wmca.Models.Content.HomepageMidlandsConnect>
-@using Umbraco.Cms.Core.Models
 
 @{
     Layout = "MidlandsConnect.cshtml";
-    var bannerImg = Model.Value<MediaWithCrops>("image");
-    var pos = Model.Value("imagePosition");
-    string position = "center";
-
-    if (pos != null)
-    {
-        position = pos.ToString().ToFirstLower();
-    }
 }
 
-<div class="ds-page-header  ds-page-header__home" style="background-image:url('@bannerImg.MediaUrl()?anchor=center&mode=crop&width=2500&height=800&rnd=132122595620000000');background-position:@position">
-    <div class="ds-container ds-page-header-container">
-        <div class="ds-page-header-box">
-            <h1>@Model.TagLine</h1>
-            @if (Model.Value("subtitle") != "")
-            {
-                @Model.Subtitle
-            }
-        </div>
-    </div>
-</div>
+@await Html.PartialAsync("frontend/components/homepagebanner")
+
 <main id="ds-main-content" class="ds-container ds-m-t-lg homepage">
     <h2>Who we are</h2>
     <p>
