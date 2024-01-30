@@ -1,4 +1,4 @@
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 
 @{
     var homePage = Model.AncestorOrSelf(1); @* Get the homepage *@
@@ -46,6 +46,7 @@
             else if (dsSlug == "stds")
             {
                 <link rel="stylesheet" href="/css/ds/stds.min.css" />
+                <link rel="stylesheet" href="/css/custom/stds.custom.css" />
             }
             else if (dsSlug == "mcds")
             {
