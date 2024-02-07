@@ -47,6 +47,7 @@
     <PackageReference Include="Umbraco.Forms" Version="12.2.0" />
     <PackageReference Include="HotChilli.Umbraco.PageNotFound" Version="2.2.0" />
     <PackageReference Include="Infocaster.Umbraco.ETag" Version="11.1.0" />
+    <PackageReference Include="Skybrud.Umbraco.Redirects" Version="4.0.23" />
   </ItemGroup>
 
   <ItemGroup>
