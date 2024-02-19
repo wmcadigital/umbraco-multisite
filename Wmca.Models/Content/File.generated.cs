@@ -50,6 +50,13 @@ namespace Wmca.Models.Content
 		// properties
 
 		///<summary>
+		/// Is it accessible?: Mark if the document is accessible.
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[ImplementPropertyType("isItAccessible")]
+		public virtual bool IsItAccessible => this.Value<bool>(_publishedValueFallback, "isItAccessible");
+
+		///<summary>
 		/// Size: in bytes
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
