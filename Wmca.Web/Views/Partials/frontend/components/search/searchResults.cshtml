@@ -1,0 +1,80 @@
+﻿@model SiftLibrary.Models.SearchResultNodes
+@using Umbraco.Cms.Core.Models.PublishedContent
+
+<p>Found <strong>@Model.NumberOfResults</strong> matching results</p>
+
+<div>
+    @foreach (var node in Model.Nodes)
+        {
+            if (node.ItemType == PublishedItemType.Content)
+            {
+                var formattedDate = node.Value<DateTime>("date").ToString("dddd MMMM yyyy");
+        <div class="ds-search-result ds-m-b-md ds-p-b-sm">
+            <h2 class="ds-m-b-none">
+                <a href="@node.Url(Model.Criteria.Culture)" class="h2 ds-search-result__title">@node.Name(Model.Criteria.Culture)</a>
+            </h2>
+            <nav aria-label="page result breadcrumbs" class="ds-breadcrumb ds-breadcrumb--mobile-app">
+
+                <ul class="ds-breadcrumb__list" style="padding-inline-start: 0rem;">
+                    @foreach (var item in node.Ancestors().OrderBy(x => x.Level))
+                    {
+                        if (item.Level == 1)
+                        {
+                            <li class="ds-breadcrumb__list-item">
+                                <a href="@item.Url(Model.Criteria.Culture)" class="ds-breadcrumb__link">Home</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="ds-breadcrumb__list-item">
+                                <a href="@item.Url(Model.Criteria.Culture)" class="ds-breadcrumb__link">@item.Name</a>
+                            </li>
+                        }
+                    }
+
+                    @* Display the current page as the last item in the list *@
+                    @if (@node.Name == "Safer Travel" || @node.Name == "Midlands Connect")
+                    {
+                        <li class="ds-breadcrumb__list-item">
+                            <a href="@node.Url(Model.Criteria.Culture)" class="ds-breadcrumb__link ds-breadcrumb__link--current" aria-current="page">Home</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="ds-breadcrumb__list-item">
+                            <a href="@node.Url(Model.Criteria.Culture)" class="ds-breadcrumb__link ds-breadcrumb__link--current" aria-current="page">@node.Name</a>
+                        </li>
+                    }
+
+                    @*<li class="ds-breadcrumb__list-item">
+            <a href="/news/" class="ds-breadcrumb__link">Home</a>
+        </li>
+
+        <li class="ds-breadcrumb__list-item">
+            <a href="/news/lower-fares-and-more-uniformed-safety-officers-part-of-88m-plan-for-bus-services-across-west-midlands/" class="ds-breadcrumb__link ds-breadcrumb__link--current" aria-current="page">Lower fares and more uniformed safety officers part of £88m plan for bus services across West Midlands</a>
+        </li>*@
+                </ul>
+            </nav>
+
+            @if (@formattedDate != "Monday January 0001")
+            {
+                <p class="ds-search-result__date">@formattedDate</p>
+            }
+
+            <div class="ds-search-result__excerpt">
+
+            </div>
+        </div>
+        }
+        else if (node.ItemType == PublishedItemType.Media)
+        {
+            <li><a href="@node.MediaUrl(Model.Criteria.Culture)">@node.Name(Model.Criteria.Culture)</a></li>
+        }
+    }
+</div>
+
+@if (Model.Criteria.ResultsPerPage > 0)
+{
+    @await Html.PartialAsync("frontend/components/search/searchPagination", Model)
+}
+

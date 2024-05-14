@@ -1,0 +1,100 @@
+﻿<style>
+    .ds-pagination__item--active:first-child {margin-left: 0!important}
+    .ds-pagination__item--active:last-child {margin-right: 0!important}
+</style>
+
+@model SiftLibrary.Models.SearchResultNodes
+@{
+    int numButtons = 7;
+    int numMiddleButtons = numButtons - 2;
+
+    int current = Model.Criteria.PageNumber;
+
+    int firstMiddlePage = Model.Criteria.PageNumber - (numMiddleButtons / 2);
+    if (firstMiddlePage < 0)
+    {
+        firstMiddlePage = 0;
+    }
+
+    int lastMiddlePage = firstMiddlePage + numMiddleButtons;
+    if (lastMiddlePage > Model.NumberOfPages)
+    {
+        lastMiddlePage = Model.NumberOfPages;
+        firstMiddlePage = lastMiddlePage - numMiddleButtons;
+        if (firstMiddlePage < 0)
+        {
+            firstMiddlePage = 0;
+        }
+    }
+
+    if (Model.NumberOfPages <= numButtons)
+    {
+        numMiddleButtons = Model.NumberOfPages;
+    }
+}
+
+@*<h3>@current</h3>*@
+<div class="ds-pagination ds-m-t-lg">
+    <ol class="ds-pagination__nav">
+        @if (firstMiddlePage > 0)
+        {
+            <li class="ds-pagination__item">
+                <a id="search-button-page-first" href="#"
+                   class="sift-search btn btn-gray ds-link"
+                   data-sift-results-page-number="0">
+                    1
+                </a>
+            </li>
+
+            @*if (firstMiddlePage > 1)
+            {
+                <span>...</span>
+            }*@
+        }
+
+        @for (int i = firstMiddlePage; i < lastMiddlePage; i++)
+        {
+            var colour = "btn-gray";
+            if (i == Model.Criteria.PageNumber)
+            {
+                colour = "btn-blue";
+                <li class="ds-pagination__item ds-pagination__item--active">
+                    @(i + 1)
+                </li>
+            }
+            else
+            {
+                <li class="ds-pagination__item">
+                    <a id="search-button-page-@i" href="#"
+                       class="sift-search btn ds-link @colour"
+                       data-sift-results-page-number="@i">
+                        @(i + 1)
+                    </a>
+                </li>
+            }
+
+        }
+
+        @if (lastMiddlePage < Model.NumberOfPages)
+        {
+            @*if (lastMiddlePage < (Model.NumberOfPages - 1))
+            {
+                <span>...</span>
+            }*@
+            <li class="ds-pagination__item">
+                <a id="search-button-page-last" href="#"
+                   class="sift-search btn btn-gray ds-link"
+                   data-sift-results-page-number="@(Model.NumberOfPages - 1)">
+                    @Model.NumberOfPages
+                </a>
+            </li>
+        }
+    </ol>
+    <div class="ds-pagination__prev"></div>
+    <div class="ds-pagination__next"></div>
+    @*<a href="#" target="_self" class="ds-pagination__next ds-link ds-link--with-chevron">
+            Next page <svg class="ds-link__chevron ds-link__chevron--right">
+                <use href="#ds-general-chevron-right"></use>
+            </svg>
+        </a>*@
+</div>
