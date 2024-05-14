@@ -92,7 +92,7 @@
                                 @foreach (var col2Link in col2Links)
                                 {
                                     <li>
-                                        <a href="@col2Link.Url" class="ds-footer__link">
+                                        <a href="@col2Link.Url" class="ds-footer__link" target="@col2Link.Target">
                                             @col2Link.Name
                                         </a>
                                     </li>
@@ -122,7 +122,7 @@
                                 @foreach (var col3Link in col3Links)
                                 {
                                     <li>
-                                        <a href="@col3Link.Url" class="ds-footer__link">
+                                        <a href="@col3Link.Url" class="ds-footer__link" target="@col3Link.Target">
                                             @col3Link.Name
                                         </a>
                                     </li>
@@ -171,7 +171,7 @@
                                 <li>
                                     <a href="@linkedinLink.Url" title="@linkedinLink.Name" target="@linkedinLink.Target">
                                         <svg>
-                                            <use xlink:href="#ds-social-instagram" href="#ds-social-instagram"></use>
+                                            <use xlink:href="#ds-social-linkedin" href="#ds-social-linkedin"></use>
                                         </svg>
                                     </a>
                                 </li>
@@ -194,7 +194,7 @@
                                 @foreach (var bottomLink in bottomLinks)
                                 {
                                     <li>
-                                        <a href="@bottomLink.Url" class="ds-footer__link">
+                                        <a href="@bottomLink.Url" class="ds-footer__link" target="@bottomLink.Target">
                                             @bottomLink.Name
                                         </a>
                                     </li>

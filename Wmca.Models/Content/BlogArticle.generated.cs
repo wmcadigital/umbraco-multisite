@@ -80,6 +80,13 @@ namespace Wmca.Models.Content
 		public virtual bool HideImageInBlog => this.Value<bool>(_publishedValueFallback, "hideImageInBlog");
 
 		///<summary>
+		/// Hide opinion message: Hide the information message: "This blog post is an opinion and may not reflect WMCA’s views."
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[ImplementPropertyType("hideOpinionMessage")]
+		public virtual bool HideOpinionMessage => this.Value<bool>(_publishedValueFallback, "hideOpinionMessage");
+
+		///<summary>
 		/// Image
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
