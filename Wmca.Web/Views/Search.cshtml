@@ -11,108 +11,44 @@
 
 @{
     Layout = "MidlandsConnect.cshtml";
-    // var searchQuery = HttpContextAccessor.HttpContext.Request.Query["q"]; ;
     var searchQuery = Context.Request.Query["q"];
-    // var docTypesToIgnore = new[] { Category.ModelTypeAlias, CategoryList.ModelTypeAlias, Error.ModelTypeAlias, Search.ModelTypeAlias, XMlsitemap.ModelTypeAlias };
     var homePage = Model.AncestorOrSelf(1);
-    var results = searcher.CreateQuery("content").Field("searchPath", "1105").And().Field("combinedField", searchTerm).Execute();
-
 }
 
-@*<main id="ds-main-content" class="ds-container-main ds-m-t-lg">
-        <div class="ds-container ds-m-b-lg">
-            <h1 id="ds-main-content" class="ds-hide-mobile">Search results</h1>
-            <div class="ds-col-1 ds-col-md-2-3 ds-p-r-xl">
-                <form class="ds-search-bar" action="@Model.Url()" method="get">
-                    <input aria-label="Search" name="q" type="text" class="ds-search-bar__input ds-fe-input" placeholder="Site search…" value="@searchQuery">
+@await Html.PartialAsync("frontend/components/shared/breadcrumb")
+
+<main id="ds-main-content" class="ds-container">
+    <div class="sift sift-auto-load-on-page-load data-sift-remember-criteria attribute"
+         data-sift-result-partial="frontend/components/search/searchResults"
+         data-sift-result-document-type="homepageMidlandsConnect, contentPageMidlandsConnect, newsMidlandsConnect, newsArticleMidlandsConnect, legacyNewsArticleMidlandsConnect, publications, publication"
+         data-sift-result-root="ba5299dd-422e-4f18-8dbf-d981c34ef23c"
+         data-sift-results-per-page="10">
+
+        <form class="sift-criteria">
+
+            @Html.AntiForgeryToken()
+
+            <div class="ds-m-b-lg">
+                <h1 id="ds-main-content" class="ds-hide-mobile">Search results</h1>
+                <div class="ds-col-1 ds-col-md-2-3 ds-p-r-xl" style="display:flex">
+                    <input aria-label="Search" name="q" type="text" class="ds-search-bar__input ds-fe-input sift-criterion" placeholder="Site search…" value="@searchQuery" data-sift-match-property="nodeName, grid, copy, introduction, summary">
                     <button class="ds-search-bar__btn" type="submit">
                         <svg><title>Search</title><use href="#ds-general-search"></use></svg>
                     </button>
-                </form>
+                </div>
             </div>
-        </div>
 
-        <div class="ds-container">
+        </form>
 
-            <p>@Model.SearchResults</p>
-
-            <p>@Model.SearchResults.Count() results</p>
-
-            @if (Model.SearchResults.Any())
-            {
-                <ul>
-                    @foreach (var content in Model.SearchResults)
-                    {
-                        <li>
-                            <a href="@content.Url()">@content.Name</a>
-                        </li>
-                    }
-                </ul>
-            }
-            else if (Model.HasSearched)
-            {
-                <p>No results found</p>
-            }
-        </div>
-    </main>*@
-
-
-<main id="ds-main-content" class="ds-container-main ds-m-t-lg">
-    <div class="ds-container ds-m-b-lg">
-        <h1 id="ds-main-content" class="ds-hide-mobile">Search results</h1>
-        <div class="ds-col-1 ds-col-md-2-3 ds-p-r-xl">
-            <form action="@Model.Url()" method="get" id="search" class="ds-search-bar">
-                    <input aria-label="Search" name="q" type="text" class="ds-search-bar__input ds-fe-input" placeholder="Site search…" value="@searchQuery">
-                    <button class="ds-search-bar__btn" type="submit">
-                        <svg><title>Search</title><use href="#ds-general-search"></use></svg>
-                    </button>
-                </form>
+        <div class="ds-grid">
+            <div class="main ds-col-1 ds-col-md-2-3 ds-m-b-xl ds-p-r-lg">
+                <div class="sift-result ds-col-1">
+                </div>
+            </div>
         </div>
     </div>
 
-        <div class="ds-container">
-            <div class="ds-grid">
-                <div class="ds-col-1 ds-col-md-2-3">
-                    <ul>
-                    @if (!string.IsNullOrWhiteSpace(searchQuery))
-                    {
-                        var results = publishedContentQuery.Search(searchQuery);
-                        long resultCount = results != null && results.Any() ? results.Count() : 0;
-                        @Html.Raw(string.Format("", resultCount, searchQuery)) if (resultCount > 0)
-                        {
-                            foreach (var result in results)
-                            {
-                                <li>
-                                    <a href="@result.Content.Url()">
-                                        <h2>
-                                            @(result.Content.HasProperty("title") && result.Content.HasValue("title") && !string.IsNullOrWhiteSpace(result.Content.Value<string>("title")) ? result.Content.Value("title") : result.Content.Name)
-                                        </h2>
-                                    </a>
-                                </li>
-                                    @if ((result.Content.HasProperty("author") && result.Content.HasValue("author"))
-                   || (result.Content.HasProperty("date") && result.Content.HasValue("date") && result.Content.Value<DateTime>("date") > DateTime.MinValue))
-                                    {
-                                        // var author = result.Content.GetAuthor(Umbraco);
-
-                                        <p class="post-meta">
-                                            @*@Umbraco.GetDictionaryValue("Article.Posted")
-                                @Umbraco.GetDictionaryValue("Article.By")@Html.Raw("&nbsp;")@("yesying")*@
-
-                                            @if (result.Content.HasProperty("date") && result.Content.HasValue("date") && result.Content.Value<DateTime>("date") > DateTime.MinValue)
-                                            {
-                                                @Umbraco.GetDictionaryValue("Article.On")@:&nbsp;@(result.Content.Value<DateTime>("date").ToString("MMMM dd, yyyy"))
-                                            }
-                                        </p>
-                                    }
-                                    @if (result.Content.HasProperty("introduction") && result.Content.HasValue("introduction") && !string.IsNullOrWhiteSpace(result.Content.Value<string>("introduction")))
-                                    {
-                                        <p class="post-introduction">@(result.Content.Value<string>("introduction"))</p>}
-
-                                    }
-                                    }
-                                    }
-                        </ul>
-                                </div>
-                            </div>
-        </div>
 </main>
+
+
+<script src="~/Scripts/sift.js" type="text/javascript"></script>

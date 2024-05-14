@@ -20,7 +20,7 @@ namespace Wmca.Models.Content
 {
 	/// <summary>Content Page</summary>
 	[PublishedModel("contentPageMidlandsConnect")]
-	public partial class ContentPageMidlandsConnect : PublishedContentModel
+	public partial class ContentPageMidlandsConnect : PublishedContentModel, IPageProperties
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -56,5 +56,29 @@ namespace Wmca.Models.Content
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("grid")]
 		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockGridModel Grid => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockGridModel>(_publishedValueFallback, "grid");
+
+		///<summary>
+		/// Custom code - Body: Custom tracking code placed within the body
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("customCodeBody")]
+		public virtual string CustomCodeBody => global::Wmca.Models.Content.PageProperties.GetCustomCodeBody(this, _publishedValueFallback);
+
+		///<summary>
+		/// Custom code - Head: Custom code placed within the head
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("customCodeHead")]
+		public virtual string CustomCodeHead => global::Wmca.Models.Content.PageProperties.GetCustomCodeHead(this, _publishedValueFallback);
+
+		///<summary>
+		/// Image: Default image for this page. Will be used for internal page linking and social media sharing
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("image")]
+		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops Image => global::Wmca.Models.Content.PageProperties.GetImage(this, _publishedValueFallback);
 	}
 }

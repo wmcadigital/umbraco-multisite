@@ -12,6 +12,7 @@
 <html class="@RenderSection("ds", false) ds-html" lang="en-gb">
     <head>
         @await Html.PartialAsync("frontend/template/head")
+        @Html.Raw(Model.Value("customCodeHead"))
     </head>
     <body class="@RenderSection("templateName", false)">
         <!-- Google Tag Manager (noscript) -->
@@ -23,5 +24,6 @@
         @await Html.PartialAsync("frontend/template/footer")
         @await Html.PartialAsync("frontend/template/scripts")
         @RenderSection("CustomScripts", false)
+        @Html.Raw(@Model.Value("customCodeBody"))
     </body>
 </html>

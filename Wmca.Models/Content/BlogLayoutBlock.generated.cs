@@ -55,7 +55,7 @@ namespace Wmca.Models.Content
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("content")]
-		public virtual global::System.Collections.Generic.IReadOnlyList<global::Wmca.Core.BlockList.BlockItem> Content => this.Value<global::System.Collections.Generic.IReadOnlyList<global::Wmca.Core.BlockList.BlockItem>>(_publishedValueFallback, "content");
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel Content => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "content");
 
 		///<summary>
 		/// Sidebar
