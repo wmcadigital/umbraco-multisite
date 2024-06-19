@@ -10,17 +10,25 @@ class AccessibilityReporter {
 
                 const testRequest = new Request(testUrl);
                 await fetch(testRequest);
-                const iframeId = "arTestIframe" + crypto.randomUUID();
+                const iframeId = "arTestIframe" + AccessibilityReporter.randomUUID();
                 const container = document.getElementById(showWhileRunning ? 'dashboard-ar-tests' : 'contentcolumn');
                 let testIframe = document.createElement("iframe");
 
                 function cleanUpIframe() {
-                    testIframe.src = "";
-                    testIframe.remove();
-                    testIframe = null;
+                    if (testIframe) {
+                        testIframe.src = "";
+                        testIframe.remove();
+                        testIframe = null;
+                    }
                 }
 
-                window.addEventListener("message", function (message) {
+                const handleTestResultMessage = function (message) {
+                    if (!message.data.testRunner) {
+                        return;
+                    }
+                    if (message.data.testRunner.name !== 'axe') {
+                        return;
+                    }
                     cleanUpIframe();
                     if (message.data) {
                         resolve(message.data);
@@ -28,7 +36,9 @@ class AccessibilityReporter {
                         reject(message);
                     }
                     message = null;
-                }, { once: true });
+                    window.removeEventListener("message", handleTestResultMessage, true);
+                }
+                window.addEventListener("message", handleTestResultMessage, true);
 
                 testIframe.setAttribute("src", testUrl);
                 testIframe.setAttribute("id", iframeId);
@@ -41,12 +51,12 @@ class AccessibilityReporter {
                     testIframe.style.position = "absolute";
                 }
 
-                setTimeout(()=> {
+                setTimeout(() => {
                     container.appendChild(testIframe);
                 }, 0);
 
                 testIframe.onload = function () {
-                    if(testIframe.contentWindow.document.body) {
+                    if (testIframe.contentWindow.document.body) {
                         let scriptAxe = testIframe.contentWindow.document.createElement("script");
                         scriptAxe.type = "text/javascript";
                         scriptAxe.src = "/App_Plugins/AccessibilityReporter/libs/axe.min.js";
@@ -367,6 +377,13 @@ class AccessibilityReporter {
 
     static formatNumber(numberToFormat) {
         return numberToFormat.toLocaleString();
+    }
+
+    static randomUUID() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
     }
 
 }
