@@ -13,7 +13,7 @@
             <h2 class="ds-m-b-none">
                 <a href="@node.Url(Model.Criteria.Culture)" class="h2 ds-search-result__title">@node.Name(Model.Criteria.Culture)</a>
             </h2>
-            <nav aria-label="page result breadcrumbs" class="ds-breadcrumb ds-breadcrumb--mobile-app">
+            <nav class="ds-breadcrumb ds-breadcrumb--mobile-app">
 
                 <ul class="ds-breadcrumb__list" style="padding-inline-start: 0rem;">
                     @foreach (var item in node.Ancestors().OrderBy(x => x.Level))

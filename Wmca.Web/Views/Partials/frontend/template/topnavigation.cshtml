@@ -38,7 +38,7 @@
 @* show navigation if it exists *@
 @if (siteProps.Any())
 {
-    <header>
+    <section aria-label="Brand and navigation">
         <div class="ds-header ds-header--mega-menu">
             <div class="ds-container ds-grid ds-grid--align-center ds-grid--justify-between">
                 <div class="ds-header__vertical-align ds-col-auto">
@@ -47,14 +47,14 @@
                         <img class="ds-header__logo" alt="@siteSet.Value("siteTitle") logo" src="@logo">
                     </a>
                 </div>
-                <nav id="mega-menu-example" class="ds-mega-menu">
+                <nav id="ds-mega-menu" class="ds-mega-menu">
                     <!-- Mobile toggle button -->
-                    <button class="ds-mega-menu__mobile-toggle ds-btn ds-btn--secondary ds-hide-desktop" aria-expanded="false" aria-controls="mega-menu-example-primary-menu">
+                    <button class="ds-mega-menu__mobile-toggle ds-btn ds-btn--secondary ds-hide-desktop" aria-expanded="false" aria-controls="ds-mega-menu-primary-menu">
                         Menu
                         <svg class="ds-mega-menu__close-icon"><use xlink:href="#ds-general-cross" href="#ds-general-cross"></use></svg>
                     </button>
                     <!-- Container for mega menu - allows scrolling on mobile nav -->
-                    <div id="mega-menu-example-primary-menu" class="ds-mega-menu__scroll-controller">
+                    <div id="ds-mega-menu-primary-menu" class="ds-mega-menu__scroll-controller">
                         <!-- Start primary (level 1) navigation -->
                         <ul class="ds-mega-menu__primary-menu">
                             @{
@@ -94,5 +94,5 @@
                 </nav>
             </div>
         </div>
-    </header>
+    </section>
 }

@@ -6,6 +6,7 @@
 @foreach (var item in Model.Content.Value<IEnumerable<OEmbedItem>>("video"))
 {
     <div class='ds-video-embed'>
-        <iframe src='@item.GetEmbedSrc()' frameborder='0' allowfullscreen></iframe>
+        @item.EmbedCode
+        @* <iframe src='@item.GetEmbedSrc()' frameborder='0' allowfullscreen></iframe> *@
     </div>
 }

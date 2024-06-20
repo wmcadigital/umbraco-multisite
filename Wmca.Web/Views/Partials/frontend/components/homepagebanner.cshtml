@@ -1,4 +1,4 @@
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 @using ContentModels = Wmca.Models.Content;
 @using Umbraco.Cms.Core.Models
 
@@ -17,8 +17,7 @@
     }
 }
 
-<div class="ds-page-header  ds-page-header__home" style="background-image: url( @mainImageUrl?anchor=center&mode=crop&width=2500&height=800&rnd=132122595620000000);background-position: @position">
-
+<header class="ds-page-header  ds-page-header__home" style="background-image: url( @mainImageUrl?anchor=center&mode=crop&width=2500&height=800&rnd=132122595620000000);background-position: @position">
     <div class="ds-container ds-page-header-container">
         <div class="ds-page-header-box">
             <h1>@Model.Value("tagLine")</h1>
@@ -28,5 +27,4 @@
             }
         </div>
     </div>
-
-</div>
+</header>

@@ -24,17 +24,20 @@
             @content.Value("title")
         </button>
     }
+
+    @if(content.ChildLinks.Count != 0){
     <!-- arrow icon for mobile nav -->
-    <button class="ds-mega-menu__link-arrow-icon-btn" data-label="Plan a journey" aria-label="toggle Plan a journey" aria-controls="ds-primary-menu-container-0">
+    <button class="ds-mega-menu__link-arrow-icon-btn" data-label=" @content.Value("title")" aria-label="toggle @content.Value("title")" aria-controls="ds-primary-menu-container-@content.GetHashCode().ToString()">
         <svg class="ds-mega-menu__link-arrow-icon">
             <use xlink-href="#ds-general-chevron-right" href="#ds-general-chevron-right"></use>
         </svg>
     </button>
+    }
     
     @* Show mega menu if there are child links *@
     @if(content.ChildLinks.Count != 0){
     <!-- Start mega menu container -->
-    <div id="wmnetwork-primary-menu-container-0" class="ds-mega-menu__container">
+    <div id="ds-primary-menu-container-@content.GetHashCode().ToString()" class="ds-mega-menu__container">
             <div class="ds-container">
                 <ul class="ds-mega-menu__sub-menu ds-mega-menu__sub-menu--has-child-menus">
                     @Html.GetBlockListHtml(content.ChildLinks)

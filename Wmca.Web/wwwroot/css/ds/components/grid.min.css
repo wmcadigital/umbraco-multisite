@@ -2,14 +2,14 @@
     font-family: "Noto Sans Display";
     font-style: normal;
     font-weight: 400;
-    src: url(../fonts/notosansdisplay-regular-webfont.woff2) format("woff2"),url(../fonts/notosansdisplay-regular-webfont.woff) format("woff")
+    src: url(https://cloudcdn.wmca.org.uk/designsystem/0.0.1/fonts/notosansdisplay-regular-webfont.woff2) format("woff2"),url(https://cloudcdn.wmca.org.uk/designsystem/0.0.1/fonts/notosansdisplay-regular-webfont.woff) format("woff")
 }
 
 @font-face {
     font-family: "Noto Sans Display Bold";
     font-style: normal;
     font-weight: 700;
-    src: url(../fonts/notosansdisplay-bold-webfont.woff2) format("woff2"),url(../fonts/notosansdisplay-bold-webfont.woff) format("woff")
+    src: url(https://cloudcdn.wmca.org.uk/designsystem/0.0.1/fonts/notosansdisplay-bold-webfont.woff2) format("woff2"),url(https://cloudcdn.wmca.org.uk/designsystem/0.0.1/fonts/notosansdisplay-bold-webfont.woff) format("woff")
 }
 
 .umb-grid .ds-grid [class*=ds-col-], .umb-grid button, .umb-grid input, .umb-grid select, .umb-grid textarea {

@@ -10,7 +10,7 @@
     @if (image1 != null)
     {
         <div class="ds-col-1 ds-col-sm-1-2 ds-col-md-1-3 ds-p-xs">
-            <img src="@image1.MediaUrl()" />
+            <img src="@image1.MediaUrl()" alt="@image1.Value("altText", fallback: Fallback.ToDefaultValue, defaultValue: @image1.Name)" />
         </div>
     } else {
         <p>Missing image</p>
@@ -19,7 +19,7 @@
     @if (image2 != null)
     {
         <div class="ds-col-1 ds-col-sm-1-2 ds-col-md-1-3 ds-p-xs">
-            <img src="@image2.MediaUrl()" />
+            <img src="@image2.MediaUrl()" alt="@image2.Value("altText", fallback: Fallback.ToDefaultValue, defaultValue: @image2.Name)" />
         </div>
     } else {
         <p>Missing image</p>
@@ -28,7 +28,7 @@
     @if (image3 != null)
     {
         <div class="ds-col-1 ds-col-sm-1-2 ds-col-md-1-3 ds-p-xs">
-            <img src="@image3.MediaUrl()" />
+            <img src="@image3.MediaUrl()" alt="@image3.Value("altText", fallback: Fallback.ToDefaultValue, defaultValue: @image3.Name)" />
         </div>
     } else {
         <p>Missing image</p>

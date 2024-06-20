@@ -7,7 +7,7 @@
             var bioImage = Model.Content.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("bioImage");
             if (bioImage != null)
             {
-                <img src="@bioImage.GetCropUrl("Content Card - Square")" />
+                <img src="@bioImage.GetCropUrl("Content Card - Square")" alt="@bioImage.Value("altText", fallback: Fallback.ToDefaultValue, defaultValue: @bioImage.Name)" />
             } else {
                 <p>Missing image</p>
             }

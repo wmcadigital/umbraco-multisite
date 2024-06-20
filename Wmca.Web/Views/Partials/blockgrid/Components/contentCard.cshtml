@@ -11,12 +11,12 @@
     <a href="@link.Url" target="@link.Target" class="ds-content-card">
     @if (image != null)
     {
-        <img src="@image.GetCropUrl("Content Card - Rectangle")" />
+        <img src="@image.GetCropUrl("Content Card - Rectangle")" alt="@image.Value("altText", fallback: Fallback.ToDefaultValue, defaultValue: @image.Name)" />
     }
         <div class="ds-p-sm">
             @if (Model.Content.Value("title") != null)
             {
-                <h3>@Model.Content.Value("title")</h3>
+                <h2 class="ds-h3">@Model.Content.Value("title")</h2>
             }
             @Model.Content.Value("copy")
         </div>
@@ -25,12 +25,12 @@
     <div class="ds-content-card">
     @if (image != null)
     {
-        <img src="@image.GetCropUrl("Content Card - Rectangle")" />
+        <img src="@image.GetCropUrl("Content Card - Rectangle")" alt="@image.Value("altText", fallback: Fallback.ToDefaultValue, defaultValue: @image.Name)" />
     }
         <div class="ds-p-sm">
         @if (Model.Content.Value("title") != null)
         {
-            <h3>@Model.Content.Value("title")</h3>
+            <h2 class="ds-h3">@Model.Content.Value("title")</h2>
         }
         @Model.Content.Value("copy")
         </div>

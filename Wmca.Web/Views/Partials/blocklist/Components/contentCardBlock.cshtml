@@ -16,7 +16,7 @@
         <a href="@link.Url" target="@link.Target">
         @if (image != null)
         {
-            <img src="@image.MediaUrl()" /> @*@image.GetCropUrl(height:300)*@
+            <img src="@image.MediaUrl()" alt="@image.Value("altText", fallback: Fallback.ToDefaultValue, defaultValue: @image.Name)" /> @*@image.GetCropUrl(height:300)*@
         }
         @if(Model.Content.Value("title") != null){
             <h3>content.Value("title")</h3>
@@ -27,7 +27,7 @@
         <div>
         @if (image != null)
         {
-            <img src="@image.MediaUrl()" />
+            <img src="@image.MediaUrl()" alt="@image.Value("altText", fallback: Fallback.ToDefaultValue, defaultValue: @image.Name)" />
         }
         @if(content.Value("title") != null){
             <h3>@content.Value("title")</h3>
