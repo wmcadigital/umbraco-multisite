@@ -11,7 +11,9 @@
     var rootnode = Model.Root();
     var dsSlug = siteSet.Value<string>("designSystemSlug");
     var logo = "/assets/img/logo/wmca-logo.svg";
+    var logoClass = "";
 
+    @* set the brand logo *@
     if (dsSlug == "wmcads")
     {
         logo = "/assets/img/logo/wmca-logo.svg";
@@ -28,6 +30,11 @@
     {
         logo = "/assets/img/logo/tfwm-logo.svg";
     }
+        else if (dsSlug == "ciads")
+    {
+        logo = "/assets/img/logo/cia-logo.svg";
+        logoClass = "ds-header__logo-link-full"; @* make cia logo always full width *@
+    }
 }
 
 @* Skip to content link *@
@@ -43,7 +50,7 @@
             <div class="ds-container ds-grid ds-grid--align-center ds-grid--justify-between">
                 <div class="ds-header__vertical-align ds-col-auto">
                     <!-- Logo -->
-                    <a class="ds-header__logo-link" href="/" title="Transport for West Midlands Design System">
+                    <a class="ds-header__logo-link @logoClass" href="/" title="Transport for West Midlands Design System">
                         <img class="ds-header__logo" alt="@siteSet.Value("siteTitle") logo" src="@logo">
                     </a>
                 </div>

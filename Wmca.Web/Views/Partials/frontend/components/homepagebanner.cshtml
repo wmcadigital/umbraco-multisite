@@ -3,28 +3,97 @@
 @using Umbraco.Cms.Core.Models
 
 @{
-    var homePage = Model.AncestorOrSelf(1); @* Get the homepage *@
-    var siteProps = homePage.ChildrenOfType("siteProperties"); @* Get site properties by docType will return null if not found *@
-    var siteSet = homePage.Children.Where(x => x.ContentType.Alias == "siteProperties").First(); @* Get the site setings *@
+    // var homePage = Model.AncestorOrSelf(1); @* Get the homepage *@
+    // var siteProps = homePage.ChildrenOfType("siteProperties"); @* Get site properties by docType will return null if not found *@
+    // var siteSet = homePage.Children.Where(x => x.ContentType.Alias == "siteProperties").First(); @* Get the site setings *@
     var bannerImage = Model.Value<IPublishedContent>("image");
-    string mainImageUrl = bannerImage != null ? @bannerImage.GetCropUrl("Banner") : "/media/buxh4qmn/viewofbirmingham.jpg";
     var pos = Model.Value("imagePosition");
     string position = "center";
-
-    if (pos != null)
-    {
-        position = pos.ToString().ToFirstLower();
-    }
+    var leftBtnLink = Model.Value<Link>("leftButtonLink");
+    var rightBtnLink = Model.Value<Link>("rightButtonLink");
+    string? mainImageUrl = bannerImage != null ? @bannerImage.GetCropUrl("Banner") : "/media/buxh4qmn/viewofbirmingham.jpg";
 }
 
-<header class="ds-page-header  ds-page-header__home" style="background-image: url( @mainImageUrl?anchor=center&mode=crop&width=2500&height=800&rnd=132122595620000000);background-position: @position">
+@if (pos != null)
+{
+    position = pos.ToString().ToFirstLower();
+}
+
+@* <header class="ds-page-header  ds-page-header__home" style="background-image: url( @mainImageUrl?anchor=center&mode=crop&width=2500&height=800&rnd=132122595620000000);background-position: @position">
     <div class="ds-container ds-page-header-container">
-        <div class="ds-page-header-box">
+        <div class="ds-page-header-box ds-page-header-box-pattern-two">
             <h1>@Model.Value("tagLine")</h1>
             @if (@Model.Value("subtitle") != null)
             {
                 @Model.Value("subtitle")
             }
+            @if (leftBtnLink != null)
+            {
+                <a class="ds-btn ds-btn--primary" href="@leftBtnLink.Url" target="@leftBtnLink.Target">@leftBtnLink.Name
+                    <svg class="ds-btn__icon ds-btn__icon--right"><use xlink:href="#ds-general-location-pin" href="#ds-general-location-pin"></use></svg>
+                </a>
+            }
+            @if (rightBtnLink != null)
+            {
+                <a class="ds-btn ds-btn--secondary" href="@rightBtnLink.Url" target="@rightBtnLink.Target">@rightBtnLink.Name
+                    <svg class="ds-btn__icon ds-btn__icon--right"><use xlink:href="#ds-general-location-pin" href="#ds-general-location-pin"></use></svg>
+                </a>
+            }
         </div>
     </div>
-</header>
+</header> *@
+
+<div class="ds-page-header" style="background-image:url(@mainImageUrl?anchor=center&mode=crop&width=2500&height=800&rnd=132122595620000000);background-position: @position">
+    <div class="ds-container ds-page-header-container ds-page-header-container-pattern-two">
+        <div class="ds-page-header-box ds-page-header-box-pattern-two">
+        <h1>@Model.Value("tagLine")</h1>
+        @if (@Model.Value("subtitle") != null)
+        {
+            @Model.Value("subtitle")
+        }
+        @if (leftBtnLink != null)
+        {
+        <a href="@leftBtnLink.Url" title="This is a call to action link" target="_self" class="ds-btn ds-btn--primary">
+            @leftBtnLink.Name
+            @if(Model.Value("leftButtonIcon") != null) {
+            @Html.Raw(Model.Value("leftButtonIcon"))
+            }
+        </a>
+        }
+        @if (rightBtnLink != null)
+        {
+        <a href="@rightBtnLink.Url" title="This is a call to action link" target="_self" class="ds-btn ds-btn--secondary">
+            @rightBtnLink.Name
+            @if(Model.Value("rightButtonIcon") != null) {
+            @Html.Raw(Model.Value("rightButtonIcon"))
+            }
+        </a>
+        }
+    </div>
+  </div>
+</div>
+<div class="ds-page-header-box ds-page-header-box-pattern-two-bottom">
+    <h1>@Model.Value("tagLine")</h1>
+    @if (@Model.Value("subtitle") != null)
+    {
+        @Model.Value("subtitle")
+    }
+    @if (leftBtnLink != null)
+    {
+        <a href="@leftBtnLink.Url" title="This is a call to action link" target="_self" class="ds-btn ds-btn--primary">
+            @leftBtnLink.Name
+            @if(Model.Value("leftButtonIcon") != null) {
+            @Html.Raw(Model.Value("leftButtonIcon"))
+            }
+        </a>
+    }
+    @if (rightBtnLink != null)
+    {
+        <a href="@rightBtnLink.Url" title="This is a call to action link" target="_self" class="ds-btn ds-btn--secondary">
+            @rightBtnLink.Name
+            @if(Model.Value("rightButtonIcon") != null) {
+            @Html.Raw(Model.Value("rightButtonIcon"))
+            }
+        </a>
+    }
+</div>

@@ -1,3 +1,13 @@
+@import "https://fonts.googleapis.com/css2?family=Material+Icons";
+
 :root {
     --umb-login-curves-color: rgba(192, 87, 1, 0.5);
+}
+
+.umb-iconpicker-item button svg,
+.our-iconic__container .umb-panel-header-icon svg {
+    width: 40px;
+    height: 40px;
+    padding: .75rem;
+    fill: #808080 !important;
 }

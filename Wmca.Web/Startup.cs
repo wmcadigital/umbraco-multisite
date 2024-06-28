@@ -1,4 +1,5 @@
 ﻿using Infocaster.Umbraco.ETag;
+using Microsoft.AspNetCore.Rewrite;
 
 namespace Wmca
 {
@@ -65,6 +66,13 @@ namespace Wmca
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            var rewriteOptions = new RewriteOptions().AddIISUrlRewrite(builder.Environment.ContentRootFileProvider, "IISUrlRewrite.xml");
+
+            app.UseRewriter(rewriteOptions);
+
+            // This line is needed for the rewrites to take effect.
+            app.UseStaticFiles();
 
             app.UseUmbraco()
                 .WithCustomMiddleware(u =>

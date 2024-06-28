@@ -30,6 +30,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Our.Iconic" Version="12.0.0" />
+    <PackageReference Include="Our.Umbraco.Community.AdminOnlyProperty" Version="1.1.4" />
     <PackageReference Include="Umbraco.Cms" Version="13.3.2" />
     <PackageReference Include="Limbo.Umbraco.BlockList" Version="13.0.0" />
     <PackageReference Include="uSync" Version="13.2.3" />
@@ -106,6 +108,11 @@
     <Folder Include="wwwroot\App_Plugins\BlockListEditor.DefaultCustomViews\css\" />
     <Folder Include="wwwroot\App_Plugins\BlockListEditor.DefaultCustomViews\views\" />
     <Folder Include="wwwroot\assets\apps\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="IISUrlRewrite.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <!-- Razor files are needed for the backoffice to work correctly -->

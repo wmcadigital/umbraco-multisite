@@ -1,5 +1,8 @@
 ﻿{
   "css": [
     "~/App_Plugins/Backoffice/css/backoffice.css"
+  ],
+  "javascript": [
+    "~/App_Plugins/Backoffice/js/backoffice.js"
   ]
 }
