@@ -13,8 +13,8 @@
     <Folder Include="Content\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Umbraco.Cms.Core" Version="13.3.2" />
-    <PackageReference Include="Umbraco.Cms.Infrastructure" Version="13.3.2" />
+    <PackageReference Include="Umbraco.Cms.Core" Version="13.4.1" />
+    <PackageReference Include="Umbraco.Cms.Infrastructure" Version="13.4.1" />
     <PackageReference Include="Dawoe.OEmbedPickerPropertyEditor" Version="13.0.0" />
   </ItemGroup>
   <ItemGroup>
