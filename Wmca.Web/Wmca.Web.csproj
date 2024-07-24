@@ -40,7 +40,7 @@
     <PackageReference Include="Umbraco.StorageProviders.AzureBlob" Version="13.0.1" />
     <PackageReference Include="Umbraco.StorageProviders.AzureBlob.ImageSharp" Version="13.0.1" />
     <PackageReference Include="uSync.Complete" Version="13.1.5" />
-    <PackageReference Include="Umbraco.Community.AccessibilityReporter" Version="3.1.2" />
+    <PackageReference Include="Umbraco.Community.AccessibilityReporter" Version="3.2.1" />
     <PackageReference Include="Umbraco.Community.BlockPreview" Version="1.8.4" />
     <PackageReference Include="Dawoe.OEmbedPickerPropertyEditor" Version="13.0.0" />
     <PackageReference Include="Dawoe.OEmbedPickerPropertyEditor.Core" Version="13.0.0" />
