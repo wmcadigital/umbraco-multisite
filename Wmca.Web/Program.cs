@@ -18,29 +18,12 @@ app.UseHttpsRedirection();
 #endif
 
 app.UseUmbraco()
-    // .WithMiddleware(u =>
-    // {
-    //     u.UseBackOffice();
-    //     u.UseWebsite();
-    // })
-    .WithCustomMiddleware(u =>
+    .WithMiddleware(u =>
     {
         u.RunPrePipeline();
-
-        u.UseUmbracoCoreMiddleware();
-        u.AppBuilder.UseUmbracoMediaFileProvider();
-        u.AppBuilder.UseStaticFiles();
-        u.AppBuilder.UseUmbracoPluginsStaticFiles();
-        u.AppBuilder.UseRouting();
-        // u.AppBuilder.UseCors(MyAllowSpecificOrigins);
-        u.AppBuilder.UseAuthentication();
-        u.AppBuilder.UseAuthorization();
-        u.AppBuilder.UseRequestLocalization();
-        u.AppBuilder.UseSession();
-
         u.RunPreRouting();
-        u.RunPostRouting();
         u.RunPostPipeline();
+        u.RunPostRouting();
         u.UseBackOffice();
         u.UseWebsite();
     })
