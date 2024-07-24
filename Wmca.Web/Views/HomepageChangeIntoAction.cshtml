@@ -1,0 +1,98 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Wmca.Models.Content.HomepageChangeIntoAction>
+@using Umbraco.Cms.Core.Models
+@using Our.Umbraco.PersonalisationGroups.Core.Services;
+
+@inject IGroupMatchingService GroupMatchingService;
+
+@{
+    Layout = "Custom.cshtml";
+    // set image
+    var img = "";
+    var typedMediaPickerSingle = Model.Value<MediaWithCrops>("image");
+    if (typedMediaPickerSingle != null)
+    {
+        img = @typedMediaPickerSingle.MediaUrl();
+    }
+
+    var personalisedContent = Model.Children.Where(x => x.ShowToVisitor(GroupMatchingService)).FirstOrDefault();
+
+}
+
+@section templateName{ ds-area-template}
+
+@if (personalisedContent != null)
+		{
+			<p>
+                @personalisedContent.ShowToVisitor(GroupMatchingService) - 
+                @Umbraco.MatchesGroup(GroupMatchingService, "Region - Birmingham") - 
+                @Umbraco.MatchesGroup(GroupMatchingService, "Region - Coventry") - 
+                @Umbraco.MatchesAllGroups(GroupMatchingService, new string[] { "Region - Birmingham" }) - 
+                @Umbraco.MatchesAnyGroup(GroupMatchingService, new string[] { "Region - Birmingham" })
+</p>
+		}
+		else
+		{
+			<p>no</p>
+		}
+
+<a href="#ds-main-content" title="Skip to main content" target="_self" class="ds-link ds-link ds-header__skip-link">Skip to main content</a>
+<header>
+    <!--<div class="bg-white ds-p-t-md ds-p-b-md ds-cookies-banner">-->
+    <!--    <div class="ds-container">-->
+    <!--        <div class="ds-col-1 ds-col-md-3-4 ds-col-lg-2-3">-->
+    <!--            <h3>Your privacy settings</h3>-->
+    <!--            <p>If you’re happy with the use of cookies by West Midlands Combined Authority and our selected partners, click ‘Accept all cookies’. Or click ‘Manage cookies’ to learn more.</p>-->
+    <!--            <div class="ds-grid ds-grid--justify-between ds-cookies-banner__group-buttons">-->
+    <!--                <button class="ds-btn" type="button">Accept all cookies</button> -->
+                    <!--<a href="/patterns/cookies/#cookies_manager" title="link title" target="_self" class="ds-btn">Button text</a>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--</div>-->
+    
+    <div class="ds-header ds-header--mega-menu">
+        <div class="ds-container ds-grid ds-grid--align-center ds-grid--justify-between">
+            <div class="ds-header__vertical-align ds-col-auto">
+                <a class="ds-header__logo-link ds-header__logo-link-full" href="/cia" title="Change into Action Design System">
+                    <img class="ds-header__logo" alt="Change into Action logo" src="/assets/img/logo/cia-logo.svg">
+                </a>
+            </div>
+            <h1 class="ds-header__title ds-col-1 ds-col-sm-auto">Choose your area</h1>
+        </div>
+    </div>
+</header>
+
+<main class="ds-container--main"><div class="ds-grid ds-area"><div class="ds-col-1 ds-col-md-1-2 ds-area-img" style="background-image:url('@img?height=800')"></div><div class="bg-secondary ds-p-xl ds-col-1 ds-col-md-1-2"><div class="ds-grid"><div class="ds-col-1 ds-col-md-2-3"><h2>Turn your change into action for rough sleepers</h2><h3>Working with rough sleepers</h3><p>Change into Action is an alternative giving scheme supporting specialist charities and street teams working to change the circumstances of rough sleepers.</p><p>Our services are there for rough sleepers on the streets, in day centres and housing, and you can help us do more.</p><div class="ds-fe-group"><div class="ds-fe-dropdown"><label class="ds-fe-label" for="dropdown">Choose your local area</label> 
+    <select class="ds-fe-dropdown__select area-select" id="dropdown" name="dropdown" onchange="if (this.value) window.location.href = this.value;">
+        <option value="" selected="selected">Choose from list</option>
+        <option value="birmingham">Birmingham</option>
+        <option value="coventry">Coventry</option>
+        <option value="dudley">Dudley</option>
+        <option value="sandwell">Sandwell</option>
+        <option value="solihull">Solihull</option>
+        <option value="walsall">Walsall</option>
+        <option value="wolverhampton">Wolverhampton</option>
+    </select>
+    
+    </div></div></div></div></div></div></main>
+    
+<footer>
+    <div class="ds-footer ds-footer--v2">
+        <div class="ds-container ds-grid"></div>
+        <div class="ds-container">
+            <div class="ds-footer__bottom ds-grid">
+                <div class="ds-col-1 ds-col-md-1-2">
+                    <p class="ds-footer__copyright">© West Midlands Combined Authority&nbsp;<script>document.write(new Date().getFullYear())</script></p>
+                </div>
+                <div class="ds-col-1 ds-col-md-1-2">
+                    <ul class="ds-footer__bottom-menu">
+                        <li><a class="ds-footer__link" href="">Accessibility</a></li>
+                        <li><a class="ds-footer__link" href="">Terms and Conditions</a></li>
+                        <li><a class="ds-footer__link" href="">Policies</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

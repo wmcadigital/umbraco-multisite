@@ -1,0 +1,12 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.AreaCia>
+@using ContentModels = Wmca.Models.Content;
+@{
+	Layout = "ChangeIntoAction.cshtml";
+}
+
+@await Html.PartialAsync("frontend/components/homepagebanner")
+
+<main id="ds-main-content" class="ds-container ds-m-t-lg homepage">
+   @await Html.GetBlockGridHtmlAsync(Model, "grid")
+</main>

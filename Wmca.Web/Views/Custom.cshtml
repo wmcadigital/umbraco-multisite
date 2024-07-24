@@ -1,0 +1,30 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+	Layout = null;
+    var contentTypeAliases = new[] { "siteProperties", "sitePropertiesCia" }; // set the settings document type
+    var homePage = Model.AncestorOrSelf(1); @* Get the homepage *@
+    var siteProps = homePage.ChildrenOfType("siteProperties"); @* Get site properties by docType will return null if not found *@
+    var siteSet = homePage.Children.Where(x => contentTypeAliases.Contains(x.ContentType.Alias)).First(); @* Get the site setings *@
+    var tagId = siteSet.Value<string>("tagID");
+}
+
+<!DOCTYPE html>
+<html class="ds-html @RenderSection("templateName", false)" lang="en-gb">
+    <head>
+        @await Html.PartialAsync("frontend/template/head")
+        @Html.Raw(Model.Value("customCodeHead"))
+    </head>
+    <body>
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=@tagId" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
+        @RenderSection("CustomBodyScripts", false)
+
+        @RenderBody()
+
+        @await Html.PartialAsync("frontend/template/scripts")
+        @RenderSection("CustomScripts", false)
+        @Html.Raw(@Model.Value("customCodeBody"))
+    </body>
+</html>

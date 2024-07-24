@@ -1,5 +1,10 @@
 ﻿{
+  "javascript": [
+        "~/App_Plugins/Backoffice/js/backoffice.js"
+    ],
   "css": [
-    "~/App_Plugins/Backoffice/css/backoffice.css"
+    "~/App_Plugins/Backoffice/css/backoffice.css",
+    "~/App_Plugins/Backoffice/css/dsicons.css",
+    "~/App_Plugins/Backoffice/css/materialicons.css"
   ]
 }

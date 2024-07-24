@@ -3,14 +3,12 @@
 @using Umbraco.Cms.Core.Models
 
 @{
+    var contentTypeAliases = new[] { "siteProperties", "sitePropertiesCia" }; // set the settings document type
     var content = (ContentModels.NavigationSubsection)Model.Content;
     var settings = (ContentModels.NavigationSubsection)Model.Settings;
     var contentItem = Umbraco.AssignedContentItem;
     var homePage = contentItem.Root(); // Get the homepage
-    var siteSet = homePage.Children.Where(x => x.ContentType.Alias == "siteProperties").First(); //Get the site setings
-
-
-
+    var siteSet = homePage.Children.Where(x => contentTypeAliases.Contains(x.ContentType.Alias)).First(); @* Get the site setings *@
     var siteProps = Umbraco.ContentAtRoot().FirstOrDefault().Children().Where(x => x.ContentType.Alias == "siteProperties");
     var siteProperties = siteProps.First();
     var showSubLinks = false; @* Placeholder var to detrmine if to show footer based on if we can access its contents *@

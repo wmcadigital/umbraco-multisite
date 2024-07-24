@@ -1,4 +1,6 @@
-﻿WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+﻿using Our.Umbraco.PersonalisationGroups.Core;
+
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.CreateUmbracoBuilder()
     .AddBackOffice()
@@ -7,6 +9,7 @@ builder.CreateUmbracoBuilder()
     .AddComposers()
     .AddAzureBlobMediaFileSystem()
     .AddAzureBlobImageSharpCache()
+    .AddPersonalisationGroups(builder.Configuration)
     .Build();
 
 WebApplication app = builder.Build();
@@ -49,6 +52,7 @@ app.UseUmbraco()
         u.UseInstallerEndpoints();
         u.UseBackOfficeEndpoints();
         u.UseWebsiteEndpoints();
+        u.UsePersonalisationGroupsEndpoints();
     });
 
 await app.RunAsync();

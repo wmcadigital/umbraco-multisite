@@ -2,9 +2,10 @@
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 @{
 	Layout = null;
+    var contentTypeAliases = new[] { "siteProperties", "sitePropertiesCia" }; // set the settings document type
     var homePage = Model.AncestorOrSelf(1); @* Get the homepage *@
     var siteProps = homePage.ChildrenOfType("siteProperties"); @* Get site properties by docType will return null if not found *@
-    var siteSet = homePage.Children.Where(x => x.ContentType.Alias == "siteProperties").First(); @* Get the site setings *@
+    var siteSet = homePage.Children.Where(x => contentTypeAliases.Contains(x.ContentType.Alias)).First(); @* Get the site setings *@
     var tagId = siteSet.Value<string>("tagID");
 }
 

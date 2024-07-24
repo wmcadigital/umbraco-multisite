@@ -4,12 +4,14 @@
 @using Umbraco.Cms.Core.Models.Blocks
 
 @{
+    var contentTypeAliases = new[] { "siteProperties", "sitePropertiesCia" }; // set the settings document type
     var homePage = Model.AncestorOrSelf(1); @* Get the homepage *@
-    var siteProps = homePage.ChildrenOfType("siteProperties"); @* Get site properties by docType will return null if not found *@
-    var siteSet = homePage.Children.Where(x => x.ContentType.Alias == "siteProperties").First(); @* Get the site setings *@
+    var siteProps = homePage.ChildrenOfType("siteProperties", "sitePropertiesCia"); @* Get site properties by docType will return null if not found *@
+    var siteSet = homePage.Children.Where(x => contentTypeAliases.Contains(x.ContentType.Alias)).First(); @* Get the site setings *@
     var rootnode = Model.Root();
     var dsSlug = siteSet.Value<string>("designSystemSlug");
     var logo = "/assets/img/logo/wmca-logo.svg";
+    var logoClass = "";
 
     if (dsSlug == "wmcads")
     {
@@ -27,6 +29,11 @@
     {
         logo = "/assets/img/logo/tfwm-logo.svg";
     }
+    else if (dsSlug == "ciads")
+    {
+        logo = "/assets/img/logo/cia-logo.svg";
+        logoClass = "ds-header__logo-link-full";
+    }
 }
 
 @* Skip to content link *@
@@ -35,14 +42,14 @@
 </a>
 
 @* show navigation if it exists *@
-@if (siteProps.Any())
+@if (siteSet != null)
 {
     <section aria-label="Brand and navigation">
         <div class="ds-header ds-header--mega-menu">
             <div class="ds-container ds-grid ds-grid--align-center ds-grid--justify-between">
                 <div class="ds-header__vertical-align ds-col-auto">
                     <!-- Logo -->
-                    <a class="ds-header__logo-link" href="/" title="Transport for West Midlands Design System">
+                    <a class="ds-header__logo-link @logoClass" href="/" title="Transport for West Midlands Design System">
                         <img class="ds-header__logo" alt="@siteSet.Value("siteTitle") logo" src="@logo">
                     </a>
                 </div>
