@@ -3,6 +3,7 @@
 builder.CreateUmbracoBuilder()
     .AddBackOffice()
     .AddWebsite()
+    .AddDeliveryApi()
     .AddComposers()
     .AddAzureBlobMediaFileSystem()
     .AddAzureBlobImageSharpCache()
