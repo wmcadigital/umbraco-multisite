@@ -2,6 +2,17 @@
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("MyAllowSpecificOrigins",
+        builder =>
+        {
+            builder.WithOrigins("https://dev-wmca.euwest01.umbraco.io", "https://www.wmca.org.uk", "http://localhost:1234/") // Replace with your allowed origins
+                   .AllowAnyHeader()
+                   .AllowAnyMethod();
+        });
+});
+
 builder.CreateUmbracoBuilder()
     .AddBackOffice()
     .AddWebsite()
@@ -20,30 +31,15 @@ await app.BootUmbracoAsync();
 app.UseHttpsRedirection();
 #endif
 
+app.UseCors("MyAllowSpecificOrigins");
+
 app.UseUmbraco()
-    // .WithMiddleware(u =>
-    // {
-    //     u.UseBackOffice();
-    //     u.UseWebsite();
-    // })
-    .WithCustomMiddleware(u =>
+    .WithMiddleware(u =>
     {
         u.RunPrePipeline();
-
-        u.UseUmbracoCoreMiddleware();
-        u.AppBuilder.UseUmbracoMediaFileProvider();
-        u.AppBuilder.UseStaticFiles();
-        u.AppBuilder.UseUmbracoPluginsStaticFiles();
-        u.AppBuilder.UseRouting();
-        // u.AppBuilder.UseCors(MyAllowSpecificOrigins);
-        u.AppBuilder.UseAuthentication();
-        u.AppBuilder.UseAuthorization();
-        u.AppBuilder.UseRequestLocalization();
-        u.AppBuilder.UseSession();
-
         u.RunPreRouting();
-        u.RunPostRouting();
         u.RunPostPipeline();
+        u.RunPostRouting();
         u.UseBackOffice();
         u.UseWebsite();
     })
