@@ -4,12 +4,33 @@
     if (Model?.Any() != true) { return; }
 }
 
+<script>
+    // find all blocks of 'Content Cards' and add a class to add a grid row gap
+    document.addEventListener('DOMContentLoaded', function() {
+        const element = document.querySelectorAll('[data-area-alias]');
+        console.log(element.length);
+
+        Array.prototype.forEach.call(element, function(ele) {
+            if (ele.getAttribute('data-area-alias') === 'Content Cards') {
+                const nextDiv = ele.nextElementSibling;
+                const parentDiv = ele;
+                const childDivs = parentDiv.querySelectorAll('.umb-block-grid__layout-container');
+                childDivs.forEach(child => {
+                    child.classList.add('umb-block-grid__layout-container--cards');
+                });
+        }
+    });
+});
+</script>
+
 <div class="umb-block-grid__layout-container">
     @foreach (var item in Model)
     {
-        
+        // check if it's a single content card and add a bottom & top margin
+        var customClass = "";
+        @if(item.Content.ContentType.Alias == "contentCard" && item.ColumnSpan == 2){customClass = "ds-m-t-md ds-m-b-md";}
         <div
-            class="umb-block-grid__layout-item"
+            class="umb-block-grid__layout-item @customClass"
             data-content-element-type-alias="@item.Content.ContentType.Alias"
             data-content-element-type-key="@item.Content.ContentType.Key"
             data-element-udi="@item.ContentUdi"

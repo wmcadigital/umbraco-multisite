@@ -1,24 +1,4 @@
 ﻿<style>
-    .text {
-        position: relative;
-        display: block;
-        cursor: pointer;
-        background-color: transparent;
-        text-align: left;
-        user-select: none;
-        border: none;
-        padding: 0;
-        height: 100%;
-        padding-top: 1px;
-        margin-top: -1px;
-        transition: border-color 120ms, background-color 120ms;
-        font-family: 'Lato';
-        font-weight: 300;
-        line-height: 1.5;
-    }
-</style>
-
-<style>
     :host {
         min-height: 100px;
     }
@@ -119,10 +99,76 @@
         line-height: 1.5rem;
         font-weight: 700;
     }
+
+    .ds-btn {
+    background-color: #007399;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    position: relative;
+    width: 100%;
+    min-height: 50px;
+    padding: .25rem .5rem;
+    -webkit-transition: background-color .2s ease-in-out,border .2s ease-in-out;
+    transition: background-color .2s ease-in-out,border .2s ease-in-out;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    color: #fff;
+    /* background-color: #007da8; */
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.3rem;
+    text-decoration: none;
+    cursor: pointer;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.ds-btn--primary {
+    background-color: #007399;
+}
+
+.ds-btn--secondary {
+    border: 1px solid #007399;
+    color: #007399;
+    background-color: transparent !important;
+}
+
+.ds-btn--destructive {
+    background-color: #d4351c !important;
+}
+
+.ds-btn--start {
+    background-color: #00703c !important;
+}
+
+.ds-btn__icon--right {
+    margin-left: .75rem;
+}
+
+.ds-btn__icon {
+    width: 22px;
+    height: 22px;
+    fill: #fff;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 22px;
+    flex: 0 0 22px;
+}
+
+.ds-content-card {
+    margin-right: 20px;
+}
 </style>
 
 <div class="ds-content-card" type="button" ng-click="block.edit()" ng-focus="block.focus"
     ng-class="{'is-trashed': mediaItem.trashed}">
+    <div  ng-if="block.data.useImage === 'Yes'">
     {{mediaItem = (block.data.image[0].mediaKey | mediaItemResolver); ""}}
     <img ng-if="mediaItem !== null && (mediaItem.mediaLink.indexOf('jpg') !== -1 || mediaItem.mediaLink.indexOf('png') !== -1 || mediaItem.mediaLink.indexOf('webp') !== -1 || mediaItem.mediaLink.indexOf('gif') !== -1) && !mediaItem.trashed"
         ng-src="{{mediaItem.mediaLink}}" alt="{{mediaItem.name}}" />
@@ -135,9 +181,24 @@
         </span>
         <!-- {{mediaItem.name}} -->
     </span>
+    </div>
 
     <div class="ds-p-sm">
-        <h2 class="ds-h3">{{block.data.title}}</h2>
+        <h2 ng-if="block.data.useTitle !== ''"">{{block.data.title}}</h2>
         <div ng-bind-html="block.data.copy.markup"></div>
+        <a ng-if="block.data.useLink === 'Yes' && block.data.useButton === 'Yes'" class="ds-btn ds-m-b-md" ng-class="block.data.buttonType[0] === '' ? 'ds-btn--primary' : '' || block.data.buttonType[0] === 'Secondary' ? 'ds-btn--secondary' : '' || block.data.buttonType[0] === 'Call to action' ? 'ds-btn--primary' : '' || block.data.buttonType[0] === 'Destructive' ? 'ds-btn--destructive' : '' || block.data.buttonType[0] === 'Start' ? 'ds-btn--start' : '' || block.data.buttonType[0] === 'As link' ? 'ds-btn--link' : ''">
+            <span ng-if="block.data.link[0].name !== null">{{block.data.link[0].name}}</span>
+            <span ng-if="block.data.link[0].name === null">{{block.data.link[0].nodeName}}</span>
+            <svg class="ds-btn__icon ds-btn__icon--right"><use href="#ds-general-chevron-right"></use></svg>                
+        </a>
+        <span ng-if="block.data.useSecondButton === 'Yes'"">
+        <br /><br />
+        </span>
+
+        <a ng-if="block.data.useSecondButton === 'Yes'" class="ds-btn ds-m-b-md" ng-class="block.data.buttonType[0] === '' ? 'ds-btn--primary' : '' || block.data.buttonType[0] === 'Secondary' ? 'ds-btn--secondary' : '' || block.data.buttonType[0] === 'Call to action' ? 'ds-btn--primary' : '' || block.data.buttonType[0] === 'Destructive' ? 'ds-btn--destructive' : '' || block.data.buttonType[0] === 'Start' ? 'ds-btn--start' : '' || block.data.buttonType[0] === 'As link' ? 'ds-btn--link' : ''">
+            <span ng-if="block.data.linkSecondButton[0].name !== null">{{block.data.linkSecondButton[0].name}}</span>
+            <span ng-if="block.data.linkSecondButton[0].name === null">{{block.data.linkSecondButton[0].nodeName}}</span>
+            <svg class="ds-btn__icon ds-btn__icon--right"><use href="#ds-general-chevron-right"></use></svg>                
+        </a>
     </div>
 </div>

@@ -22,6 +22,11 @@ namespace Wmca.Models.Content
 	/// <summary>Page properties</summary>
 	public partial interface IPageProperties : IPublishedElement
 	{
+		/// <summary>Alternative Title</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.4.1+d72fc5c")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		string AlternativeTitle { get; }
+
 		/// <summary>Custom code - Body</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.4.1+d72fc5c")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
@@ -68,6 +73,19 @@ namespace Wmca.Models.Content
 		}
 
 		// properties
+
+		///<summary>
+		/// Alternative Title: Use an alternative title for the page (Replaces the page name)
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.4.1+d72fc5c")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("alternativeTitle")]
+		public virtual string AlternativeTitle => GetAlternativeTitle(this, _publishedValueFallback);
+
+		/// <summary>Static getter for Alternative Title</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.4.1+d72fc5c")]
+		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		public static string GetAlternativeTitle(IPageProperties that, IPublishedValueFallback publishedValueFallback) => that.Value<string>(publishedValueFallback, "alternativeTitle");
 
 		///<summary>
 		/// Custom code - Body: Custom tracking code placed within the body

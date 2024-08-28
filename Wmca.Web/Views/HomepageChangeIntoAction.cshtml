@@ -16,28 +16,139 @@
     }
 
     var personalisedContent = Model.Children.Where(x => x.ShowToVisitor(GroupMatchingService)).FirstOrDefault();
+    var personGroup = false;
+    var area = "";
 
 }
+
+<script>
+function localAreaSelect() {
+    const pagePath = window.location.pathname; // Get the page's URL path
+    const areaPages = [
+      '/',
+      '/coventry/',
+      '/dudley/',
+      '/sandwell/',
+      '/solihull/',
+      '/walsall/',
+      '/wolverhampton/'
+    ]; // S; // Set area pages (where the area menu appears) '/' == Birmingham(default)
+    const anyAreaPage = areaPages.some(x => x === pagePath); // Check areaPages to see if pagePath === any of them
+    const splashUrl = 'change-into-action'; // Splash URL,TODO: change this to umbraco URL
+    const getSelectedArea = localStorage.getItem('cia.selectedArea'); // Get selected area from localStorage
+
+    document.getElementById('area-dropdown').addEventListener('change', function() {
+        var selectedValue = this.value;
+        localStorage.setItem('cia.selectedArea', selectedValue);
+    });
+
+    // If localStorage doesn't contain a selected area and the page != splash page and the page IS an area home page
+    if (getSelectedArea === null && pagePath !== splashUrl && anyAreaPage) {
+      window.location.replace(splashUrl); // Then redirect the user to splash page
+
+      // Else if the pagePath is one of the area home pages && the pagePath != localStorage(stops loops)
+    } else if (anyAreaPage && pagePath !== getSelectedArea) {
+      window.location.href = getSelectedArea; // Then redirect user to the area they were last on
+    }
+
+    // If page is == to any area homepages or splashpage (only pages with area select menus)
+    if (anyAreaPage || pagePath === splashUrl) {
+      const changeAreaNav = document.querySelectorAll(
+        '.area-select'
+      ); // Get all a tags in change area menu(s)
+
+      // For each .change-area-menu a button
+      changeAreaNav.forEach(ele => {
+        // On click
+        ele.addEventListener('click', event => {
+            console.log('qwerty');
+          event.preventDefault(); // Prevent default click action
+          const getHref = ele.getAttribute('href'); // Get the href
+          const getSessionUrl = sessionStorage.getItem('cachedUrl'); // Get the url from the previous page if the user has got to splash page via "update location button" in notification banner
+
+          localStorage.setItem('selectedArea', getHref); // Set localstorage to href clicked (for future visits to the site we can re-direct to this page)
+          // If the sessionURL is not null (user has come from previous page using "update location button")
+          if (getSessionUrl != null) {
+            sessionStorage.removeItem('cachedUrl'); // Remove the session storage
+            window.location.href = getHref; // Redirect user back to the page from which they came
+          } else {
+            window.location.href = getHref; // The redirect user to the correct page
+          }
+        });
+      });
+    }
+  }
+  // Logic for the area dropdown in the footer
+  function areaDropdownFooter() {
+    const footerAreaSelect = document.querySelectorAll('footer .footer-dropdown > select');
+
+    footerAreaSelect[0].addEventListener('change', () => {
+      const selVal = footerAreaSelect[0].value;
+      if (selVal === 'wolverhampton') {
+        const modal = document.getElementById('wolvoModal');
+        modal.style.display = 'block';
+      } else {
+        localStorage.setItem('selectedArea', footerAreaSelect[0].value); // Set localstorage to href clicked (for future visits to the site we can re-direct to this page)
+        window.location.href = footerAreaSelect[0].value; // The redirect user to the correct page
+      }
+    });
+  }
+  // Only run function if areaDropdown is available
+  if (document.querySelectorAll('footer .footer-dropdown > select').length) {
+    window.addEventListener('load', areaDropdownFooter);
+  }
+
+  window.addEventListener('load', localAreaSelect); // Run localAreaSelect as soon as page loads
+</script>
 
 @section templateName{ ds-area-template}
 
 @if (personalisedContent != null)
 		{
-			<p>
-                @personalisedContent.ShowToVisitor(GroupMatchingService) - 
-                @Umbraco.MatchesGroup(GroupMatchingService, "Region - Birmingham") - 
-                @Umbraco.MatchesGroup(GroupMatchingService, "Region - Coventry") - 
-                @Umbraco.MatchesAllGroups(GroupMatchingService, new string[] { "Region - Birmingham" }) - 
-                @Umbraco.MatchesAnyGroup(GroupMatchingService, new string[] { "Region - Birmingham" })
-</p>
-		}
-		else
-		{
-			<p>no</p>
+            var birmingham = @Umbraco.MatchesGroup(GroupMatchingService, "Region - Birmingham");
+            var birminghamArea = @Umbraco.MatchesGroup(GroupMatchingService, "CIA - Area - Birmingham");
+            var coventry = @Umbraco.MatchesGroup(GroupMatchingService, "Region - Coventry");
+            var coventryArea = @Umbraco.MatchesGroup(GroupMatchingService, "CIA - Area - Coventry");
+            var dudley = @Umbraco.MatchesGroup(GroupMatchingService, "Region - Dudley");
+            var dudleyArea = @Umbraco.MatchesGroup(GroupMatchingService, "CIA - Area -Dudley");
+            var sandwell = @Umbraco.MatchesGroup(GroupMatchingService, "Region - Sandwell");
+            var sandwellArea = @Umbraco.MatchesGroup(GroupMatchingService, "CIA - Area - Sandwell");
+            var solihull = @Umbraco.MatchesGroup(GroupMatchingService, "Region - Solihull");
+            var solihullArea = @Umbraco.MatchesGroup(GroupMatchingService, "CIA - Area - Solihull");
+            var walsall = @Umbraco.MatchesGroup(GroupMatchingService, "Region - Walsall");
+            var walsallArea = @Umbraco.MatchesGroup(GroupMatchingService, "CIA - Area - Walsall");
+            var wolverhampton = @Umbraco.MatchesGroup(GroupMatchingService, "Region - Wolverhampton");
+            var wolverhamptonArea = @Umbraco.MatchesGroup(GroupMatchingService, "CIA - Area - Wolverhampton");
+
+            if (birmingham || coventry || dudley || sandwell || solihull || walsall || wolverhampton) {
+                personGroup = true;
+            }
+
+            if(birmingham){area = "Birmingham";}
+            if(coventry){area = "Coventry";}
+            if(dudley){area = "Dudley";}
+            if(sandwell){area = "Sandwell";}
+            if(solihull){area = "Solihull";}
+            if(walsall){area = "Walsall";}
+            if(wolverhampton){area = "Wolverhampton";}
+
+            if(birminghamArea){<script>window.location.replace("/change-into-action/birmingham");</script>}
+            if(coventryArea){<script>window.location.replace("/change-into-action/coventry");</script>}
+            if(dudleyArea){<script>window.location.replace("/change-into-action/dudley");</script>}
+            if(sandwellArea){<script>window.location.replace("/change-into-action/sandwell");</script>}
+            if(solihullArea){<script>window.location.replace("/change-into-action/solihull");</script>}
+            if(walsallArea){<script>window.location.replace("/change-into-action/walsall");</script>}
+            if(wolverhamptonArea){<script>window.location.replace("/change-into-action/wolverhampton");</script>}
+
+			      @* <p>
+                @birmingham - @birminghamArea, @coventry - @dudley - @sandwell - @solihull - @walsall - @wolverhampton
+            </p>
+
+            <h2>@area</h2> *@
 		}
 
-<a href="#ds-main-content" title="Skip to main content" target="_self" class="ds-link ds-link ds-header__skip-link">Skip to main content</a>
 <header>
+  <a href="#ds-main-content" title="Skip to main content" target="_self" class="ds-link ds-link ds-header__skip-link">Skip to main content</a>
     <!--<div class="bg-white ds-p-t-md ds-p-b-md ds-cookies-banner">-->
     <!--    <div class="ds-container">-->
     <!--        <div class="ds-col-1 ds-col-md-3-4 ds-col-lg-2-3">-->
@@ -63,19 +174,38 @@
     </div>
 </header>
 
-<main class="ds-container--main"><div class="ds-grid ds-area"><div class="ds-col-1 ds-col-md-1-2 ds-area-img" style="background-image:url('@img?height=800')"></div><div class="bg-secondary ds-p-xl ds-col-1 ds-col-md-1-2"><div class="ds-grid"><div class="ds-col-1 ds-col-md-2-3"><h2>Turn your change into action for rough sleepers</h2><h3>Working with rough sleepers</h3><p>Change into Action is an alternative giving scheme supporting specialist charities and street teams working to change the circumstances of rough sleepers.</p><p>Our services are there for rough sleepers on the streets, in day centres and housing, and you can help us do more.</p><div class="ds-fe-group"><div class="ds-fe-dropdown"><label class="ds-fe-label" for="dropdown">Choose your local area</label> 
-    <select class="ds-fe-dropdown__select area-select" id="dropdown" name="dropdown" onchange="if (this.value) window.location.href = this.value;">
-        <option value="" selected="selected">Choose from list</option>
-        <option value="birmingham">Birmingham</option>
-        <option value="coventry">Coventry</option>
-        <option value="dudley">Dudley</option>
-        <option value="sandwell">Sandwell</option>
-        <option value="solihull">Solihull</option>
-        <option value="walsall">Walsall</option>
-        <option value="wolverhampton">Wolverhampton</option>
-    </select>
-    
-    </div></div></div></div></div></div></main>
+<main id="ds-main-content" class="ds-container--main">
+  <div class="ds-grid ds-area">
+    <div class="ds-col-1 ds-col-md-1-2 ds-area-img" style="background-image:url('@img?height=800')"></div>
+    <div class="bg-secondary ds-p-xl ds-col-1 ds-col-md-1-2">
+      <div class="ds-grid">
+        <div class="ds-col-1 ds-col-md-2-3">
+          <h2>@Model.Value("title")</h2>
+            @Model.Value("copy")
+            @if(personGroup){
+              <p>View your local area: <a class="ds-btn" href="/@area/">@area</a></p>
+              <p>or</p>
+            }
+            <div class="ds-fe-group">
+              <div class="ds-fe-dropdown">
+                <label class="ds-fe-label" for="dropdown">Choose your local area</label> 
+                  <select class="ds-fe-dropdown__select area-select" id="area-dropdown" name="Region selection" onchange="if (this.value) window.location.href = this.value;" aria-label="Choose your local area">
+                    <option value="" selected="selected">Choose from list</option>
+                    <option value="birmingham">Birmingham</option>
+                    <option value="coventry">Coventry</option>
+                    <option value="dudley">Dudley</option>
+                    <option value="sandwell">Sandwell</option>
+                    <option value="solihull">Solihull</option>
+                    <option value="walsall">Walsall</option>
+                    <option value="wolverhampton">Wolverhampton</option>
+                  </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
     
 <footer>
     <div class="ds-footer ds-footer--v2">
@@ -83,14 +213,21 @@
         <div class="ds-container">
             <div class="ds-footer__bottom ds-grid">
                 <div class="ds-col-1 ds-col-md-1-2">
-                    <p class="ds-footer__copyright">© West Midlands Combined Authority&nbsp;<script>document.write(new Date().getFullYear())</script></p>
+                    <p class="ds-footer__copyright">&copy; @Model.Value("copyrightText")&nbsp;<script>document.write(new Date().getFullYear())</script></p>
                 </div>
                 <div class="ds-col-1 ds-col-md-1-2">
+                  @{
+                    var links = Model.Value<IEnumerable<Link>>("bottomLinks");
+                    if (links.Any())
+                    {
                     <ul class="ds-footer__bottom-menu">
-                        <li><a class="ds-footer__link" href="">Accessibility</a></li>
-                        <li><a class="ds-footer__link" href="">Terms and Conditions</a></li>
-                        <li><a class="ds-footer__link" href="">Policies</a></li>
+                        @foreach (var link in links)
+                        {
+                            <li><a class="ds-footer__link" href="@link.Url" target="@link.Target">@link.Name</a></li>
+                        }
                     </ul>
+                    }
+                  }
                 </div>
             </div>
         </div>

@@ -11,7 +11,7 @@
     <main class="ds-container--main">
         <div class="template-search">
             <div class="ds-col-1 ds-col-md-2-3 ds-p-r-xl ds-m-b-lg">
-                <h1>@Model.Name</h1>
+                <h1>@Model.Value("alternativeTitle", fallback: Fallback.ToDefaultValue, defaultValue: Model.Value("pageName"))</h1>
 
                 <p class="wmcads-search-result__date">
                     @{

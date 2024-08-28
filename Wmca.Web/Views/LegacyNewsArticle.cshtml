@@ -11,7 +11,7 @@
 
 <main id="ds-main-content" class="ds-container ds-m-t-md">
 
-    <h1>@Model.Name</h1>
+    <h1 class="ds-col-2-3">@Model.Value("alternativeTitle", fallback: Fallback.ToDefaultValue, defaultValue: Model.Value("pageName"))</h1>
 
     <div class="ds-grid">
         <div class="ds-col-1 ds-col-md-2-3">

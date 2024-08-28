@@ -5,7 +5,7 @@
     var image = Model.Content.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("image");
     if (image != null)
     {
-        <img src="@image.MediaUrl()" alt="@image.Value("altText", fallback: Fallback.ToDefaultValue, defaultValue: @image.Name)" />
+        <img class="ds-m-t-md ds-m-b-lg" src="@image.MediaUrl()" alt="@image.Value("altText", fallback: Fallback.ToDefaultValue, defaultValue: @image.Name)" />
     } else {
         <p>Missing image</p>
     }

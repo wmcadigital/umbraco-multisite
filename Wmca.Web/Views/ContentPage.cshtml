@@ -8,7 +8,7 @@
 @await Html.PartialAsync("frontend/components/shared/breadcrumb")
 
 <main id="ds-main-content" class="ds-container">
-    <h1>@Model.Name</h1>
+    <h1 class="ds-col-2-3">@Model.Value("alternativeTitle", fallback: Fallback.ToDefaultValue, defaultValue: Model.Value("pageName"))</h1>
 
     @* Render the block areas *@
     @await Html.GetBlockGridHtmlAsync(Model, "grid")

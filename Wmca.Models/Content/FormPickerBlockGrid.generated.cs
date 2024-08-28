@@ -53,7 +53,8 @@ namespace Wmca.Models.Content
 		/// Form Picker
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.4.1+d72fc5c")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("formPicker")]
-		public virtual global::System.Nullable<global::System.Guid> FormPicker => this.Value<global::System.Nullable<global::System.Guid>>(_publishedValueFallback, "formPicker");
+		public virtual global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent> FormPicker => this.Value<global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>>(_publishedValueFallback, "formPicker");
 	}
 }

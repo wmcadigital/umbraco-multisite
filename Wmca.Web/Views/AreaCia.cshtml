@@ -7,6 +7,38 @@
 
 @await Html.PartialAsync("frontend/components/homepagebanner")
 
+<script>
+   console.log('area');
+   const getHref = window.location.pathname;
+   console.log(getHref);
+   localStorage.setItem('cia.selectedAreaUrl', getHref);
+   document.cookie = `cia.selectedAreaUrl=${getHref}; expires=Fri, 31 Dec 2027 23:59:59 GMT; path=/`;
+
+   const pagePath = window.location.pathname; // Get the page's URL path
+    const areaPages = [
+      '/change-into-action/birmingham',
+      '/change-into-action/coventry/',
+      '/change-into-action/dudley/',
+      '/change-into-action/sandwell/',
+      '/change-into-action/solihull/',
+      '/change-into-action/walsall/',
+      '/change-into-action/wolverhampton/'
+    ]; 
+     const anyAreaPage = areaPages.some(x => x === pagePath);
+     const splashUrl = 'change-into-action';
+     const getSelectedArea = localStorage.getItem('cia.selectedAreaUrl');
+
+    @* // If localStorage doesn't contain a selected area and the page != splash page and the page IS an area home page
+    if (getSelectedArea === null && pagePath !== splashUrl && anyAreaPage) {
+      window.location.replace(splashUrl); // Then redirect the user to splash page
+
+      // Else if the pagePath is one of the area home pages && the pagePath != localStorage(stops loops)
+    } else if (anyAreaPage && pagePath !== getSelectedArea) {
+      window.location.href = getSelectedArea; // Then redirect user to the area they were last on
+    } *@
+
+</script>
+
 <main id="ds-main-content" class="ds-container ds-m-t-lg homepage">
    @await Html.GetBlockGridHtmlAsync(Model, "grid")
 </main>

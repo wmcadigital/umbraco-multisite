@@ -2,37 +2,44 @@
 @using Umbraco.Cms.Core.Models
 
 @{
-    var contentTypeAliases = new[] { "siteProperties", "sitePropertiesCia" }; // set the settings document type
-    var contentTypeAliasesFooter = new[] { "footer", "footerCia" }; // set the footer document type
+    var contentTypeAliases = new[] { "siteProperties", "sitePropertiesCia", "areaPropertiesCia"  }; // set the settings document type
+    var contentTypeAliasesFooter = new[] { "footer", "footerCia", "footerAreaCia" }; // set the footer document type
     var homePage = Model.AncestorOrSelf(1); @* Get the homepage *@
+    var homepageTemplate = homePage.GetTemplateAlias(); @* Get the name of the template *@
+    var areaPage = Model.AncestorOrSelf(2); @* Get the cia area homepage *@
     var siteProps = homePage.ChildrenOfType("siteProperties", "sitePropertiesCia" ); @* Get site properties by docType will return null if not found *@
     var siteSet = homePage.Children.Where(x => contentTypeAliases.Contains(x.ContentType.Alias)).First(); @* Get the site setings *@
+    var siteSetFooter= homePage.Children.Where(x => contentTypeAliases.Contains(x.ContentType.Alias)).First(); @* Get the site setings *@
+    if(homepageTemplate == "HomepageChangeIntoAction"){
+        siteSetFooter = areaPage.Children.Where(x => contentTypeAliases.Contains(x.ContentType.Alias)).First();
+    }
 }
 
 @if (siteSet != null)
 {
-    var footer = siteSet.Children.Where(x => contentTypeAliasesFooter.Contains(x.ContentType.Alias)).First();@* Get all nav settings from footer docType *@
-
+    var siteSettings = siteSet.Children.Where(x => contentTypeAliasesFooter.Contains(x.ContentType.Alias)).First();@* get default footer from site root - Default will be used as fallback *@
+    var footer = siteSetFooter.Children.Where(x => contentTypeAliasesFooter.Contains(x.ContentType.Alias)).First();@* get custom footer from region root *@
+    @* @Model.Value("facebookLink", fallback: Fallback.ToDefaultValue, defaultValue: new HtmlString("/")) *@
     @* Column 1 *@
-    var col1Title = footer.Value<String>("column1Title");
-    var content = footer.Value<String>("content");
-    var ctaLink = footer.Value<Link>("cTAButton");
-    var partners = footer.Value("partners");
-    var partnerCopy = footer.Value("partnersCopy");
+    var col1Title = footer.Value<String>("column1Title", fallback: Fallback.ToDefaultValue, defaultValue: siteSettings.Value<String>("column1Title"));
+    var content = footer.Value<String>("content", fallback: Fallback.ToDefaultValue, defaultValue: siteSettings.Value<String>("content"));
+    var ctaLink = footer.Value<Link>("cTAButton", fallback: Fallback.ToDefaultValue, defaultValue: siteSettings.Value<Link>("cTAButton"));
+    var partners = footer.Value("partners", fallback: Fallback.ToDefaultValue, defaultValue: siteSettings.Value("partners"));
+    var partnerCopy = footer.Value("partnersCopy", fallback: Fallback.ToDefaultValue, defaultValue: siteSettings.Value("partnersCopy"));
     @* Column 2 *@
-    var col2Title = footer.Value<String>("column2Title");
-    var col2Links = footer.Value<IEnumerable<Link>>("column2Links");
+    var col2Title = footer.Value<String>("column2Title", fallback: Fallback.ToDefaultValue, defaultValue: siteSettings.Value<String>("column2Title"));
+    var col2Links = footer.Value<IEnumerable<Link>>("column2Links", fallback: Fallback.ToDefaultValue, defaultValue: siteSettings.Value<IEnumerable<Link>>("column2Links"));
     @* Column 3 *@
-    var col3Title = footer.Value<String>("column3Title");
-    var col3Links = footer.Value<IEnumerable<Link>>("column3Links");
+    var col3Title = footer.Value<String>("column3Title", fallback: Fallback.ToDefaultValue, defaultValue: siteSettings.Value<String>("column3Title"));
+    var col3Links = footer.Value<IEnumerable<Link>>("column3Links", fallback: Fallback.ToDefaultValue, defaultValue: siteSettings.Value<IEnumerable<Link>>("column3Links"));
     @* Socials *@
-    var facebookLink = footer.Value<Link>("facebookLink");
-    var twitterLink = footer.Value<Link>("xTwitterLink");
-    var instagramLink = footer.Value<Link>("instagramLink");
-    var linkedinLink = footer.Value<Link>("linkedIn");
+    var facebookLink = footer.Value<Link>("facebookLink", fallback: Fallback.ToDefaultValue, defaultValue: siteSettings.Value<Link>("facebookLink"));
+    var twitterLink = footer.Value<Link>("xTwitterLink", fallback: Fallback.ToDefaultValue, defaultValue: siteSettings.Value<Link>("xTwitterLink"));
+    var instagramLink = footer.Value<Link>("instagramLink", fallback: Fallback.ToDefaultValue, defaultValue: siteSettings.Value<Link>("instagramLink"));
+    var linkedinLink = footer.Value<Link>("linkedIn", fallback: Fallback.ToDefaultValue, defaultValue: siteSettings.Value<Link>("linkedIn"));
     @* Bottom menu *@
-    var copyrightText = footer.Value<String>("copyrightText");
-    var bottomLinks = footer.Value<IEnumerable<Link>>("bottomLinks");
+    var copyrightText = siteSettings.Value<String>("copyrightText", fallback: Fallback.ToDefaultValue, defaultValue: siteSettings.Value<String>("copyrightText"));
+    var bottomLinks = footer.Value<IEnumerable<Link>>("bottomLinks", fallback: Fallback.ToDefaultValue, defaultValue: siteSettings.Value<IEnumerable<Link>>("bottomLinks"));
     var dsSlug = siteSet.Value<string>("designSystemSlug");
     
     var colClass = "ds-col-lg-1-3";
@@ -65,7 +72,7 @@
 
                         @if (partners != null)
                         {
-                            <div class="ds-m-b-md">
+                            <div class="ds-footer__partners ds-m-b-md">
                                 @Html.GetBlockListHtml(footer, "partners")
                             </div>
                             @if (partnerCopy != null)
@@ -110,6 +117,7 @@
                     @* (this section requires a title - it has validation) *@
                     @if (!String.IsNullOrEmpty(col3Title))
                     {
+                        @if(@dsSlug != "ciads"){
                         <h2 class="ds-footer__heading ds-collapse-heading ds-h3"
                             aria-controls="footer-menu-col3"
                             aria-expanded="true">
@@ -118,25 +126,25 @@
                                 <use xlink:href="#ds-general-chevron-right" href="#ds-general-chevron-right"></use>
                             </svg>
                         </h2>
+                        }
 
                         @if(@dsSlug == "ciads"){
-                            <ul class="ds-footer__menu ds-collapse-panel" id="footer-menu-col3">
+                            <h2 class="ds-footer__heading ds-h3">@col3Title</h2>
                                 <div class="ds-fe-group">
                                     <div class="ds-fe-dropdown">
-                                        <label class="ds-fe-label" for="dropdown">Dropdown label</label> 
-                                        <select class="ds-fe-dropdown__select" id="dropdown" name="dropdown">
+                                        <label class="ds-fe-label visible-hidden" for="dropdown">Change to another West Midlands region</label> 
+                                        <select class="ds-fe-dropdown__select" id="dropdown" name="dropdown" onchange="if (this.value) window.location.href = this.value;">
                                             <option value="" selected="selected">Choose from list</option>
-                                            <option value="birmingham">Birmingham</option>
-                                            <option value="coventry">Coventry</option>
-                                            <option value="dudley">Dudley</option>
-                                            <option value="sandwell">Sandwell</option>
-                                            <option value="solihull">Solihull</option>
-                                            <option value="walsall">Walsall</option>
-                                            <option value="wolverhampton">Wolverhampton</option>
+                                            <option value="/change-into-action/birmingham">Birmingham</option>
+                                            <option value="/change-into-action/coventry">Coventry</option>
+                                            <option value="/change-into-action/dudley">Dudley</option>
+                                            <option value="/change-into-action/sandwell">Sandwell</option>
+                                            <option value="/change-into-action/solihull">Solihull</option>
+                                            <option value="/change-into-action/walsall">Walsall</option>
+                                            <option value="/change-into-action/wolverhampton">Wolverhampton</option>
                                         </select>
                                     </div>
                                 </div>
-                            </ul>
                         }
                         if (col3Links.Any())
                         {
@@ -161,7 +169,7 @@
                             @if (facebookLink != null)
                             {
                                 <li>
-                                    <a href="@facebookLink.Url" title="@facebookLink.Name" target="@facebookLink.Target">
+                                    <a href="@facebookLink.Url" title="@facebookLink.Name" target="@facebookLink.Target" aria-label="Open Facebook page">
                                         <svg>
                                             <use xlink:href="#ds-social-facebook" href="#ds-social-facebook"></use>
                                         </svg>
@@ -171,7 +179,7 @@
                             @if (twitterLink != null)
                             {
                                 <li>
-                                    <a href="@twitterLink.Url" title="@twitterLink.Name" target="@twitterLink.Target">
+                                    <a href="@twitterLink.Url" title="@twitterLink.Name" target="@twitterLink.Target" aria-label="Open X page">
                                         <svg>
                                             <use xlink:href="#ds-social-x-logo-circle" href="#ds-social-x-logo-circle"></use>
                                         </svg>
@@ -181,7 +189,7 @@
                             @if (instagramLink != null)
                             {
                                 <li>
-                                    <a href="@instagramLink.Url" title="@instagramLink.Name" target="@instagramLink.Target">
+                                    <a href="@instagramLink.Url" title="@instagramLink.Name" target="@instagramLink.Target" aria-label="Open Instagram page">
                                         <svg>
                                             <use xlink:href="#ds-social-instagram" href="#ds-social-instagram"></use>
                                         </svg>
@@ -191,7 +199,7 @@
                             @if (linkedinLink != null)
                             {
                                 <li>
-                                    <a href="@linkedinLink.Url" title="@linkedinLink.Name" target="@linkedinLink.Target">
+                                    <a href="@linkedinLink.Url" title="@linkedinLink.Name" target="@linkedinLink.Target" aria-label="Open Linkedin page">
                                         <svg>
                                             <use xlink:href="#ds-social-linkedin" href="#ds-social-linkedin"></use>
                                         </svg>

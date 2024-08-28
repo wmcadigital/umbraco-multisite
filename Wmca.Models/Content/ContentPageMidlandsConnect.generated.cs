@@ -58,6 +58,14 @@ namespace Wmca.Models.Content
 		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockGridModel Grid => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockGridModel>(_publishedValueFallback, "grid");
 
 		///<summary>
+		/// Alternative Title: Use an alternative title for the page (Replaces the page name)
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.4.1+d72fc5c")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("alternativeTitle")]
+		public virtual string AlternativeTitle => global::Wmca.Models.Content.PageProperties.GetAlternativeTitle(this, _publishedValueFallback);
+
+		///<summary>
 		/// Custom code - Body: Custom tracking code placed within the body
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.4.1+d72fc5c")]

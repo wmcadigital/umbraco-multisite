@@ -3,38 +3,139 @@
 @using Umbraco.Cms.Core.Models
 
 @{
+    var useImage = Model.Content.Value<String>("useImage");
+    var useIcon = Model.Content.Value<String>("useIcon");
+    var useTitle = Model.Content.Value<String>("useTitle");
+    var useLink = Model.Content.Value<String>("useLink");
+    var useButton = Model.Content.Value<String>("useButton");
+    var useSecondButton = Model.Content.Value<String>("useSecondButton");
+
     var link = Model.Content.Value<Link>("link");
+    var link2 = Model.Content.Value<Link>("linkSecondButton");
     var image = Model.Content.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("image");
-    
-    if (link != null)
+    var icon = Model.Content.Value("icon");
+    var materialIcon = Model.Content.Value("materialIcon");
+    var buttonIcon = Model.Content.Value("buttonIcon");
+    var buttonClass = Model.Content.Value("buttonType", fallback: Fallback.ToDefaultValue,
+    defaultValue: "primary").ToFirstLower();
+    var buttonIcon2 = Model.Content.Value("buttonIconSecondButton");
+    var buttonClass2 = Model.Content.Value("buttonTypeSecondButton", fallback: Fallback.ToDefaultValue,
+    defaultValue: "primary").ToFirstLower();
+}
+@* <span>@useImage - @useIcon - @useTitle - @useLink - @useButton - @useSecondButton</span> *@
+@if (useLink == "Yes" && link != null)
+{
+    if (useButton == "Yes")
     {
-    <a href="@link.Url" target="@link.Target" class="ds-content-card">
-    @if (image != null)
-    {
-        <img src="@image.GetCropUrl("Content Card - Rectangle")" alt="@image.Value("altText", fallback: Fallback.ToDefaultValue, defaultValue: @image.Name)" />
-    }
-        <div class="ds-p-sm">
-            @if (Model.Content.Value("title") != null)
+        <div class="ds-content-card">
+            @if (useImage == "Yes" && useIcon == "No Icon" && image != null)
             {
-                <h2 class="ds-h3">@Model.Content.Value("title")</h2>
+                <img src="@image.GetCropUrl("Content Card - Rectangle")" alt="@image.Value("altText", fallback: Fallback.ToDefaultValue, defaultValue: @image.Name)" />
+            }
+            <div class="ds-p-sm">
+                @if (useIcon == "Design System Icon")
+                {
+                    @icon
+                }
+                @if (useIcon == "Material Icon")
+                {
+                    @materialIcon
+                }
+                @if (@useTitle != "No" && Model.Content.Value("title") != "")
+                {
+                    <h2>@Model.Content.Value("title")</h2>
+                }
+                @Model.Content.Value("copy")
+
+                <div class="ds-buttons">
+                <a href="@link.Url" target="@link.Target" class="ds-btn ds-btn--@buttonClass">
+                    @if (link.Name != null)
+                    {
+                        @link.Name
+                    }
+                    else
+                    {
+                        <span>Button</span>
+                    }
+
+                    @if (buttonIcon != null)
+                    {
+                        @buttonIcon
+                    }
+                </a>
+
+                @if (useSecondButton == "Yes" && link2 != null)
+                {
+                    <a href="@link2?.Url" target="@link2?.Target" class="ds-btn ds-btn--@buttonClass2 ds-m-t-md">
+                        @if (link2?.Name != null)
+                        {
+                            @link2?.Name
+                        }
+                        else
+                        {
+                            <span>Button</span>
+                        }
+                        @if (buttonIcon2 != null)
+                        {
+                            @buttonIcon2
+                        }
+                    </a>
+                }
+                </div>
+
+            </div>
+        </div>
+
+    }
+    else
+    {
+        <a href="@link.Url" target="@link.Target" class="ds-content-card">
+             @if (useIcon == "" && image != null)
+            {
+                <img src="@image.GetCropUrl("Content Card - Rectangle")"
+                    alt="@image.Value("altText", fallback: Fallback.ToDefaultValue, defaultValue: @image.Name)" />
+            }
+            <div class="ds-p-sm">
+                @if (useIcon == "Design System Icon")
+                {
+                    @icon
+                }
+                @if (useIcon == "Material Icon")
+                {
+                    @materialIcon
+                }
+                @if (@useTitle != "No" && Model.Content.Value("title") != "")
+                {
+                    <h2>@Model.Content.Value("title")</h2>
+                }
+                @Model.Content.Value("copy")
+            </div>
+        </a>
+    }
+
+}
+else
+{
+    <div class="ds-content-card">
+        @if (useIcon != null && image != null)
+        {
+            <img src="@image.GetCropUrl("Content Card - Rectangle")"
+                alt="@image.Value("altText", fallback: Fallback.ToDefaultValue, defaultValue: @image.Name)" />
+        }
+        <div class="ds-p-sm">
+            @if (useIcon == "Design System Icon")
+            {
+                @icon
+            }
+            @if (useIcon == "Material Icon")
+            {
+                @materialIcon
+            }
+            @if (@useTitle != "No" && Model.Content.Value("title") != "")
+            {
+                <h2>@Model.Content.Value("title")</h2>
             }
             @Model.Content.Value("copy")
         </div>
-    </a>
-    } else {
-    <div class="ds-content-card">
-    @if (image != null)
-    {
-        <img src="@image.GetCropUrl("Content Card - Rectangle")" alt="@image.Value("altText", fallback: Fallback.ToDefaultValue, defaultValue: @image.Name)" />
-    }
-        <div class="ds-p-sm">
-        @if (Model.Content.Value("title") != null)
-        {
-            <h2 class="ds-h3">@Model.Content.Value("title")</h2>
-        }
-        @Model.Content.Value("copy")
-        </div>
     </div>
-    }
-
-    }
+}

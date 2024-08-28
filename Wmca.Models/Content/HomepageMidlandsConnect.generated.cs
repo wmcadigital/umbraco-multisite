@@ -105,7 +105,7 @@ namespace Wmca.Models.Content
 		public virtual string ImagePosition => global::Wmca.Models.Content.HomepageBanner.GetImagePosition(this, _publishedValueFallback);
 
 		///<summary>
-		/// Subtitle
+		/// Subtitle: This will appear below the page title
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.4.1+d72fc5c")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
@@ -113,11 +113,19 @@ namespace Wmca.Models.Content
 		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString Subtitle => global::Wmca.Models.Content.HomepageBanner.GetSubtitle(this, _publishedValueFallback);
 
 		///<summary>
-		/// Tag Line
+		/// Tag Line: This is the title of the page.   Use 'shift' + 'enter' to do a line break
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.4.1+d72fc5c")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("tagLine")]
-		public virtual string TagLine => global::Wmca.Models.Content.HomepageBanner.GetTagLine(this, _publishedValueFallback);
+		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString TagLine => global::Wmca.Models.Content.HomepageBanner.GetTagLine(this, _publishedValueFallback);
+
+		///<summary>
+		/// Test
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.4.1+d72fc5c")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("test")]
+		public virtual object Test => global::Wmca.Models.Content.HomepageBanner.GetTest(this, _publishedValueFallback);
 	}
 }

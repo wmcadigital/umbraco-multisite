@@ -1,0 +1,148 @@
+﻿@using Umbraco.Extensions
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using Umbraco.Cms.Core.Models
+
+@* Reusable content card *@
+
+@{
+    var typedContentPicker = Model.Content.Value<IEnumerable<IPublishedContent>>("contentCard");
+    if (typedContentPicker != null) {
+        foreach (var item in typedContentPicker)
+        {
+            var useImage = item.Value<String>("useImage");
+            var useIcon = item.Value<String>("useIcon");
+            var useTitle = item.Value<String>("useTitle");
+            var useLink = item.Value<String>("useLink");
+            var useButton = item.Value<String>("useButton");
+            var useSecondButton = item.Value<String>("useSecondButton");
+
+            var link = item.Value<Link>("link");
+            var link2 = item.Value<Link>("linkSecondButton");
+            var image = item.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("image");
+            var icon = item.Value("icon");
+            var materialIcon = item.Value("materialIcon");
+            var buttonIcon = item.Value("buttonIcon");
+            var buttonClass = item.Value("buttonType", fallback: Fallback.ToDefaultValue,
+            defaultValue: "primary").ToFirstLower();
+            var buttonIcon2 = item.Value("buttonIconSecondButton");
+            var buttonClass2 = item.Value("buttonTypeSecondButton", fallback: Fallback.ToDefaultValue,
+            defaultValue: "primary").ToFirstLower();
+
+            @if (useLink == "Yes" && link != null)
+            {
+                if (useButton == "Yes")
+                {
+                    <div class="ds-content-card">
+                    @if (useImage == "Yes" && useIcon == "No Icon" && image != null)
+                        {
+                            <img src="@image.GetCropUrl("Content Card - Rectangle")"
+                                alt="@image.Value("altText", fallback: Fallback.ToDefaultValue, defaultValue: @image.Name)" />
+                        }
+                        <div class="ds-p-sm">
+                            @if (useIcon == "Design System Icon")
+                            {
+                                @icon
+                            }
+                            @if (useIcon == "Material Icon")
+                            {
+                                @materialIcon
+                            }
+                            @if (@useTitle != "No" && item.Value("title") != "")
+                            {
+                                <h2>@item.Value("title")</h2>
+                            }
+                            @item.Value("copy")
+
+                            <a href="@link.Url" target="@link.Target" class="ds-btn ds-btn--@buttonClass ds-m-b-md">
+                                @if (link.Name != null)
+                                {
+                                    @link.Name
+                                }
+                                else
+                                {
+                                    <span>Button</span>
+                                }
+
+                                @if (buttonIcon != null)
+                                {
+                                    @buttonIcon
+                                }
+                            </a>
+
+                            @if (useSecondButton == "Yes" && link2 != null)
+                            {
+                                <a href="@link2?.Url" target="@link2?.Target" class="ds-btn ds-btn--@buttonClass2 ds-m-b-md">
+                                    @if (link2?.Name != null)
+                                    {
+                                        @link2?.Name
+                                    }
+                                    else
+                                    {
+                                        <span>Button</span>
+                                    }
+                                    @if (buttonIcon2 != null)
+                                    {
+                                        @buttonIcon2
+                                    }
+                                </a>
+                            }
+
+                        </div>
+                    </div>
+
+                }
+                else
+                {
+                    <a href="@link.Url" target="@link.Target" class="ds-content-card 2">
+                @if (useIcon == "" && image != null)
+                        {
+                            <img src="@image.GetCropUrl("Content Card - Rectangle")"
+                                alt="@image.Value("altText", fallback: Fallback.ToDefaultValue, defaultValue: @image.Name)" />
+                        }
+                        <div class="ds-p-sm">
+                            @if (useIcon == "Design System Icon")
+                            {
+                                @icon
+                            }
+                            @if (useIcon == "Material Icon")
+                            {
+                                @materialIcon
+                            }
+                            @if (@useTitle != "No" && item.Value("title") != "")
+                            {
+                                <h2>@item.Value("title")</h2>
+                            }
+                            @item.Value("copy")
+                        </div>
+                    </a>
+                }
+
+            }
+            else
+            {
+                <div class="ds-content-card">
+                @if (useIcon != null && image != null)
+                    {
+                        <img src="@image.GetCropUrl("Content Card - Rectangle")"
+                            alt="@image.Value("altText", fallback: Fallback.ToDefaultValue, defaultValue: @image.Name)" />
+                    }
+                    <div class="ds-p-sm">
+                        @if (useIcon == "Design System Icon")
+                        {
+                            @icon
+                        }
+                        @if (useIcon == "Material Icon")
+                        {
+                            @materialIcon
+                        }
+                        @if (@useTitle != "No" && item.Value("title") != "")
+                        {
+                            <h2>@item.Value("title")</h2>
+                        }
+                        @item.Value("copy")
+                    </div>
+                </div>
+            }
+        }
+    }
+}

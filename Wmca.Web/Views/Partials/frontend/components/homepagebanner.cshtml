@@ -33,7 +33,7 @@ setings *@
     style="background-image: url( @mainImageUrl?anchor=center&mode=crop&width=2500&height=800&rnd=132122595620000000);background-position: @position">
     <div class="ds-container ds-page-header-container @templateContainer">
         <div class="ds-page-header-box @template">
-            <h1>@Model.Value("tagLine")</h1>
+            <h1>@Html.Raw(Model.Value<string>("tagLine").Replace("<p>", "").Replace("</p>", ""))</h1>
             @if (@Model.Value("subtitle") != null)
             {
                 @Model.Value("subtitle")

@@ -50,12 +50,52 @@ namespace Wmca.Models.Content
 		// properties
 
 		///<summary>
+		/// Button Icon
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.4.1+d72fc5c")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("buttonIcon")]
+		public virtual global::Microsoft.AspNetCore.Html.HtmlString ButtonIcon => this.Value<global::Microsoft.AspNetCore.Html.HtmlString>(_publishedValueFallback, "buttonIcon");
+
+		///<summary>
+		/// Button Icon
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.4.1+d72fc5c")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("buttonIconSecondButton")]
+		public virtual global::Microsoft.AspNetCore.Html.HtmlString ButtonIconSecondButton => this.Value<global::Microsoft.AspNetCore.Html.HtmlString>(_publishedValueFallback, "buttonIconSecondButton");
+
+		///<summary>
+		/// Button Type
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.4.1+d72fc5c")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("buttonType")]
+		public virtual string ButtonType => this.Value<string>(_publishedValueFallback, "buttonType");
+
+		///<summary>
+		/// Button Type
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.4.1+d72fc5c")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("buttonTypeSecondButton")]
+		public virtual string ButtonTypeSecondButton => this.Value<string>(_publishedValueFallback, "buttonTypeSecondButton");
+
+		///<summary>
 		/// Copy
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.4.1+d72fc5c")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("copy")]
 		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString Copy => this.Value<global::Umbraco.Cms.Core.Strings.IHtmlEncodedString>(_publishedValueFallback, "copy");
+
+		///<summary>
+		/// Design System Icon
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.4.1+d72fc5c")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("icon")]
+		public virtual global::Microsoft.AspNetCore.Html.HtmlString Icon => this.Value<global::Microsoft.AspNetCore.Html.HtmlString>(_publishedValueFallback, "icon");
 
 		///<summary>
 		/// Image
@@ -74,11 +114,75 @@ namespace Wmca.Models.Content
 		public virtual global::Umbraco.Cms.Core.Models.Link Link => this.Value<global::Umbraco.Cms.Core.Models.Link>(_publishedValueFallback, "link");
 
 		///<summary>
+		/// Link
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.4.1+d72fc5c")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("linkSecondButton")]
+		public virtual global::Umbraco.Cms.Core.Models.Link LinkSecondButton => this.Value<global::Umbraco.Cms.Core.Models.Link>(_publishedValueFallback, "linkSecondButton");
+
+		///<summary>
+		/// Material Icon
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.4.1+d72fc5c")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("materialIcon")]
+		public virtual global::Microsoft.AspNetCore.Html.HtmlString MaterialIcon => this.Value<global::Microsoft.AspNetCore.Html.HtmlString>(_publishedValueFallback, "materialIcon");
+
+		///<summary>
 		/// Title
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.4.1+d72fc5c")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("title")]
 		public virtual string Title => this.Value<string>(_publishedValueFallback, "title");
+
+		///<summary>
+		/// Use Button: A button will appear at the bottom of the card
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.4.1+d72fc5c")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("useButton")]
+		public virtual string UseButton => this.Value<string>(_publishedValueFallback, "useButton");
+
+		///<summary>
+		/// Use Icon: Display an icon instead of an image
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.4.1+d72fc5c")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("useIcon")]
+		public virtual string UseIcon => this.Value<string>(_publishedValueFallback, "useIcon");
+
+		///<summary>
+		/// Use Image
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.4.1+d72fc5c")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("useImage")]
+		public virtual string UseImage => this.Value<string>(_publishedValueFallback, "useImage");
+
+		///<summary>
+		/// Use Link
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.4.1+d72fc5c")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("useLink")]
+		public virtual string UseLink => this.Value<string>(_publishedValueFallback, "useLink");
+
+		///<summary>
+		/// Use Second Button
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.4.1+d72fc5c")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("useSecondButton")]
+		public virtual string UseSecondButton => this.Value<string>(_publishedValueFallback, "useSecondButton");
+
+		///<summary>
+		/// Use Title
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.4.1+d72fc5c")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("useTitle")]
+		public virtual string UseTitle => this.Value<string>(_publishedValueFallback, "useTitle");
 	}
 }

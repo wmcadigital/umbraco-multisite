@@ -3,15 +3,40 @@
 @using Umbraco.Cms.Core.Models
 @using Umbraco.Cms.Core.Models.Blocks
 
+<script>
+    // reset cookie so cia landing page is shown
+    document.addEventListener("DOMContentLoaded", function() {
+    var link = document.getElementById("ds-area-change");
+    link.addEventListener("click", function(event) {
+        event.preventDefault();
+        document.cookie = `cia.selectedAreaUrl=null; expires=Fri, 31 Dec 2027 23:59:59 GMT; path=/`; // set the cookie to null
+        window.open('/change-into-action', '_parent'); // redirect to cia landing page
+    });
+});
+</script>
+
 @{
-    var contentTypeAliases = new[] { "siteProperties", "sitePropertiesCia" }; // set the settings document type
+    var currentPage = Umbraco.AssignedContentItem;
+    var currentPageUrl = currentPage.Url();
+    var contentTypeAliases = new[] { "siteProperties", "sitePropertiesCia", "areaPropertiesCia" }; // set the settings document type
     var homePage = Model.AncestorOrSelf(1); @* Get the homepage *@
+    var homepageTemplate = homePage.GetTemplateAlias(); @* Get the name of the template *@
+    var areaPage = Model.AncestorOrSelf(2); @* Get the cia area homepage *@
     var siteProps = homePage.ChildrenOfType("siteProperties", "sitePropertiesCia"); @* Get site properties by docType will return null if not found *@
     var siteSet = homePage.Children.Where(x => contentTypeAliases.Contains(x.ContentType.Alias)).First(); @* Get the site setings *@
-    var rootnode = Model.Root();
+    var siteSetNav = homePage.Children.Where(x => contentTypeAliases.Contains(x.ContentType.Alias)).First(); @* Get the site setings *@
+    if(homepageTemplate == "HomepageChangeIntoAction"){
+        siteSetNav = areaPage.Children.Where(x => contentTypeAliases.Contains(x.ContentType.Alias)).First();
+    }
+    var areaSiteSet = siteSetNav.Children.Where(x => x.ContentType.Alias == "header").First();
+    var showSearch = areaSiteSet.Value<bool>("showSearch");
+    // var rootnode = Model.Root();
     var dsSlug = siteSet.Value<string>("designSystemSlug");
+    var homeLink = "/";
     var logo = "/assets/img/logo/wmca-logo.svg";
     var logoClass = "";
+    var area = "";
+    var areaLink = areaPage.Url();
 
     if (dsSlug == "wmcads")
     {
@@ -33,6 +58,15 @@
     {
         logo = "/assets/img/logo/cia-logo.svg";
         logoClass = "ds-header__logo-link-full";
+        homeLink = areaLink;
+        // set area
+        if(currentPageUrl.Contains("birmingham")){area = "Birmingham";}
+        if(currentPageUrl.Contains("coventry")){area = "Coventry";}
+        if(currentPageUrl.Contains("dudley")){area = "Dudley";}
+        if(currentPageUrl.Contains("sandwell")){area = "Sandwell";}
+        if(currentPageUrl.Contains("solihull")){area = "Solihull";}
+        if(currentPageUrl.Contains("walsall")){area = "Walsall";}
+        if(currentPageUrl.Contains("wolverhampton")){area = "Wolverhampton";}
     }
 }
 
@@ -49,7 +83,7 @@
             <div class="ds-container ds-grid ds-grid--align-center ds-grid--justify-between">
                 <div class="ds-header__vertical-align ds-col-auto">
                     <!-- Logo -->
-                    <a class="ds-header__logo-link @logoClass" href="/" title="Transport for West Midlands Design System">
+                    <a class="ds-header__logo-link @logoClass" href="@homeLink" title="Transport for West Midlands Design System">
                         <img class="ds-header__logo" alt="@siteSet.Value("siteTitle") logo" src="@logo">
                     </a>
                 </div>
@@ -64,14 +98,12 @@
                         <!-- Start primary (level 1) navigation -->
                         <ul class="ds-mega-menu__primary-menu">
                             @{
-                                //var siteProp = siteProps.ChildrenOfType("header");
-                                var header = siteSet.Children.Where(x => x.ContentType.Alias == "header").First();
-
-                                @Html.GetBlockListHtml(header, "navigation")
+                                @Html.GetBlockListHtml(areaSiteSet, "navigation")
                             }
                         </ul>
                         <!-- End primary (level 1) navigation -->
                     </div>
+                    @if(showSearch == true){
                     <!-- search -->
                     <div class="ds-mega-menu__primary-menu-item ds-mega-menu__search">
                         <button class="ds-mega-menu__primary-menu-link ds-mega-menu__search-btn">
@@ -97,8 +129,13 @@
                             </div>
                         </div>
                     </div>
+                    }
                 </nav>
             </div>
         </div>
+        @if (dsSlug == "ciads")
+        {
+            <div class="ds-cia-area">This is a Change into Action @area page. <a id="ds-area-change" href="/change-into-action/">Change your area</a></div>
+        }
     </section>
 }

@@ -40,7 +40,12 @@ namespace Wmca.Models.Content
 		/// <summary>Tag Line</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.4.1+d72fc5c")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		string TagLine { get; }
+		global::Umbraco.Cms.Core.Strings.IHtmlEncodedString TagLine { get; }
+
+		/// <summary>Test</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.4.1+d72fc5c")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		object Test { get; }
 	}
 
 	/// <summary>Homepage Banner</summary>
@@ -101,7 +106,7 @@ namespace Wmca.Models.Content
 		public static string GetImagePosition(IHomepageBanner that, IPublishedValueFallback publishedValueFallback) => that.Value<string>(publishedValueFallback, "imagePosition");
 
 		///<summary>
-		/// Subtitle
+		/// Subtitle: This will appear below the page title
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.4.1+d72fc5c")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
@@ -114,16 +119,29 @@ namespace Wmca.Models.Content
 		public static global::Umbraco.Cms.Core.Strings.IHtmlEncodedString GetSubtitle(IHomepageBanner that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.Strings.IHtmlEncodedString>(publishedValueFallback, "subtitle");
 
 		///<summary>
-		/// Tag Line
+		/// Tag Line: This is the title of the page.   Use 'shift' + 'enter' to do a line break
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.4.1+d72fc5c")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("tagLine")]
-		public virtual string TagLine => GetTagLine(this, _publishedValueFallback);
+		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString TagLine => GetTagLine(this, _publishedValueFallback);
 
 		/// <summary>Static getter for Tag Line</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.4.1+d72fc5c")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static string GetTagLine(IHomepageBanner that, IPublishedValueFallback publishedValueFallback) => that.Value<string>(publishedValueFallback, "tagLine");
+		public static global::Umbraco.Cms.Core.Strings.IHtmlEncodedString GetTagLine(IHomepageBanner that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.Strings.IHtmlEncodedString>(publishedValueFallback, "tagLine");
+
+		///<summary>
+		/// Test
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.4.1+d72fc5c")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("test")]
+		public virtual object Test => GetTest(this, _publishedValueFallback);
+
+		/// <summary>Static getter for Test</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.4.1+d72fc5c")]
+		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		public static object GetTest(IHomepageBanner that, IPublishedValueFallback publishedValueFallback) => that.Value(publishedValueFallback, "test");
 	}
 }

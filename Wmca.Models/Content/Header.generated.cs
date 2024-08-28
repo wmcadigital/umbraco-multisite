@@ -56,5 +56,12 @@ namespace Wmca.Models.Content
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("navigation")]
 		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel Navigation => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "navigation");
+
+		///<summary>
+		/// Show Search: Enable search in the main navigation. {This requires a search page)
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.4.1+d72fc5c")]
+		[ImplementPropertyType("showSearch")]
+		public virtual bool ShowSearch => this.Value<bool>(_publishedValueFallback, "showSearch");
 	}
 }

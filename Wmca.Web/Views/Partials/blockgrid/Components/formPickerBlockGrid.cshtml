@@ -1,8 +1,23 @@
 ﻿@using Umbraco.Extensions
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
 @using Umbraco.Cms.Core.Models
+@using ContentModels = Wmca.Models.Content;
 
+@* Render a form *@
 
-@Model.Content.Value("formPicker")
-
-@await Umbraco.RenderMacroAsync("renderUmbracoForm", new { FormGuid = @Model.Content.Value("formPicker"), ExcludeScripts = "1" })
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.7.1.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.19.2/jquery.validate.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
+<style>
+    .text-danger {color:red}
+</style>
+@{
+    var typedContentPicker = Model.Content.Value<IEnumerable<IPublishedContent>>("formPicker");
+    if (typedContentPicker != null)
+    {
+        foreach (var item in typedContentPicker)
+        {
+            @await Component.InvokeAsync("UForm", new { id = @item.Id })
+        }
+    }
+}

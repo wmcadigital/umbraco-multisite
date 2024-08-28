@@ -1,0 +1,19 @@
+﻿@using Umbraco.Extensions
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+
+<div class="ds-msg-summary ds-msg-summary--info ds-m-t-md ds-m-b-md">
+  <div class="ds-msg-summary__header">
+    <svg class="ds-msg-summary__icon">
+      <use xlink:href="#ds-general-info" href="#ds-general-info"></use>
+    </svg>
+    @if(Model.Content.Value<String>("title") != ""){
+    <h3 class="ds-msg-summary__title">@Model.Content.Value("title")</h3>
+    }
+  </div>
+  <div class="ds-msg-summary__info">
+    @if(Model.Content.Value<String>("title") != ""){
+      <span></span>
+    }
+    @Model.Content.Value("copy")
+  </div>
+</div>

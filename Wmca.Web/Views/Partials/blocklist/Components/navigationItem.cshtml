@@ -1,4 +1,4 @@
-@inherits UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>
+﻿@inherits UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>
 @using ContentModels = Wmca.Models.Content;
 @using Umbraco.Cms.Core.Models
 
@@ -16,13 +16,13 @@
     @if (link != null)
     {
         <a target="@link.Target" href="@link.Url" class="ds-mega-menu__primary-menu-link">
-            @content.Value("title")
+            @content.Value("title", fallback: Fallback.ToDefaultValue, defaultValue: @link.Name)
         </a>
     }
     else
     {
         <button target="_self" class="ds-mega-menu__primary-menu-link">
-            @content.Value("title")
+            @content.Value("title", fallback: Fallback.ToDefaultValue, defaultValue: @link.Name)
         </button>
     }
 
