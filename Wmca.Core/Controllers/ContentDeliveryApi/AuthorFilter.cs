@@ -4,18 +4,18 @@ using Umbraco.Cms.Core.Models;
 
 namespace Wmca.Core.Controllers.ContentDeliveryApi
 {
-    public class CategoryFilter : IFilterHandler, IContentIndexHandler
+    public class AuthorFilter : IFilterHandler, IContentIndexHandler
     {
-        private const string TagSpecifier = "tags:";
-        private const string FieldName = "tagId";
+        private const string AuthorSpecifier = "author:";
+        private const string FieldName = "authorId";
 
         // Querying
         public bool CanHandle(string query)
-            => query.StartsWith(TagSpecifier, StringComparison.OrdinalIgnoreCase);
+            => query.StartsWith(AuthorSpecifier, StringComparison.OrdinalIgnoreCase);
 
         public FilterOption BuildFilterOption(string filter)
         {
-            var fieldValue = filter.Substring(TagSpecifier.Length);
+            var fieldValue = filter.Substring(AuthorSpecifier.Length);
 
             // There might be several values for the filter
             var values = fieldValue.Split(',');
@@ -31,9 +31,9 @@ namespace Wmca.Core.Controllers.ContentDeliveryApi
         // Indexing
         public IEnumerable<IndexFieldValue> GetFieldValues(IContent content, string? culture)
         {
-            GuidUdi? tagUdi = content.GetValue<GuidUdi>("tags");
+            GuidUdi? authorUdi = content.GetValue<GuidUdi>("author");
 
-            if (tagUdi is null)
+            if (authorUdi is null)
             {
                 return Array.Empty<IndexFieldValue>();
             }
@@ -43,7 +43,7 @@ namespace Wmca.Core.Controllers.ContentDeliveryApi
                 new IndexFieldValue
                 {
                     FieldName = FieldName,
-                    Values = new object[] { tagUdi.Guid }
+                    Values = new object[] { authorUdi.Guid }
                 }
             };
         }
