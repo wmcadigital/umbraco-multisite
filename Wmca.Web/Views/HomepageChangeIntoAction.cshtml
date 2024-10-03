@@ -14,18 +14,15 @@
     {
         img = @typedMediaPickerSingle.MediaUrl();
     }
-
     var personalisedContent = Model.Children.Where(x => x.ShowToVisitor(GroupMatchingService)).FirstOrDefault();
     var personGroup = false;
     var area = "";
-
 }
 
 <script>
 function localAreaSelect() {
     const pagePath = window.location.pathname; // Get the page's URL path
     const areaPages = [
-      '/',
       '/coventry/',
       '/dudley/',
       '/sandwell/',
@@ -132,19 +129,19 @@ function localAreaSelect() {
             if(walsall){area = "Walsall";}
             if(wolverhampton){area = "Wolverhampton";}
 
-            if(birminghamArea){<script>window.location.replace("/change-into-action/birmingham");</script>}
-            if(coventryArea){<script>window.location.replace("/change-into-action/coventry");</script>}
-            if(dudleyArea){<script>window.location.replace("/change-into-action/dudley");</script>}
-            if(sandwellArea){<script>window.location.replace("/change-into-action/sandwell");</script>}
-            if(solihullArea){<script>window.location.replace("/change-into-action/solihull");</script>}
-            if(walsallArea){<script>window.location.replace("/change-into-action/walsall");</script>}
-            if(wolverhamptonArea){<script>window.location.replace("/change-into-action/wolverhampton");</script>}
+            if(birminghamArea){<script>window.location.replace("/birmingham");</script>}
+            if(coventryArea){<script>window.location.replace("/coventry");</script>}
+            if(dudleyArea){<script>window.location.replace("/dudley");</script>}
+            if(sandwellArea){<script>window.location.replace("/sandwell");</script>}
+            if(solihullArea){<script>window.location.replace("/solihull");</script>}
+            if(walsallArea){<script>window.location.replace("/walsall");</script>}
+            if(wolverhamptonArea){<script>window.location.replace("/wolverhampton");</script>}
 
 			      @* <p>
                 @birmingham - @birminghamArea, @coventry - @dudley - @sandwell - @solihull - @walsall - @wolverhampton
-            </p>
+            </p> *@
 
-            <h2>@area</h2> *@
+            @* <h2>@area</h2> *@
 		}
 
 <header>
@@ -165,7 +162,7 @@ function localAreaSelect() {
     <div class="ds-header ds-header--mega-menu">
         <div class="ds-container ds-grid ds-grid--align-center ds-grid--justify-between">
             <div class="ds-header__vertical-align ds-col-auto">
-                <a class="ds-header__logo-link ds-header__logo-link-full" href="/cia" title="Change into Action Design System">
+                <a class="ds-header__logo-link ds-header__logo-link-full" href="/" title="Change into Action Design System">
                     <img class="ds-header__logo" alt="Change into Action logo" src="/assets/img/logo/cia-logo.svg">
                 </a>
             </div>

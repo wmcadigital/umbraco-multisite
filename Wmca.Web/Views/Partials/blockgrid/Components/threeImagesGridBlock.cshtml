@@ -1,37 +1,58 @@
 ﻿@using Umbraco.Extensions
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using Umbraco.Cms.Core.Models
 
 @{
     var image1 = Model.Content.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("image1");
     var image2 = Model.Content.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("image2");
     var image3 = Model.Content.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("image3");
+    var link1 = Model.Content.Value<Link>("link1");
+    var link2 = Model.Content.Value<Link>("link2");
+    var link3 = Model.Content.Value<Link>("link3");
     
-    <div class="ds-grid">
+    <div class="ds-grid ds-m-b-sm">
     @if (image1 != null)
     {
-        <div class="ds-col-1 ds-col-sm-1-2 ds-col-md-1-3 ds-p-xs">
-            <img src="@image1.MediaUrl()" alt="@image1.Value("altText", fallback: Fallback.ToDefaultValue, defaultValue: @image1.Name)" />
-        </div>
-    } else {
-        <p>Missing image</p>
+        if (link1 != null)
+        {
+            <a class="ds-col-1 ds-col-img ds-col-sm-1-2 ds-col-md-1-3 ds-p-xs" href="@link1.Url" target="@link1.Target">
+                <img class="ds-image" src="@image1.MediaUrl()" alt="@image1.Value("altText", fallback: Fallback.ToDefaultValue, defaultValue: @image1.Name)" />
+            </a>
+        } else {
+            <div class="ds-col-1 ds-col-img ds-col-sm-1-2 ds-col-md-1-3 ds-p-xs">
+                <img class="ds-image" src="@image1.MediaUrl()" alt="@image1.Value("altText", fallback: Fallback.ToDefaultValue, defaultValue: @image1.Name)" />
+            </div>
+        }
     }
     
     @if (image2 != null)
     {
-        <div class="ds-col-1 ds-col-sm-1-2 ds-col-md-1-3 ds-p-xs">
-            <img src="@image2.MediaUrl()" alt="@image2.Value("altText", fallback: Fallback.ToDefaultValue, defaultValue: @image2.Name)" />
-        </div>
-    } else {
-        <p>Missing image</p>
+        if (link2 != null)
+        {
+            <a class="ds-col-1 ds-col-img ds-col-sm-1-2 ds-col-md-1-3 ds-p-xs" href="@link2.Url" target="@link2.Target">
+                <img class="ds-image" src="@image2.MediaUrl()" alt="@image2.Value("altText", fallback: Fallback.ToDefaultValue, defaultValue: @image2.Name)" />
+            </a>
+        } else {
+            <div class="ds-col-1 ds-col-img ds-col-sm-1-2 ds-col-md-1-3 ds-p-xs">
+                <img class="ds-image" src="@image2.MediaUrl()" alt="@image2.Value("altText", fallback: Fallback.ToDefaultValue, defaultValue: @image2.Name)" />
+            </div>
+        }
     }
     
     @if (image3 != null)
     {
-        <div class="ds-col-1 ds-col-sm-1-2 ds-col-md-1-3 ds-p-xs">
-            <img src="@image3.MediaUrl()" alt="@image3.Value("altText", fallback: Fallback.ToDefaultValue, defaultValue: @image3.Name)" />
-        </div>
-    } else {
-        <p>Missing image</p>
+        if (link3 != null)
+        {
+            <a class="ds-col-1 ds-col-img ds-col-sm-1-2 ds-col-md-1-3 ds-p-xs" href="@link3.Url" target="@link3.Target">
+                <img class="ds-image" src="@image3.MediaUrl()" alt="@image3.Value("altText", fallback: Fallback.ToDefaultValue, defaultValue: @image3.Name)" />
+            </a>
+        } else {
+            <div class="ds-col-1 ds-col-img ds-col-sm-1-2 ds-col-md-1-3 ds-p-xs">
+                <img class="ds-image" src="@image3.MediaUrl()" alt="@image3.Value("altText", fallback: Fallback.ToDefaultValue, defaultValue: @image3.Name)" />
+            </div>
+        }
     }
     </div>
 }
+
+

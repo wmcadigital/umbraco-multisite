@@ -65,7 +65,7 @@ setings *@
         </div>
     </div>
     <div class="ds-page-header-box ds-page-header-box-pattern-two-bottom">
-        <h1>@Model.Value("tagLine")</h1>
+        <h1>@Html.Raw(Model.Value<string>("tagLine").Replace("<p>", "").Replace("</p>", ""))</h1>
         @if (dsSlug == "ciads")
         {
             var linkLeft = Model.Value<Link>("leftButtonLink");

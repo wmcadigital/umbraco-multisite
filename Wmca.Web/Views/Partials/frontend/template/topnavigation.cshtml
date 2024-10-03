@@ -10,7 +10,7 @@
     link.addEventListener("click", function(event) {
         event.preventDefault();
         document.cookie = `cia.selectedAreaUrl=null; expires=Fri, 31 Dec 2027 23:59:59 GMT; path=/`; // set the cookie to null
-        window.open('/change-into-action', '_parent'); // redirect to cia landing page
+        window.open('/', '_parent'); // redirect to cia landing page
     });
 });
 </script>
@@ -135,7 +135,7 @@
         </div>
         @if (dsSlug == "ciads")
         {
-            <div class="ds-cia-area">This is a Change into Action @area page. <a id="ds-area-change" href="/change-into-action/">Change your area</a></div>
+            <div class="ds-cia-area">This is a Change into Action @area page. <a id="ds-area-change" href="/">Change your area</a></div>
         }
     </section>
 }
