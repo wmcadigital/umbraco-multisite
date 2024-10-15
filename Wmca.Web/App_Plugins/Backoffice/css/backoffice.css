@@ -14,5 +14,5 @@
 }
 
 .contentment.umb-readonlyvalue.editor-note h5 {
-    color: inherit;
+    color: inherit !important;
 }
