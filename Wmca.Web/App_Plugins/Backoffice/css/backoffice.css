@@ -12,3 +12,7 @@
     padding: .75rem;
     fill: #808080 !important;
 }
+
+.contentment.umb-readonlyvalue.editor-note h5 {
+    color: inherit;
+}
