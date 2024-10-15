@@ -44,6 +44,11 @@
     
     var colClass = "ds-col-lg-1-3";
 
+    @if (String.IsNullOrEmpty(col1Title)) // make half width if 1st col not available
+    {
+        colClass = "ds-col-lg-1-2";
+    }
+
     @if (String.IsNullOrEmpty(col2Title)) // make half width if 2nd col not available
     {
         colClass = "ds-col-lg-1-2";
@@ -51,7 +56,7 @@
 
     <footer>
         <div class="ds-footer ds-footer--v2">
-            <div class="ds-container ds-grid">
+            <div class="ds-container">
                 @* Column 1 (this section requires a title - it has validation) *@
                 @if (!String.IsNullOrEmpty(col1Title))
                 {
@@ -87,18 +92,21 @@
                 @if (!String.IsNullOrEmpty(col2Title))
                 {
                     <section class="ds-col-1 @colClass">
-                        <h2 class="ds-footer__heading ds-collapse-heading ds-h3"
-                            aria-controls="footer-menu-col2"
-                            aria-expanded="true">
-                            @col2Title
-                            <svg class="ds-collapse-heading__indicator">
-                                <use xlink:href="#ds-general-chevron-right" href="#ds-general-chevron-right"></use>
-                            </svg>
+                        <h2 class="ds-hide-mobile ds-footer__heading ds-h3">@col2Title</h2>
+                        <h2 class="ds-hide-desktop">
+                            <button class="ds-col-1 ds-footer__heading ds-collapse-heading ds-h3" aria-controls="footer-menu-col2" aria-expanded="false">
+                                @col2Title
+                                <span class="ds-footer__collapse-button">
+                                    <svg class="ds-collapse-heading__indicator">
+                                        <use xlink:href="#ds-general-chevron-right" href="#ds-general-chevron-right"></use>
+                                    </svg>
+                                </span>
+                            </button>
                         </h2>
 
                         @if (col2Links.Any())
                         {
-                            <ul class="ds-footer__menu ds-collapse-panel" id="footer-menu-col2">
+                            <ul class="ds-footer__menu ds-collapse-panel ds-bare-list" id="footer-menu-col2">
                                 @foreach (var col2Link in col2Links)
                                 {
                                     <li>
@@ -118,13 +126,16 @@
                     @if (!String.IsNullOrEmpty(col3Title))
                     {
                         @if(@dsSlug != "ciads"){
-                        <h2 class="ds-footer__heading ds-collapse-heading ds-h3"
-                            aria-controls="footer-menu-col3"
-                            aria-expanded="true">
-                            @col3Title
-                            <svg class="ds-collapse-heading__indicator">
-                                <use xlink:href="#ds-general-chevron-right" href="#ds-general-chevron-right"></use>
-                            </svg>
+                        <h2 class="ds-hide-mobile ds-footer__heading ds-h3">@col3Title</h2>
+                        <h2 class="ds-hide-desktop">
+                             <button class="ds-col-1 ds-footer__heading ds-collapse-heading ds-h3" aria-controls="footer-menu-col3" aria-expanded="false">
+                                @col3Title
+                                <span class="ds-footer__collapse-button">
+                                    <svg class="ds-collapse-heading__indicator">
+                                        <use xlink:href="#ds-general-chevron-right" href="#ds-general-chevron-right"></use>
+                                    </svg>
+                                </span>
+                            </button>
                         </h2>
                         }
 
@@ -148,7 +159,7 @@
                         }
                         if (col3Links.Any())
                         {
-                            <ul class="ds-footer__menu ds-collapse-panel" id="footer-menu-col3">
+                            <ul class="ds-footer__menu ds-collapse-panel ds-bare-list" id="footer-menu-col3">
                                 @foreach (var col3Link in col3Links)
                                 {
                                     <li>
@@ -237,4 +248,3 @@
         </div>
     </footer>
 }
-@* this is a test *@

@@ -13,7 +13,7 @@
 
     @if (link != null)
     {
-        <a target="@link.Target" href="@link.Url">
+        <a class="ds-content-card ds-content-card--full-height ds-logo-card ds-p-sm" target="@link.Target" href="@link.Url">
             @if (img != null)
             {
             <img class="ds-m-b-md" src="@img.MediaUrl()"
@@ -23,9 +23,11 @@
     }
     else
     {
-        if (img != null)
+    <div class="ds-content-card ds-content-card--full-height ds-logo-card ds-p-sm">
+        @if (img != null)
         {
             <img class="ds-m-b-md" src="@img.MediaUrl()" alt="@img.Value("altText", fallback: Fallback.ToDefaultValue, defaultValue: @img.Name)" />
         }
+    </div>
     }
 }

@@ -31,7 +31,7 @@
             <!-- Start submenu (level 2) -->
                 <li class="ds-mega-menu__sub-menu-item">
                     @if (content.SubsectionName != "")
-                        {
+                    {
                         <span class="ds-mega-menu__sub-menu-link">
                             @if (content.SubsectionIcon != "")
                             {
@@ -53,7 +53,7 @@
                                 }
                             }
                         </span>
-                        }
+                        
                         @if (links.Any()){
                         <!-- collapse button for mobile nav level 3 menu items -->
                         <button class="ds-mega-menu__collapse-toggle" aria-expanded="false" aria-label="Toggle @content.SubsectionName menu" aria-controls="ds-primary-menu-submenu-child-menu-@links.GetHashCode().ToString()">
@@ -67,15 +67,17 @@
                         <ul id="ds-primary-menu-submenu-child-menu-@links.GetHashCode().ToString()" class="ds-mega-menu__sub-menu-child-menu">
                             @if (links.Any())
                             {
-                                @foreach (var link in links)
+                                @foreach (var linkq in links)
                                 {
                                 <li class="ds-mega-menu__sub-menu-child-item">
-                                    <a href="@link.Url" target="@link.Target" class="ds-mega-menu__sub-menu-child-link">
-                                        @link.Name
+                                    <a href="@linkq.Url" target="@linkq.Target" class="ds-mega-menu__sub-menu-child-link">
+                                        @linkq.Name
                                     </a>
                                 </li>
                                 }
                             }
                         </ul>
+                    
+                    }
                         <!-- End submenu child (level 3) list -->
-                    </li>
+                </li>

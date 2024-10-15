@@ -14,3 +14,18 @@
     @* Render the block areas *@
     @await Html.GetBlockGridHtmlAsync(Model, "grid")
 </main>
+
+@section customScripts
+{
+    <script>
+    // reset cookie so cia landing page is shown
+    document.addEventListener("DOMContentLoaded", function() {
+    var link = document.getElementById("ds-area-change");
+    link.addEventListener("click", function(event) {
+        event.preventDefault();
+        document.cookie = `cia.selectedAreaUrl=null; expires=Fri, 31 Dec 2027 23:59:59 GMT; path=/`; // set the cookie to null
+        window.open('/', '_parent'); // redirect to cia landing page
+    });
+    });
+    </script>
+}

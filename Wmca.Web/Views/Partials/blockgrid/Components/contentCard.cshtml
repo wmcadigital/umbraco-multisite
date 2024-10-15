@@ -6,6 +6,7 @@
     var useImage = Model.Content.Value<String>("useImage");
     var useIcon = Model.Content.Value<String>("useIcon");
     var useTitle = Model.Content.Value<String>("useTitle");
+    var useCopy = Model.Content.Value<String>("useCopy");
     var useLink = Model.Content.Value<String>("useLink");
     var useButton = Model.Content.Value<String>("useButton");
     var useSecondButton = Model.Content.Value<String>("useSecondButton");
@@ -30,7 +31,7 @@
         <div class="ds-content-card">
             @if (useImage == "Yes" && useIcon == "No Icon" && image != null)
             {
-                <img src="@image.GetCropUrl("Content Card - Rectangle")" alt="@image.Value("altText", fallback: Fallback.ToDefaultValue, defaultValue: @image.Name)" />
+                <img class="ds-content-card__image" src="@image.GetCropUrl("Content Card - Rectangle")" alt="@image.Value("altText", fallback: Fallback.ToDefaultValue, defaultValue: @image.Name)" />
             }
             <div class="ds-p-sm">
                 @if (useIcon == "Design System Icon")
@@ -45,7 +46,10 @@
                 {
                     <h2>@Model.Content.Value("title")</h2>
                 }
-                @Model.Content.Value("copy")
+                @if (@useCopy != "No" && Model.Content.Value("copy") != "")
+                {
+                    @Model.Content.Value("copy")
+                }
 
                 <div class="ds-buttons">
                 <a href="@link.Url" target="@link.Target" class="ds-btn ds-btn--@buttonClass">
@@ -92,7 +96,7 @@
         <a href="@link.Url" target="@link.Target" class="ds-content-card">
              @if (useIcon == "" && image != null)
             {
-                <img src="@image.GetCropUrl("Content Card - Rectangle")"
+                <img class="ds-content-card__image" src="@image.GetCropUrl("Content Card - Rectangle")"
                     alt="@image.Value("altText", fallback: Fallback.ToDefaultValue, defaultValue: @image.Name)" />
             }
             <div class="ds-p-sm">
@@ -108,7 +112,10 @@
                 {
                     <h2>@Model.Content.Value("title")</h2>
                 }
-                @Model.Content.Value("copy")
+                @if (@useCopy != "No" && Model.Content.Value("copy") != "")
+                {
+                    @Model.Content.Value("copy")
+                }
             </div>
         </a>
     }
@@ -119,7 +126,7 @@ else
     <div class="ds-content-card">
         @if (useIcon != null && image != null)
         {
-            <img src="@image.GetCropUrl("Content Card - Rectangle")"
+            <img class="ds-content-card__image" src="@image.GetCropUrl("Content Card - Rectangle")"
                 alt="@image.Value("altText", fallback: Fallback.ToDefaultValue, defaultValue: @image.Name)" />
         }
         <div class="ds-p-sm">
@@ -135,7 +142,10 @@ else
             {
                 <h2>@Model.Content.Value("title")</h2>
             }
-            @Model.Content.Value("copy")
+            @if (@useCopy != "No" && Model.Content.Value("copy") != "")
+            {
+                @Model.Content.Value("copy")
+            }
         </div>
     </div>
 }
