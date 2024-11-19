@@ -38,7 +38,7 @@
     <PackageReference Include="UFormKit" Version="1.0.5" />
     <PackageReference Include="Umbraco.Cms" Version="13.5.2" />
     <PackageReference Include="Limbo.Umbraco.BlockList" Version="13.0.1" />
-    <PackageReference Include="Umbraco.Community.AzureSSO" Version="2.0.0" />
+    <PackageReference Include="Umbraco.Community.AzureSSO" Version="2.2.0" />
     <PackageReference Include="Umbraco.Community.Contentment" Version="5.0.2" />
     <PackageReference Include="UmbracoPersonalisationGroups" Version="3.4.0" />
     <PackageReference Include="uSync" Version="13.2.5" />
@@ -119,7 +119,6 @@
     <!-- Remove RazorCompileOnBuild and RazorCompileOnPublish when not using ModelsMode InMemoryAuto -->
     <RazorCompileOnBuild>false</RazorCompileOnBuild>
     <RazorCompileOnPublish>false</RazorCompileOnPublish>
-    <UserSecretsId>0f5ab4ee-19bc-42d3-a5d8-a8590e925713</UserSecretsId>
   </PropertyGroup>
   
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Umbraco.Web.UI' " />
