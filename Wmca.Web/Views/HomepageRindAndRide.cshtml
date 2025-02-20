@@ -1,0 +1,14 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Wmca.Models.Content.HomepageRingAndRide>
+
+@{
+	Layout = "RingAndRide.cshtml";
+}
+
+    @await Html.PartialAsync("frontend/components/homepagebanner")
+    
+<main id="ds-main-content" class="ds-container ds-m-t-lg homepage">
+
+    @await Html.GetBlockGridHtmlAsync(Model, "bodyMainGrid")
+</main>
+

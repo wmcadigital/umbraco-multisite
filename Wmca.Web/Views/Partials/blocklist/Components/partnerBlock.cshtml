@@ -10,20 +10,19 @@
     var img = content.Value<MediaWithCrops>("logo");
     var link = content.Value<Link>("webAddress");
 
-
     @if (link != null)
     {
-        <a class="ds-content-card ds-content-card--full-height ds-logo-card ds-p-sm" target="@link.Target" href="@link.Url">
+        <a class="ds-m-b-md" target="@link.Target" href="@link.Url">
             @if (img != null)
             {
-            <img class="ds-m-b-md" src="@img.MediaUrl()"
+            <img src="@img.MediaUrl()"
                 alt="@img.Value("altText", fallback: Fallback.ToDefaultValue, defaultValue: @img.Name)" />
             }
         </a>
     }
     else
     {
-    <div class="ds-content-card ds-content-card--full-height ds-logo-card ds-p-sm">
+    <div>
         @if (img != null)
         {
             <img class="ds-m-b-md" src="@img.MediaUrl()" alt="@img.Value("altText", fallback: Fallback.ToDefaultValue, defaultValue: @img.Name)" />
