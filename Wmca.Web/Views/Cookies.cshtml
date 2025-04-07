@@ -1,0 +1,36 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.CookiesCia>
+@using ContentModels = Wmca.Models.Content;
+@{
+	Layout = "Custom.cshtml";
+}
+
+<script>
+	const getSelectedArea = localStorage.getItem('cia.selectedArea');
+
+	if (getSelectedArea.includes('birmingham')) {
+		window.location.replace("/birmingham/cookies");
+	}
+	if (getSelectedArea.includes('coventry')) {
+		window.location.replace("/coventry/cookies");
+	}
+	if (getSelectedArea.includes('dudley')) {
+		window.location.replace("/dudley/cookies");
+	}
+	if (getSelectedArea.includes('sandwell')) {
+		window.location.replace("/sandwell/cookies");
+	}
+	if (getSelectedArea.includes('solihull')) {
+		window.location.replace("/solihull/cookies");
+	}
+	if (getSelectedArea.includes('walsall')) {
+		window.location.replace("/walsall/cookies");
+	}
+	if (getSelectedArea.includes('wolverhampton')) {
+		window.location.replace("/wolverhampton/cookies");
+	}
+
+	if (getSelectedArea === null) {
+		window.location.replace("/birmingham/cookies");
+	}
+</script>
