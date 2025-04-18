@@ -39,7 +39,7 @@
     <PackageReference Include="Umbraco.Cms" Version="13.7.1" />
     <PackageReference Include="Limbo.Umbraco.BlockList" Version="13.0.1" />
     <PackageReference Include="Umbraco.Community.AzureSSO" Version="2.2.0" />
-    <PackageReference Include="Umbraco.Community.Contentment" Version="5.1.0" />
+    <PackageReference Include="Umbraco.Community.Contentment" Version="5.0.2" />
     <PackageReference Include="UmbracoPersonalisationGroups" Version="3.4.0" />
     <PackageReference Include="uSync" Version="13.2.6" />
     <PackageReference Include="Umbraco.StorageProviders.AzureBlob" Version="13.1.0" />
