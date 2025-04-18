@@ -1,0 +1,21 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.WestMidlandsRailExecutiveProgrammePage>
+@using ContentModels = Wmca.Models.Content;
+@{
+	Layout = "WestMidlandsRailExecutive.cshtml";
+}
+
+@await Html.PartialAsync("frontend/components/shared/breadcrumb")
+<div class="ds-hub-header">
+    <div class="ds-hub-header-left-pane">
+        </div>
+            <img class="banner" src="@Model.Value("bannerImage")><div class="ds-hub-header-text-pane">
+            <h1 class="hub">@Model.Value("alternativeTitle", fallback: Fallback.ToDefaultValue, defaultValue: @Model.Name)</h1>
+        </div>
+    </div>
+<main id="ds-main-content" class="ds-container">
+    <h1 class="ds-col-2-3"></h1>
+
+    @* Render the block areas *@
+    @await Html.GetBlockGridHtmlAsync(Model, "grid")
+</main>

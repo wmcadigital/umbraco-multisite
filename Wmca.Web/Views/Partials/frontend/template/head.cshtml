@@ -14,9 +14,13 @@
     var dsSlug = siteSet.Value<string>("designSystemSlug");
     // var dsVersion = siteSet.Value<string>("designSystemVersion");
     var siteTitle = siteSet.Value<string>("siteTitle");
+    var siteConfig = siteSet.Value<string>("siteConfiguration");
     var tagId = siteSet.Value<string>("tagID");
     bool greyscaleTheme = siteSet.Value<bool>("greyscaleTheme");
     var assets = "https://cloudcdn.wmca.org.uk/designsystem/config/" + dsSlug + "/favicons";
+    if(siteConfig != ""){
+        assets = siteConfig;
+    }
 }
 
 <!-- Google Tag Manager -->
