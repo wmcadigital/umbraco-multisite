@@ -36,7 +36,7 @@
     <PackageReference Include="Our.Umbraco.ConditionalDisplayers" Version="3.4.0" />
     <PackageReference Include="Skybrud.Umbraco.Redirects" Version="13.0.4" />
     <PackageReference Include="UFormKit" Version="1.0.5" />
-    <PackageReference Include="Umbraco.Cms" Version="13.7.1" />
+    <PackageReference Include="Umbraco.Cms" Version="13.8.1" />
     <PackageReference Include="Limbo.Umbraco.BlockList" Version="13.0.1" />
     <PackageReference Include="Umbraco.Community.AzureSSO" Version="2.2.0" />
     <PackageReference Include="Umbraco.Community.Contentment" Version="5.1.0" />
