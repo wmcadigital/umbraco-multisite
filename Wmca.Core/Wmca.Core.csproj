@@ -8,9 +8,10 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
-    <PackageReference Include="Umbraco.Cms.Core" Version="13.9.2" />
-    <PackageReference Include="Umbraco.Cms.Web.Common" Version="13.9.2" />
-    <PackageReference Include="Umbraco.Cms.Web.Website" Version="13.9.2" />
+
+    <PackageReference Include="Umbraco.Cms.Core" Version="13.9.3" />
+    <PackageReference Include="Umbraco.Cms.Web.Common" Version="13.9.3" />
+    <PackageReference Include="Umbraco.Cms.Web.Website" Version="13.9.3" />
     <PackageReference Include="Limbo.Umbraco.BlockList" Version="13.0.1" />
   </ItemGroup>
   <ItemGroup>
