@@ -1,0 +1,11 @@
+﻿using System;
+namespace Wmca.Web.wwwroot.App_Plugins.BlockListEditor.DefaultCustomViews.css
+{
+    public class block_styles
+    {
+        public block_styles()
+        {
+        }
+    }
+}
+

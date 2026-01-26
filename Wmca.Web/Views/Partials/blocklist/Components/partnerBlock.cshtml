@@ -1,0 +1,32 @@
+﻿@inherits UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>
+@using ContentModels = Wmca.Models.Content;
+@using Umbraco.Cms.Core.Models
+
+@{
+    var content = (ContentModels.PartnerBlock)Model.Content;
+}
+
+@{
+    var img = content.Value<MediaWithCrops>("logo");
+    var link = content.Value<Link>("webAddress");
+
+    @if (link != null)
+    {
+        <a class="ds-m-b-md" target="@link.Target" href="@link.Url">
+            @if (img != null)
+            {
+            <img src="@img.MediaUrl()"
+                alt="@img.Value("altText", fallback: Fallback.ToDefaultValue, defaultValue: @img.Name)" />
+            }
+        </a>
+    }
+    else
+    {
+    <div>
+        @if (img != null)
+        {
+            <img class="ds-m-b-md" src="@img.MediaUrl()" alt="@img.Value("altText", fallback: Fallback.ToDefaultValue, defaultValue: @img.Name)" />
+        }
+    </div>
+    }
+}

@@ -1,0 +1,16 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Publications>
+@using ContentModels = Wmca.Models.Content;
+@{
+    Layout = "MidlandsConnect.cshtml";
+}
+
+@await Html.PartialAsync("frontend/components/shared/breadcrumb")
+
+<script defer="defer" src="~/assets/apps/mc-publications/static/js/main.53e37fdb.js"></script>
+<link href="~/assets/apps/mc-publications/static/css/main.51a6e80e.css" rel="stylesheet" />
+
+<noscript>You need to enable JavaScript to run this app.</noscript>
+<main id="ds-main-content" class="ds-container">
+    <div id="root"></div>
+</main>

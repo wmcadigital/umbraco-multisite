@@ -1,0 +1,25 @@
+﻿<style>
+.ds-file-download{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center; margin: 10px 0;}
+.ds-file-download--non-accessible{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}
+.ds-file-download--document{padding-bottom:2rem}
+.ds-file-download__icon{width:3.5rem;height:3.5rem;fill:#c05701}
+.ds-file-download__chevron-icon{width:2.5rem;height:2.5rem;fill:#007da8}
+.ds-file-download__desc{padding-left:.75rem}
+.ds-file-download__warning{margin:.5rem 0 0}
+</style>
+
+{{mediaItem = (block.data.file[0].mediaKey | mediaItemResolver); ""}}
+    <div class="ds-file-download ds-m-b-md"  ng-click="block.edit()" ng-focus="block.focus" ng-class="{'is-trashed': mediaItem.trashed}">
+        <svg class="ds-file-download__icon">
+            <use xlink:href="#ds-general-file" href="#ds-general-file"></use>
+        </svg>
+        <div class="ds-file-download__desc">
+            <a href="@file.MediaUrl()" target="_blank" class="ds-link">
+                Download {{mediaItem.name}} {{mediaItem.properties[1].value}}, (@fileSize)
+            </a>
+            <p ng-if="block.data.fileIsNotAccessible === '1'" class="ds-file-download__warning">
+                This file may not be suitable for users of assistive technology. <br>
+                <a href="#" class="ds-link">Request an accessible format.</a>
+            </p>
+        </div>
+    </div>

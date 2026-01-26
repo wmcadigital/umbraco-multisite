@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <CopyRefAssembliesToPublishDirectory>true</CopyRefAssembliesToPublishDirectory>
@@ -14,11 +14,14 @@
     <Content Remove="wwwroot\App_Plugins\" />
     <Content Remove="wwwroot\App_Plugins\BlockGridEditor.DefaultCustomViews\" />
     <Content Remove="wwwroot\App_Plugins\BlockGridEditor.DefaultCustomViews\safertravel\" />
-    <Content Remove="wwwroot\css\ds\components\" />
     <Content Remove="wwwroot\App_Plugins\BlockGridEditor.DefaultCustomViews\shared\" />
     <Content Remove="wwwroot\App_Plugins\BlockGridEditor.DefaultCustomViews\midlandsconnect\" />
     <Content Remove="wwwroot\App_Plugins\BlockListEditor.DefaultCustomViews\" />
     <Content Remove="wwwroot\App_Plugins\BlockListEditor.DefaultCustomViews\shared\" />
+    <Content Remove="wwwroot\App_Plugins\BlockListEditor.DefaultCustomViews\js\" />
+    <Content Remove="wwwroot\App_Plugins\BlockListEditor.DefaultCustomViews\css\" />
+    <Content Remove="wwwroot\App_Plugins\BlockListEditor.DefaultCustomViews\views\" />
+    <Content Remove="wwwroot\assets\apps\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="umbraco\Data\Umbraco.sqlite.db">
@@ -27,22 +30,34 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Umbraco.Cms" Version="12.0.1" />
-    <PackageReference Include="Limbo.Umbraco.BlockList" Version="3.0.4" />
-    <PackageReference Include="uSync" Version="12.1.0" />
-    <PackageReference Include="Umbraco.StorageProviders.AzureBlob" Version="12.0.0" />
-    <PackageReference Include="Umbraco.StorageProviders.AzureBlob.ImageSharp" Version="12.0.0" />
-    <PackageReference Include="uSync.Complete" Version="12.0.2" />
-    <PackageReference Include="Our.Umbraco.FullTextSearch" Version="3.1.0" />
-    <PackageReference Include="Umbraco.Community.AccessibilityReporter" Version="3.1.0" />
-    <PackageReference Include="CMSImport" Version="12.0.0" />
-    <PackageReference Include="Umbraco.Community.BlockPreview" Version="1.7.1" />
+    <PackageReference Include="CMSImport" Version="13.1.3" />
+    <PackageReference Include="HotChilli.Umbraco.PageNotFound" Version="2.2.1" />
+    <PackageReference Include="Our.Iconic" Version="12.0.0" />
+    <PackageReference Include="Our.Umbraco.ConditionalDisplayers" Version="3.4.0" />
+    <PackageReference Include="Skybrud.Umbraco.Redirects" Version="13.0.4" />
+    <PackageReference Include="UFormKit" Version="1.0.5" />
+    <PackageReference Include="Umbraco.Cms" Version="13.12.1" />
+    <PackageReference Include="Limbo.Umbraco.BlockList" Version="13.0.1" />
+    <PackageReference Include="Umbraco.Community.AzureSSO" Version="2.2.0" />
+    <PackageReference Include="Umbraco.Community.Contentment" Version="5.0.2" />
+    <PackageReference Include="UmbracoPersonalisationGroups" Version="3.4.0" />
+    <PackageReference Include="uSync" Version="13.2.6" />
+    <PackageReference Include="Umbraco.StorageProviders.AzureBlob" Version="13.1.0" />
+    <PackageReference Include="Umbraco.StorageProviders.AzureBlob.ImageSharp" Version="13.1.0" />
+    <PackageReference Include="uSync.Complete" Version="13.1.8" />
+    <PackageReference Include="Umbraco.Community.AccessibilityReporter" Version="3.3.0" />
+    <PackageReference Include="Umbraco.Community.BlockPreview" Version="1.9.1" />
+    <PackageReference Include="Dawoe.OEmbedPickerPropertyEditor" Version="13.0.0" />
+    <PackageReference Include="Dawoe.OEmbedPickerPropertyEditor.Core" Version="13.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.0" />
+    <PackageReference Include="Umbraco.Forms" Version="13.4.1" />
+    <PackageReference Include="StuartMullinger.Sift" Version="13.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <!-- Opt-in to app-local ICU to ensure consistent globalization APIs across different platforms -->
-    <PackageReference Include="Microsoft.ICU.ICU4C.Runtime" Version="68.2.0.9" />
-    <RuntimeHostConfigurationOption Include="System.Globalization.AppLocalIcu" Value="68.2.0.9" Condition="$(RuntimeIdentifier.StartsWith('linux')) or $(RuntimeIdentifier.StartsWith('win')) or ('$(RuntimeIdentifier)' == '' and !$([MSBuild]::IsOSPlatform('osx')))" />
+    <PackageReference Include="Microsoft.ICU.ICU4C.Runtime" Version="72.1.0.3" />
+    <RuntimeHostConfigurationOption Include="System.Globalization.AppLocalIcu" Value="72.1.0.3" Condition="$(RuntimeIdentifier.StartsWith('linux')) or $(RuntimeIdentifier.StartsWith('win')) or ('$(RuntimeIdentifier)' == '' and !$([MSBuild]::IsOSPlatform('osx')))" />
   </ItemGroup>
 
   <ItemGroup>
@@ -67,6 +82,12 @@
     <Content Update="appsettings-schema.AccessibilityReporter.json">
       <DependentUpon>appsettings-schema.json</DependentUpon>
     </Content>
+    <Content Update="appsettings-schema.UmbracoCommunityAzureSSO.json">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <DependentUpon>appsettings-schema.json</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Wmca.Models\Wmca.Models.csproj">
@@ -80,11 +101,14 @@
     <Folder Include="wwwroot\App_Plugins\" />
     <Folder Include="wwwroot\App_Plugins\BlockGridEditor.DefaultCustomViews\" />
     <Folder Include="wwwroot\App_Plugins\BlockGridEditor.DefaultCustomViews\safertravel\" />
-    <Folder Include="wwwroot\css\ds\components\" />
     <Folder Include="wwwroot\App_Plugins\BlockGridEditor.DefaultCustomViews\shared\" />
     <Folder Include="wwwroot\App_Plugins\BlockGridEditor.DefaultCustomViews\midlandsconnect\" />
     <Folder Include="wwwroot\App_Plugins\BlockListEditor.DefaultCustomViews\" />
     <Folder Include="wwwroot\App_Plugins\BlockListEditor.DefaultCustomViews\shared\" />
+    <Folder Include="wwwroot\App_Plugins\BlockListEditor.DefaultCustomViews\js\" />
+    <Folder Include="wwwroot\App_Plugins\BlockListEditor.DefaultCustomViews\css\" />
+    <Folder Include="wwwroot\App_Plugins\BlockListEditor.DefaultCustomViews\views\" />
+    <Folder Include="wwwroot\assets\apps\" />
   </ItemGroup>
   <PropertyGroup>
     <!-- Razor files are needed for the backoffice to work correctly -->

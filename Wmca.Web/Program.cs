@@ -1,20 +1,54 @@
-﻿namespace Wmca
+﻿using Our.Umbraco.PersonalisationGroups.Core;
+
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
 {
-    public class Program
+    options.AddPolicy("MyAllowSpecificOrigins",
+        builder =>
+        {
+            builder.WithOrigins("https://dev-wmca.euwest01.umbraco.io", "https://www.wmca.org.uk", "http://localhost:1234/") // Replace with your allowed origins
+                   .AllowAnyHeader()
+                   .AllowAnyMethod();
+        });
+});
+
+builder.CreateUmbracoBuilder()
+    .AddBackOffice()
+    .AddWebsite()
+    .AddDeliveryApi()
+    .AddComposers()
+    .AddAzureBlobMediaFileSystem()
+    .AddAzureBlobImageSharpCache()
+    .AddPersonalisationGroups(builder.Configuration)
+    .Build();
+
+WebApplication app = builder.Build();
+
+await app.BootUmbracoAsync();
+
+#if (UseHttpsRedirect)
+app.UseHttpsRedirection();
+#endif
+
+app.UseCors("MyAllowSpecificOrigins");
+
+app.UseUmbraco()
+    .WithMiddleware(u =>
     {
-        public static void Main(string[] args)
-            => CreateHostBuilder(args)
-                .Build()
-                .Run();
+        u.RunPrePipeline();
+        u.RunPreRouting();
+        u.RunPostPipeline();
+        u.RunPostRouting();
+        u.UseBackOffice();
+        u.UseWebsite();
+    })
+    .WithEndpoints(u =>
+    {
+        u.UseInstallerEndpoints();
+        u.UseBackOfficeEndpoints();
+        u.UseWebsiteEndpoints();
+        u.UsePersonalisationGroupsEndpoints();
+    });
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureUmbracoDefaults()
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStaticWebAssets();
-                    webBuilder.UseStartup<Startup>();
-                });
-    }
-}
-
+await app.RunAsync();

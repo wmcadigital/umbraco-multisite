@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
@@ -19,17 +19,88 @@ jobs:
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '7.x'
+          dotnet-version: '8.x'
           include-prerelease: true
 
-      - name: Build with dotnet
-        run: dotnet build --configuration Release
+      - uses: azure/login@v1
+        with:
+            creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Set Web App Settings
+        uses: Azure/appservice-settings@v1
+        with:
+            app-name: 'app-umbraco-multisite'
+            slot-name: 'staging'
+            app-settings-json: |
+                [
+                    {
+                      "name": "Umbraco:CMS:Global:Smtp:Host",
+                      "value": "${{ secrets.SMTP_HOST }}",
+                      "slotSetting": true
+                    },
+                    {
+                      "name": "Umbraco:CMS:Global:Smtp:Username",
+                      "value": "${{ secrets.SMTP_USERNAME }}",
+                      "slotSetting": true
+                    },
+                    {
+                      "name": "Umbraco:CMS:Global:Smtp:Password",
+                      "value": "${{ secrets.SMTP_PASSWORD }}",
+                      "slotSetting": true
+                    },
+                    {
+                        "name": "Umbraco:CMS:DeliveryApi:ApiKey",
+                        "value": "${{ secrets.APIKEY }}",
+                        "slotSetting": true
+                    },
+                    {
+                        "name": "uSync:Publisher:Settings:AppId",
+                        "value": "${{ secrets.USYNC_APPID }}",
+                        "slotSetting": true
+                    },
+                    {
+                        "name": "uSync:Publisher:Settings:AppKey",
+                        "value": "${{ secrets.USYNC_APPKEY }}",
+                        "slotSetting": true
+                    },
+                    {
+                        "name": "AzureSSO:Credentials:Domain",
+                        "value": "${{ secrets.AZURESSO_DOMAIN }}",
+                        "slotSetting": true
+                    },
+                    {
+                        "name": "AzureSSO:Credentials:TenantId",
+                        "value": "${{ secrets.AZURESSO_TENANTID }}",
+                        "slotSetting": true
+                    },
+                    {
+                        "name": "AzureSSO:Credentials:ClientId",
+                        "value": "${{ secrets.AZURESSO_CLIENTID }}",
+                        "slotSetting": true
+                    },
+                    {
+                        "name": "AzureSSO:Credentials:ClientSecret",
+                        "value": "${{ secrets.AZURESSO_CLIENTSECRET }}",
+                        "slotSetting": true
+                    }
+                ]
+
+      - name: Azure CLI script
+        uses: azure/CLI@v1
+        with:
+            inlineScript: |
+                az logout
+                az cache purge
+                az account clear
+
+      - name: Clean with dotnet
+        run: dotnet clean
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: .net-app
           path: ${{env.DOTNET_ROOT}}/myapp
@@ -43,7 +114,7 @@ jobs:
 
     steps:
       - name: Download artifact from build job
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: .net-app
 
@@ -55,3 +126,16 @@ jobs:
           slot-name: 'staging'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B1366671861145DF83D35E7611409422 }}
           package: .
+
+      - name: Database Initialization
+        run: |
+          # Database initialization commands go here
+          # Example: Load data from an SQL dump file
+          # sqlcmd -S $SERVER -U $USERNAME -P $PASSWORD -d $DATABASE -i path/to/dump.sql
+          # For SQLite, you can set the connection string directly in your Umbraco application
+          echo "ConnectionStrings__umbracoDbDSN=Data Source=${{ env.DOTNET_ROOT }}/myapp/Wmca.Web/umbraco/Data/Umbraco.sqlite.db;Cache=Shared;Foreign Keys=True;Pooling=True" >> $GITHUB_ENV
+        env:
+          SERVER: ${{ secrets.DB_SERVER }}
+          USERNAME: ${{ secrets.DB_USERNAME }}
+          PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DATABASE: ${{ secrets.DB_DATABASE }}

@@ -10,6 +10,6 @@
     var typedMediaPickerSingle = content.Value<MediaWithCrops>("image");
     if (typedMediaPickerSingle != null)
     {
-        <img src="@typedMediaPickerSingle.MediaUrl()" style="width:200px" alt="@typedMediaPickerSingle.Value("alt")" />
+        <img src="@typedMediaPickerSingle.MediaUrl()" style="width:200px" alt="@typedMediaPickerSingle.Value("altText", fallback: Fallback.ToDefaultValue, defaultValue: @typedMediaPickerSingle.Name)" />
     }
 }

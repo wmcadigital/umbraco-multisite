@@ -8,18 +8,25 @@
 
 @if (selection?.Length > 0)
 {
-<div class="ds-container">
-    <nav aria-label="Breadcrumbs" class="ds-breadcrumb">
-        <ol class="ds-breadcrumb__list">
-            @* For each page in the ancestors collection which have been ordered by Level (so we start with the highest top node first) *@
-            @foreach (var item in selection.OrderBy(x => x.Level))
-            {
-                <li class="ds-breadcrumb__list-item"><a href="@item.Url(PublishedUrlProvider)" class="ds-breadcrumb__link">@item.Name</a></li>
-            }
-
-            @* Display the current page as the last item in the list *@
-            <li class="ds-breadcrumb__list-item"><a href="#" class="ds-breadcrumb__link ds-breadcrumb__link--current" aria-current="page">@Model.Name</a></li>
-        </ol>
-    </nav>
-</div>
+    <div class="ds-container">
+        <nav aria-label="Breadcrumbs" class="ds-breadcrumb">
+            <ol class="ds-breadcrumb__list">
+                @* For each page in the ancestors collection which have been ordered by Level (so we start with the highest top node first) *@
+                @foreach (var item in selection.OrderBy(x => x.Level))
+                {
+                    <li class="ds-breadcrumb__list-item">
+                        <a href="@item.Url(PublishedUrlProvider)" class="ds-breadcrumb__link">
+                            @if (item.Name == "Midlands Connect" || item.Name == "Safer Travel" || item.Name == "West Midlands Combined Authority")
+                            {
+                                <span>Home</span>
+                            }
+                            else
+                            { @item.Name}
+                        </a>
+                    </li>
+                } @* Display the current page as the last item in the list *@
+                <li class="ds-breadcrumb__list-item"><a href="#" class="ds-breadcrumb__link ds-breadcrumb__link--current" aria-current="page">@Model.Name</a></li>
+            </ol>
+        </nav>
+    </div>
 }

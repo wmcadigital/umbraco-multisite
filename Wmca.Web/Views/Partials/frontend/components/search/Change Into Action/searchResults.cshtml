@@ -1,0 +1,44 @@
+﻿@model SiftLibrary.Models.SearchResultNodes
+@using Umbraco.Cms.Core.Models.PublishedContent
+@using Umbraco.Cms.Core.Models
+
+<div class="ds-css-grid-2-col ds-m-t-lg ds-m-b-lg">
+    @foreach (var node in Model.Nodes)
+        {
+            if (node.ItemType == PublishedItemType.Content)
+            {
+             <a href="@node.Url(Model.Criteria.Culture)" class="ds-search-result__title">
+        <div class="ds-content-card">
+            @{
+                var img = node.Value<MediaWithCrops>("image");
+                if(img == null) {
+                 img = node.Value<MediaWithCrops>("bannerImage");
+                }
+                if (img != null)
+                {
+                    <img src="@img.MediaUrl()?width=585" alt="@img.Value("altText", fallback: Fallback.ToDefaultValue, defaultValue: @img.Name)" />
+                }
+            }
+            <div class="ds-p-sm">
+            <h2 class="ds-h3 ds-m-b-none">
+               @node.Name(Model.Criteria.Culture)
+            </h2>
+
+            <div class="ds-search-result__excerpt">
+               
+            </div>
+            </div>
+        </div>
+        </a>
+        }
+        else if (node.ItemType == PublishedItemType.Media)
+        {
+            <li><a href="@node.MediaUrl(Model.Criteria.Culture)">@node.Name(Model.Criteria.Culture)</a></li>
+        }
+    }
+</div>
+
+@if (Model.Criteria.ResultsPerPage > 0)
+{
+    @await Html.PartialAsync("frontend/components/search/searchPagination", Model)
+}

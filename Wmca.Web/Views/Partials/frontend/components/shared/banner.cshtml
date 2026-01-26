@@ -1,0 +1,14 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Umbraco.Cms.Core.Models
+
+@{
+    var backgroundPosition = "center";
+    if(Model.Value<string>("categories") != ""){
+        backgroundPosition = Model.Value<string>("imagePosition").ToFirstLower();
+    }
+    var typedMediaPickerSingle = Model.Value<MediaWithCrops>("bannerImage");
+    if (typedMediaPickerSingle != null)
+    {
+        <div class="ds-page-header ds-m-b-lg" style="background-image:url('@typedMediaPickerSingle.MediaUrl()?anchor=center&amp;mode=crop&amp;width=2500&amp;height=800&amp;rnd=132122595620000000');background-position:@backgroundPosition"></div>
+    }
+}
