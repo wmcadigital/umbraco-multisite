@@ -50,7 +50,7 @@
     <PackageReference Include="Dawoe.OEmbedPickerPropertyEditor" Version="13.0.0" />
     <PackageReference Include="Dawoe.OEmbedPickerPropertyEditor.Core" Version="13.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.0" />
-    <PackageReference Include="Umbraco.Forms" Version="13.4.1" />
+    <PackageReference Include="Umbraco.Forms" Version="13.9.0" />
     <PackageReference Include="StuartMullinger.Sift" Version="13.0.0" />
   </ItemGroup>
 
