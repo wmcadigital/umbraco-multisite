@@ -1,5 +1,16 @@
 angular.module("umbraco").controller("Our.Umbraco.ConditionalDisplayers.DropdownController",
-    function ($scope, editorState, cdSharedLogic) {
+    function ($scope, $element, editorState, cdSharedLogic) {
+
+        // Getting the parent umbraco element.
+        let parentBlockListBlock = $element[0].closest('umb-block-list-block');
+        let parentBlockListItemId = undefined;
+
+        // Setting data-cd-ancestor-id if dropdown placed into blockListItem
+        // to hide or show only child elements of it.
+        if (parentBlockListBlock) {
+            parentBlockListItemId = `dropdown-cd-ancestor-id-${$scope.$id}`;
+            parentBlockListBlock.setAttribute('data-cd-ancestor-id', parentBlockListItemId);
+        }
 
         // propertyAlias is used in NestedContent properties. If we find we are in NC we
         // extract the parent alias to find later on only the property belonging to the same item where CD is included.
@@ -23,9 +34,13 @@ angular.module("umbraco").controller("Our.Umbraco.ConditionalDisplayers.Dropdown
         $scope.runDisplayLogic = function () {
             if (editorState.current.ModelState) {
                 //init visible fields
-                var item = _.findWhere(config.items, { value: $scope.model.value });
+                //legacy
+                var itemByValue = _.findWhere(config.items, { value: $scope.model.value })
+                var itemBykey = _.findWhere(config.items, { key: $scope.model.value });
+                var item = itemByValue || itemBykey;
+
                 if (item) {
-                    cdSharedLogic.displayProps(item.show, item.hide, parentPropertyAlias);
+                    cdSharedLogic.displayProps(item.show, item.hide, parentPropertyAlias, parentBlockListItemId);
                 }
             }
         };
@@ -33,7 +48,9 @@ angular.module("umbraco").controller("Our.Umbraco.ConditionalDisplayers.Dropdown
         // update the visible fields on changes from NestedContent
         var formSubmittingUnsubscribe = $scope.$on("formSubmitting", $scope.runDisplayLogic);
         var ncSyncValUnsubscribe = $scope.$on("ncSyncVal", $scope.runDisplayLogic);
-        $(document).on("click", ".umb-nested-content__header-bar", $scope.runDisplayLogic)
+        $(document).on("click", ".umb-nested-content__header-bar", $scope.runDisplayLogic);
+
+        $(document).on("click", "umb-tabs-nav", $scope.runDisplayLogic);
 
         function convertArrayToDictionaryArray(model) {
             //now we need to format the items in the dictionary because we always want to have an array

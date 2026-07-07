@@ -7,8 +7,15 @@ class AccessibilityReporter {
         return new Promise(async (resolve, reject) => {
 
             try {
+                const headers = new Headers({
+                    'X-User-Agent': 'AccessibilityReporter/1.0'
+                });
 
-                const testRequest = new Request(testUrl);
+                const testRequest = new Request(testUrl, {
+                    method: 'GET',
+                    headers: headers
+                });
+
                 await fetch(testRequest);
                 const iframeId = "arTestIframe" + AccessibilityReporter.randomUUID();
                 const container = document.getElementById(showWhileRunning ? 'dashboard-ar-tests' : 'contentcolumn');
@@ -212,17 +219,17 @@ class AccessibilityReporter {
 
     }
 
-    static saveToSessionStorage(key, value) {
+    static saveToLocalStorage(key, value) {
         try {
-            sessionStorage.setItem(key, JSON.stringify(value));
+            localStorage.setItem(key, JSON.stringify(value));
         } catch (error) {
             console.error(error);
         }
 
     }
 
-    static getItemFromSessionStorage(key) {
-        const item = sessionStorage.getItem(key);
+    static getItemFromLocalStorage(key) {
+        const item = localStorage.getItem(key);
         if (item) {
             return JSON.parse(item);
         } else {
